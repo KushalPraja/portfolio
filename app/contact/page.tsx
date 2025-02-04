@@ -56,7 +56,7 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="flex justify-center gap-6"
           >
-            {socialLinks.map((link, index) => (
+            {socialLinks.map((link) => (
               <motion.a
                 key={link.name}
                 href={link.url}

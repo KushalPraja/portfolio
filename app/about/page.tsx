@@ -47,7 +47,7 @@ export default function About() {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Bio</h2>
                 <p className="text-gray-600 leading-relaxed">
-                  I'm a software engineer passionate about creating intuitive and engaging web experiences. 
+                  I&apos;m a software engineer passionate about creating intuitive and engaging web experiences. 
                   With expertise in modern web technologies, I focus on building performant and scalable applications.
                 </p>
               </CardContent>
@@ -64,7 +64,7 @@ export default function About() {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-6">Skills</h2>
                 <div className="space-y-4">
-                  {skills.map((skill, index) => (
+                  {skills.map((skill) => (
                     <div key={skill.name} className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-sm">{skill.name}</span>

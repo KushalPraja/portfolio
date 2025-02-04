@@ -43,10 +43,9 @@ export default function LoadingScreen() {
 
   return (
     <AnimatePresence mode="wait">
-      initial={false}
       {isLoading && (
         <motion.div
-          className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center font-mono"
+          className="fixed inset-0 bg-[#f5f0f0] z-50 flex flex-col items-center justify-center font-mono"
           exit={{ 
             opacity: 0,
             transition: { duration: 0.5, ease: "easeInOut" }

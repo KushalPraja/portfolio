@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const routes = [
-  { path: "/", label: "home" },
-  { path: "/projects", label: "projects" },
-  { path: "/about", label: "about" },
-  { path: "/contact", label: "contact" },
+  { path: "/", label: "HOME" },
+  { path: "/projects", label: "PROJECTS" },
+  { path: "/about", label: "ABOUT" },
+  { path: "/contact", label: "CONTACT" },
 ];
 
 export default function Navigation() {
@@ -27,7 +27,7 @@ export default function Navigation() {
   return (
     <>
       <motion.nav 
-        className="fixed top-8 left-8 flex flex-col gap-2 font-mono text-sm font-thin"
+        className="fixed top-8 left-8 flex flex-col gap-2 font-[var(--font-geist-mono)] text-md"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
@@ -36,11 +36,11 @@ export default function Navigation() {
           <Link 
             key={route.path} 
             href={route.path}
-            className={`text-md transition-colors font-regular${
-              pathname === route.path ? "text-black" : "text-black/70"
+            className={`text-md transition-colors font-regular ${
+              pathname === route.path ? "underline text-black" : "no-underline text-black/70"
             }`}
           >
-            [ {route.label} ]
+              {route.label} 
           </Link>
         ))}
       </motion.nav>

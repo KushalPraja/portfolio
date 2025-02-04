@@ -58,7 +58,7 @@ export default function Navigation() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        [ waterloo, ontario canada ]
+        [ Waterloo, Ontario ]
       </motion.div>
     </>
   );

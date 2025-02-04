@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistMono.variable} antialiased`}>
+        <LoadingScreen />
         {children}
         <Navigation />
       </body>

@@ -15,36 +15,91 @@ export default function Background() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    // Create points
+    // Create points with initial positions
     const geometry = new THREE.BufferGeometry();
-    const vertices = [];
-    
-    for (let i = 0; i < 1000; i++) {
-      vertices.push(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10
-      );
+    const particleCount = 2000;
+    const positions = new Float32Array(particleCount * 3);
+    const originalPositions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      const x = (Math.random() - 0.5) * 10;
+      const y = (Math.random() - 0.5) * 10;
+      const z = (Math.random() - 0.5) * 10;
+      
+      positions[i] = x;
+      positions[i + 1] = y;
+      positions[i + 2] = z;
+      
+      originalPositions[i] = x;
+      originalPositions[i + 1] = y;
+      originalPositions[i + 2] = z;
     }
     
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-    const material = new THREE.PointsMaterial({ size: 0.02, color: '#333333' });
-    const points = new THREE.Points(geometry, material);
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({ 
+      size: 0.02,
+      color: '#333333',
+      transparent: true,
+      opacity: 0.8
+    });
     
+    const points = new THREE.Points(geometry, material);
     scene.add(points);
     camera.position.z = 5;
+
+    // Mouse interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      mouseX = (event.clientX - window.innerWidth / 2) * 0.001;
+      mouseY = (event.clientY - window.innerHeight / 2) * 0.001;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
 
     // Animation
     const animate = () => {
       requestAnimationFrame(animate);
-      points.rotation.y += 0.001;
+
+      targetX += (mouseX - targetX) * 0.1;
+      targetY += (mouseY - targetY) * 0.1;
+
+      const positions = points.geometry.attributes.position.array as Float32Array;
+
+      for (let i = 0; i < positions.length; i += 3) {
+        const x = originalPositions[i];
+        const y = originalPositions[i + 1];
+        const z = originalPositions[i + 2];
+
+        positions[i] = x + targetX * 50;
+        positions[i + 1] = y + targetY * 50;
+        positions[i + 2] = z;
+      }
+
+      points.geometry.attributes.position.needsUpdate = true;
+      points.rotation.y += 0.0005;
+      
       renderer.render(scene, camera);
     };
 
     animate();
 
+    // Handle window resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
     // Cleanup
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
       containerRef.current?.removeChild(renderer.domElement);
       geometry.dispose();
       material.dispose();

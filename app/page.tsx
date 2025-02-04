@@ -26,12 +26,12 @@ export default function Home() {
             Kushal Prajapati
           </motion.h1>
           <motion.p 
-            className="text-[#333333] text-base tracking-wide drop-shadow-sm"
+            className="text-[#000000] text-base tracking-wide drop-shadow-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Software Engineer
+            COMPUTER ENGINEER
           </motion.p>
         </motion.div>
       </div>

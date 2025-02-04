@@ -9,7 +9,7 @@ export default function Projects() {
         animate={{ opacity: 1 }}
         className="text-center font-mono"
       >
-        <h1 className="text-3xl text-[#111111]">Projects</h1>
+        <h1 className="text-4xl text-[#111111] drop-shadow-md">Projects</h1>
       </motion.div>
     </div>
   );

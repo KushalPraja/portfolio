@@ -9,7 +9,7 @@ export default function About() {
         animate={{ opacity: 1 }}
         className="text-center font-mono"
       >
-        <h1 className="text-3xl text-[#111111]">About Me</h1>
+        <h1 className="text-4xl text-[#111111] drop-shadow-md">About Me</h1>
       </motion.div>
     </div>
   );

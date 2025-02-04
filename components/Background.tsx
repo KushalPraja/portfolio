@@ -17,15 +17,19 @@ export default function Background() {
 
     // Create points with initial positions
     const geometry = new THREE.BufferGeometry();
-    const particleCount = 2000;
+    const particleCount = 2500;
     const positions = new Float32Array(particleCount * 3);
     const originalPositions = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-      const x = (Math.random() - 0.5) * 10;
-      const y = (Math.random() - 0.5) * 10;
-      const z = (Math.random() - 0.5) * 10;
-      
+      let x, y, z;
+      // Keep generating random positions until they're not too close to the center
+      do {
+        x = (Math.random() - 0.5) * 15;
+        y = (Math.random() - 0.5) * 15;
+        z = (Math.random() - 0.5) * 15;
+      } while (Math.sqrt(x * x + y * y + z * z) < 2);
+
       positions[i] = x;
       positions[i + 1] = y;
       positions[i + 2] = z;
@@ -37,10 +41,10 @@ export default function Background() {
     
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     const material = new THREE.PointsMaterial({ 
-      size: 0.02,
+      size: 0.015,
       color: '#333333',
       transparent: true,
-      opacity: 0.8
+      opacity: 0.7
     });
     
     const points = new THREE.Points(geometry, material);

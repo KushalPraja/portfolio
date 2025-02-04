@@ -18,7 +18,7 @@ export default function Home() {
           className="text-center font-mono"
         >
           <motion.h1 
-            className="text-4xl mb-4 tracking-tight text-[#111111] font-medium"
+            className="text-5xl mb-4 tracking-tight text-[#111111] font-medium drop-shadow-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -26,7 +26,7 @@ export default function Home() {
             Kushal Prajapati
           </motion.h1>
           <motion.p 
-            className="text-[#333333] text-sm tracking-wide"
+            className="text-[#333333] text-base tracking-wide drop-shadow-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}

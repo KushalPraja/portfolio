@@ -63,7 +63,7 @@ export default function LoadingScreen() {
               animate={{ opacity: 1 }}
               className="text-2xl font-medium text-black/80 mb-8 text-center"
             >
-              [ kushal prajapati ]
+              Kushal Prajapati
             </motion.div>
 
             <div className="text-center space-y-3">

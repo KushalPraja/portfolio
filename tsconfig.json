@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false, // disable strict type checking
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",

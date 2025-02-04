@@ -27,7 +27,7 @@ export default function Navigation() {
   return (
     <>
       <motion.nav 
-        className="fixed top-8 left-8 flex flex-col gap-2 font-mono text-sm"
+        className="fixed top-8 left-8 flex flex-col gap-2 font-mono text-sm font-thin"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
@@ -36,7 +36,7 @@ export default function Navigation() {
           <Link 
             key={route.path} 
             href={route.path}
-            className={`text-lg font-bold transition-colors ${
+            className={`text-md transition-colors font-regular${
               pathname === route.path ? "text-black" : "text-black/70"
             }`}
           >
@@ -45,7 +45,7 @@ export default function Navigation() {
         ))}
       </motion.nav>
       <motion.div
-        className="fixed top-8 right-8 text-lg font-bold text-black"
+        className="fixed top-8 right-8 text-md text-black font-regular"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
@@ -53,7 +53,7 @@ export default function Navigation() {
         {time && `[ ${time} ]`}
       </motion.div>
       <motion.div 
-        className="fixed bottom-8 right-8 text-lg font-bold text-black"
+        className="fixed bottom-8 right-8 text-md text-black font-regular"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}

@@ -39,6 +39,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const [time, setTime] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -49,84 +50,120 @@ export default function Navigation() {
     return () => clearInterval(interval);
   }, []);
 
+  // Add check for mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const toggleMenu = () => setIsVisible(!isVisible);
+
   return (
     <>
-      {/* Navigation trigger area with improved visual indicator */}
+      {/* Navigation trigger area - different for mobile/desktop */}
       <div 
-        className="fixed top-0 left-0 w-24 h-screen z-40"
-        onMouseEnter={() => setIsVisible(true)}
-        onMouseLeave={() => setIsVisible(false)}
+        className={`fixed z-40 ${isMobile ? 'top-4 left-4' : 'top-0 left-0 w-24 h-screen'}`}
+        onMouseEnter={() => !isMobile && setIsVisible(true)}
+        onMouseLeave={() => !isMobile && setIsVisible(false)}
+        onClick={() => isMobile && toggleMenu()}
       >
-        {/* Navigation indicator */}
+        {/* Menu Icon */}
         <motion.div 
-          className="fixed top-1/2 -translate-y-1/2 left-4 flex flex-col items-center gap-1"
+          className={`${isMobile ? 'relative' : 'fixed top-1/2 -translate-y-1/2 left-6'} text-black`}
           animate={{ 
             opacity: isVisible ? 0 : 1,
             x: isVisible ? -20 : 0
           }}
           transition={{ duration: 0.2 }}
         >
-          <span className="block w-4 h-[1px] bg-black/40" />
-          <span className="block w-2 h-[1px] bg-black/40" />
-          <span className="block w-3 h-[1px] bg-black/40" />
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="hover:scale-110 transition-transform"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </motion.div>
 
         <AnimatePresence>
           {isVisible && (
             <motion.nav 
-              className="fixed top-8 left-8 flex flex-col gap-3 font-[var(--font-geist-mono)] text-md"
-              initial={{ opacity: 0, x: -10 }}
+              className={`fixed ${isMobile ? 'inset-0 bg-white/95' : 'top-8 left-8'} flex flex-col gap-3 font-[var(--font-geist-mono)] text-md`}
+              initial={{ opacity: 0, x: isMobile ? -100 : -10 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
+              exit={{ opacity: 0, x: isMobile ? -100 : -10 }}
               transition={{ duration: 0.2 }}
             >
-              {routes.map((route) => (
-                <motion.div
-                  key={route.path}
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
+              {isMobile && (
+                <motion.button
+                  className="absolute top-4 right-4"
+                  onClick={() => setIsVisible(false)}
                 >
-                  <Link 
-                    href={route.path}
-                    className={`text-md transition-all duration-200 relative group ${
-                      pathname === route.path ? "text-black" : "text-black/60 hover:text-black"
-                    }`}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
                   >
-                    <span className="relative">
-                      {route.label}
-                      {pathname === route.path && (
-                        <motion.span 
-                          layoutId="activeIndicator"
-                          className="absolute -bottom-1 left-0 w-full h-[1px] bg-black"
-                          transition={{ duration: 0.2 }}
-                        />
-                      )}
-                      <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-black/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </motion.button>
+              )}
+              <div className={`flex flex-col ${isMobile ? 'items-center justify-center h-full gap-8' : 'gap-3'}`}>
+                {routes.map((route) => (
+                  <motion.div
+                    key={route.path}
+                    variants={itemVariants}
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => isMobile && setIsVisible(false)}
+                  >
+                    <Link 
+                      href={route.path}
+                      className={`text-md transition-all duration-200 relative group ${
+                        isMobile ? 'text-2xl' : ''
+                      } ${
+                        pathname === route.path ? "text-black" : "text-black/60 hover:text-black"
+                      }`}
+                    >
+                      <span className="relative">
+                        {route.label}
+                        {pathname === route.path && (
+                          <motion.span 
+                            layoutId="activeIndicator"
+                            className="absolute -bottom-1 left-0 w-full h-[1px] bg-black"
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                        <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-black/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </motion.nav>
           )}
         </AnimatePresence>
-
-        {/* Visual indicator for nav area */}
-        <motion.div 
-          className="fixed top-0 left-0 w-1 h-screen bg-black/5"
-          animate={{ 
-            opacity: isVisible ? 1 : 0.3,
-            width: isVisible ? "2px" : "1px"
-          }}
-          transition={{ duration: 0.2 }}
-        />
       </div>
 
-      {/* Time and Location with consistent styling */}
+      {/* Time and Location - adjusted for mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="fixed top-8 right-8 text-md text-black/60 hover:text-black transition-colors"
+        className={`fixed ${isMobile ? 'top-4 right-4 text-sm' : 'top-8 right-8 text-md'} text-black/60 hover:text-black transition-colors`}
       >
         {time && `[ ${time} ]`}
       </motion.div>
@@ -135,7 +172,7 @@ export default function Navigation() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="fixed bottom-8 right-8 text-md text-black/60 hover:text-black transition-colors"
+        className={`fixed ${isMobile ? 'bottom-4 right-4 text-sm' : 'bottom-8 right-8 text-md'} text-black/60 hover:text-black transition-colors`}
       >
         [ Waterloo, Ontario ]
       </motion.div>

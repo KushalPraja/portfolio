@@ -11,18 +11,6 @@ const routes = [
   { path: "/contact", label: "CONTACT" },
 ];
 
-const navVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      staggerChildren: 0.1
-    }
-  }
-};
-
 const itemVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: { 

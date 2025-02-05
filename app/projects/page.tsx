@@ -5,8 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ProjectCard } from "@/components/project-card";
+import { Project, ProjectCategory } from "@/types/project";
 
-const projects = [
+const projects: ProjectCategory[] = [
   {
     category: "Web",
     items: [
@@ -94,11 +95,11 @@ const projects = [
 export default function Projects() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filterProjects = (items: any[]) => {
+  const filterProjects = (items: Project[]): Project[] => {
     return items.filter(project =>
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.tech.some((tech: string) => 
+      project.tech.some((tech) => 
         tech.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );

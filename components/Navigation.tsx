@@ -39,7 +39,7 @@ export default function Navigation() {
       {isMobile ? (
         // Mobile Navigation
         <motion.nav 
-          className="fixed top-8 left-8 z-[100]"
+          className=" top-8 left-8 z-[100]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
@@ -63,7 +63,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(false)}
                 />
 
-                {/* Mobile Menu */}
+                {/* Mobile Menu - Start below navbar */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -118,7 +118,7 @@ export default function Projects() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-2"
           >
-            <h1 className="text-4xl font-bold tracking-tight"> My Projects</h1>
+            <h1 className="text-4xl font-bold tracking-tight mb-4">My Projects</h1>
             <p className="text-muted-foreground max-w-[42rem] mx-auto">
               A collection of my work, side projects, and experiments. Each project represents a unique challenge and learning experience.
             </p>

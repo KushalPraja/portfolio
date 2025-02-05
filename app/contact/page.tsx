@@ -6,9 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-  { name: "GitHub", url: "https://github.com/yourusername" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/yourusername" },
-  { name: "Twitter", url: "https://twitter.com/yourusername" }
+  { name: "GitHub", url: "https://github.com/KushalPraja" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/kushalpraja/" },
+  { name: "X", url: "https://x.com/KushalPraj" }
 ];
 
 export default function Contact() {

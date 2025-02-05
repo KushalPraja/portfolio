@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { GeistMono } from 'geist/font/mono';
 
 const skills = [
   { name: "JavaScript/TypeScript", level: 80 },
@@ -53,8 +54,8 @@ export default function About() {
             <Card className="h-full">
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Bio</h2>
-                <p className="text-gray-600 leading-relaxed">
-                I&apos;m Kushal Prajapati, an aspiring software engineer currently studying Computer Engineering at the University of Waterloo. I specialize in building modern web applications using Next.js, React, and Node.js, with a focus on creating responsive and performant solutions.                  With expertise in modern web technologies, I focus on building performant and scalable applications.
+                <p className={`text-gray-600 leading-relaxed text-sm ${GeistMono.className}`}>
+                I&apos;m Kushal Prajapati, an aspiring AI + FullStack developer currently studying Computer Engineering at the University of Waterloo. I specialize in building modern web applications using Next.js, React, and Node.js, with a focus on creating responsive and performant solutions.                  With expertise in modern web technologies, I focus on building performant and scalable applications.
                 </p>
               </CardContent>
             </Card>

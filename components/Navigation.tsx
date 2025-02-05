@@ -48,28 +48,31 @@ export default function Navigation() {
         onMouseLeave={() => !isMobile && setIsVisible(false)}
         onClick={() => isMobile && toggleMenu()}
       >
-        {/* Menu Icon */}
+        {/* Corner Menu Icon - Updated for better visibility */}
         <motion.div 
-          className={`${isMobile ? 'relative' : 'fixed top-1/2 -translate-y-1/2 left-6'} text-black`}
+          className={`${isMobile ? 'relative' : 'fixed top-1/2 -translate-y-1/2 left-6'}`}
           animate={{ 
             opacity: isVisible ? 0 : 1,
             x: isVisible ? -20 : 0
           }}
           transition={{ duration: 0.2 }}
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="hover:scale-110 transition-transform"
-          >
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <div className="flex items-center gap-2">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000000"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="hover:scale-110 transition-transform"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span className="text-sm text-black font-medium opacity-60">MENU</span>
+          </div>
         </motion.div>
 
         <AnimatePresence>

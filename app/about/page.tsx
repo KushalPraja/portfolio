@@ -48,7 +48,7 @@ const education = [
   {
     degree: "Computer Engineering",
     school: "University of Waterloo",
-    year: "2023-2028",
+    year: "2024-2029",
     details: "Focusing on software development and AI applications"
   }
 ];
@@ -68,7 +68,7 @@ const experiences = [
   },
   {
     year: "2023-2025",
-    role: "FreeLance Developer",
+    role: "Freelance Web Developer",
     company: "Self-Employed",
     description: "Helped Develop Websites for Local Businesses and School Clubs"
   }

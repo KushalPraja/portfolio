@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 import { CodeIcon } from "lucide-react";
 
 const links = [
-  { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/contact", label: "CONTACT" },
+  { href: "/", label: "home" },
+  { href: "/about", label: "about" },
+  { href: "/projects", label: "projects" },
+  { href: "/contact", label: "contact" },
 ];
 
 export default function Navigation() {
@@ -119,32 +119,34 @@ export default function Navigation() {
             {/* Navigation Menu */}
             <AnimatePresence>
               {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="absolute left-0 top-12 bg-background/80 backdrop-blur-sm rounded-lg p-2 min-w-[140px] shadow-lg"
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="absolute left-0 top-12 bg-background/80 backdrop-blur-sm rounded-lg p-2 min-w-[140px] shadow-lg"
+              >
+                {links.map(({ href, label }) => (
+                <Link 
+                  key={href} 
+                  href={href}
+                  className={cn(
+                  "relative block px-3 py-2 text-sm rounded-md transition-colors",
+                  pathname === href 
+                    ? "text-primary font-medium bg-primary/10" 
+                    : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
+                  )}
                 >
-                  {links.map(({ href, label }) => (
-                    <Link 
-                      key={href} 
-                      href={href}
-                      className={cn(
-                        "relative block px-3 py-2 text-sm rounded-md transition-colors hover:bg-primary/10",
-                        pathname === href ? "text-primary font-medium" : "text-muted-foreground"
-                      )}
-                    >
-                      {label}
-                      {pathname === href && (
-                        <motion.div
-                          layoutId="navbar-indicator"
-                          className="absolute inset-0 bg-primary/10 rounded-md -z-10"
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                    </Link>
-                  ))}
-                </motion.div>
+                  {label}
+                  {pathname === href && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute inset-0 bg-primary/10 rounded-md -z-10"
+                    transition={{ duration: 0.3 }}
+                  />
+                  )}
+                </Link>
+                ))}
+              </motion.div>
               )}
             </AnimatePresence>
           </div>

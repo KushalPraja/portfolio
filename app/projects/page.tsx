@@ -20,13 +20,13 @@ const projects: ProjectCategory[] = [
       {
         title:"Portfolio Website",
         description:"A personal portfolio website template that showcases my work and experience. Also used Three.js for the 3D background, and Framer Motion for animations. Built with Next.js and Tailwind CSS.",
-        tech:["React","Tailwind CSS", "Framer Motion", "Vercel", "TypeScript", "Next.js"],
+        tech:["React","TailwindCSS", "Framer Motion", "Vercel", "TypeScript", "Next.js"],
         link:"kushalprajapati.me"
       },
       {
         title: "WordleNeo 🎮",
         description: "A modern reimagining of the classic Wordle game that retains its addictive word-guessing mechanics while featuring a sleek, contemporary interface.",
-        tech: ["Next.js", "Tailwind CSS"],
+        tech: ["Next.js", "TailwindCSS"],
         link: "https://github.com/KushalPraja/WordleNeo"
       },
       {
@@ -133,7 +133,7 @@ export default function Projects() {
             <Search className="absolute left-2 top-3 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search projects by name, description, or tech..."
-              className="pl-8 backdrop-blur-sm bg-background/50"
+              className="pl-8 bg-background/50"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

@@ -64,7 +64,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className={`fixed top-[2.25rem] right-4 text-sm text-black font-mono ${GeistMono.className}`}
+            className={`fixed top-[2.25rem] right-8 text-md text-black font- ${GeistMono.className}`}
             style={{ lineHeight: '34px' }} // Matches CodeIcon height
           >
             {time && `[ ${time} ]`}

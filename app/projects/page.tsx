@@ -19,18 +19,12 @@ const projects: ProjectCategory[] = [
       },
       {
         title:"Portfolio Website",
-        description:"A personal portfolio website template that showcases my work and experience. Also used Three.js for the 3D background, and Framer Motion for animations. Built with Next.js and Tailwind CSS.",
+        description:"My personal portfolio website that showcases my previous work and experience. Also used Three.js for the 3D background, and Framer Motion for animations. Built with Next.js and Tailwind CSS.",
         tech:["React","TailwindCSS", "Framer Motion", "Vercel", "TypeScript", "Next.js"],
         link:"kushalprajapati.me"
       },
       {
-        title: "WordleNeo 🎮",
-        description: "A modern reimagining of the classic Wordle game that retains its addictive word-guessing mechanics while featuring a sleek, contemporary interface.",
-        tech: ["Next.js", "TailwindCSS"],
-        link: "https://github.com/KushalPraja/WordleNeo"
-      },
-      {
-        title: "motions",
+        title: "Motions",
         description: "A React application inspired by eraser.io, designed for interactive drawing experiences using the HTML canvas.",
         tech: ["React", "HTML Canvas", "Vite"],
         link: "https://github.com/KushalPraja/motions"
@@ -64,6 +58,12 @@ const projects: ProjectCategory[] = [
         description: "An interactive drawing application inspired by the classic Etch-A-Sketch toy.",
         tech: ["JavaScript", "CSS Grid", "DOM Manipulation"],
         link: "https://github.com/KushalPraja/Etch-A-Sketch"
+      },
+      {
+        title: "WordleNeo",
+        description: "A modern reimagining of the classic Wordle game that retains its addictive word-guessing mechanics while featuring a sleek, contemporary interface.",
+        tech: ["Next.js", "TailwindCSS"],
+        link: "https://github.com/KushalPraja/WordleNeo"
       }
     ]
   },

@@ -25,20 +25,9 @@ const itemVariants = {
 
 export default function Navigation() {
   const pathname = usePathname();
-  const [time, setTime] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const updateTime = () => {
-      setTime(new Date().toLocaleString());
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Add check for mobile devices
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -145,25 +134,6 @@ export default function Navigation() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Time and Location - adjusted for mobile */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className={`fixed ${isMobile ? 'top-4 right-4 text-sm' : 'top-8 right-8 text-md'} text-black/60 hover:text-black transition-colors`}
-      >
-        {time && `[ ${time} ]`}
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className={`fixed ${isMobile ? 'bottom-4 right-4 text-sm' : 'bottom-8 right-8 text-md'} text-black/60 hover:text-black transition-colors`}
-      >
-        [ Waterloo, Ontario ]
-      </motion.div>
     </>
   );
 }

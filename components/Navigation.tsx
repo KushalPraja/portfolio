@@ -33,15 +33,20 @@ export default function Navigation() {
         transition={{ delay: 0.2 }}
       >
         {routes.map((route) => (
-          <Link 
-            key={route.path} 
-            href={route.path}
-            className={`text-md transition-colors font-regular ${
-              pathname === route.path ? "underline text-black" : "no-underline text-black/70"
-            }`}
+          <motion.div
+            key={route.path}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-              {route.label} 
-          </Link>
+            <Link 
+              href={route.path}
+              className={`text-md transition-colors font-regular ${
+                pathname === route.path ? "underline text-black" : "no-underline text-black/70"
+              }`}
+            >
+              {route.label}
+            </Link>
+          </motion.div>
         ))}
       </motion.nav>
       <motion.div

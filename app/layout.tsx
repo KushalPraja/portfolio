@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistMono.variable} antialiased`}>
+        <Navigation />
         <LoadingScreen />
         {children}
-        <Navigation />
       </body>
     </html>
   );

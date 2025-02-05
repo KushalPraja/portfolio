@@ -54,7 +54,7 @@ export default function About() {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Bio</h2>
                 <p className="text-gray-600 leading-relaxed">
-                I'm Kushal Prajapati, an aspiring software engineer currently studying Computer Engineering at the University of Waterloo. I specialize in building modern web applications using Next.js, React, and Node.js, with a focus on creating responsive and performant solutions.                  With expertise in modern web technologies, I focus on building performant and scalable applications.
+                I&apos;m Kushal Prajapati, an aspiring software engineer currently studying Computer Engineering at the University of Waterloo. I specialize in building modern web applications using Next.js, React, and Node.js, with a focus on creating responsive and performant solutions.                  With expertise in modern web technologies, I focus on building performant and scalable applications.
                 </p>
               </CardContent>
             </Card>

@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { GeistMono } from 'geist/font/mono';
 
 const Background = dynamic(() => import("@/components/Background"), {
   ssr: false,
@@ -25,14 +26,14 @@ export default function Home() {
           >
             Kushal Prajapati
           </motion.h1>
-          <motion.p 
-            className="text-[#000000] text-base tracking-wide drop-shadow-sm"
+            <motion.p 
+            className={`text-[#000000] text-base tracking-wide drop-shadow-sm ${GeistMono.className} `}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-          >
+            >
             COMPUTER ENGINEER
-          </motion.p>
+            </motion.p>
         </motion.div>
       </div>
     </>

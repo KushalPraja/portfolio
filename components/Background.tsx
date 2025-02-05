@@ -27,7 +27,7 @@ export default function Background() {
     containerRef.current.appendChild(renderer.domElement);
 
     // Create starfield
-    const starCount = 4000;
+    const starCount = 6000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
 

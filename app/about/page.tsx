@@ -57,23 +57,29 @@ const experiences = [
   {
     year: "2024-2025",
     role: "HackerFab Software Developer",
-    company: "University Of Waterloo",
-    description: "Helping in the development of the HackerFab Sputter Deposition System"
+    company: "University of Waterloo",
+    description: "Contributed to the development of the HackerFab Sputter Deposition System, focusing on software integration and real-time data monitoring to improve system performance."
   },
   {
     year: "2020-2024",
     role: "Senior Math Assistant",
     company: "Kumon Math & Reading Center",
-    description: "Helped students with deeper understanding of higher-level math concepts"
+    description: "Mentored 20+ students in advanced mathematics, achieving a 95% student retention rate and helping the center rank 2nd in North America. Analyzed student performance data using Excel and Power BI to identify learning gaps and optimize strategies."
   },
   {
     year: "2023-2025",
     role: "Freelance Web Developer",
     company: "Self-Employed",
-    description: "Helped Develop Websites for Local Businesses and School Clubs"
+    description: "Designed and developed websites for local businesses and school clubs, focusing on user experience and responsive design. Optimized site performance and integrated content management systems to enhance site maintenance and scalability."
+  },
+  {
+    year: "2023-2024",
+    role: "Software Developer",
+    company: "VEX Robotics Team",
+    description: "Led the development of a Qt/C++ dashboard for visualizing live robot sensor data, aiding the team in quickly diagnosing issues. Contributed to autonomous programming, achieving 90% accuracy in navigation, and optimized sensor data processing to reduce tracking error to less than 2 cm."
   }
-
 ];
+
 
 export default function About() {
   return (

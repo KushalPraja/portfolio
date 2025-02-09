@@ -33,7 +33,7 @@ const projects: ProjectCategory[] = [
         title: "Music Visualization Project",
         description: "A dynamic music visualization tool that transforms audio files into engaging animated visuals.",
         tech: ["p5.js", "Express", "Node.js", "YouTube API"],
-        link: "https://github.com/yourusername/music-vis.git"
+        link: "https://github.com/KushalPraja/SoundWave"
       },
       {
         title: "School Partners Database",
@@ -51,7 +51,7 @@ const projects: ProjectCategory[] = [
         title: "Tic-Tac-Toe AI",
         description: "A web-based Tic-Tac-Toe game that offers both a two-player mode and a challenging AI opponent.",
         tech: ["JavaScript", "HTML5", "CSS3"],
-        link: "https://github.com/KushalPraja/Tic-Tac-Toe-AI"
+        link: "https://github.com/KushalPraja/TicTacToeJS"
       },
       {
         title: "Etch-A-Sketch",
@@ -74,13 +74,13 @@ const projects: ProjectCategory[] = [
         title: "Math Canvas",
         description: "A graphical tracer application that allows users to draw and visualize mathematical functions.",
         tech: ["Python", "Pygame"],
-        link: "https://github.com/KushalPraja/Math-Canvas"
+        link: "https://github.com/KushalPraja/MathCanvas"
       },
       {
         title: "EssayBot Chatbot",
         description: "A chatbot application that utilizes the OpenAI GPT-3 language model to generate detailed, essay-like responses.",
         tech: ["Python", "tkinter", "OpenAI Python library"],
-        link: "https://github.com/KushalPraja/EssayBot-Chatbot"
+        link: "https://github.com/KushalPraja/EssayBot-v1.0"
       },
       {
         title: "VPython Planetary Orbit Visualization",

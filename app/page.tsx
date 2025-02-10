@@ -3,10 +3,17 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { GeistMono } from 'geist/font/mono';
 import { useEffect, useState } from 'react';
+import type { Metadata } from "next";
 
 const Background = dynamic(() => import("@/components/Background"), {
   ssr: false,
 });
+
+export const metadata: Metadata = {
+  title: "Kushal Prajapati - AI & Full-Stack Engineer | Home",
+  description:
+    "Welcome to the portfolio of Kushal Prajapati, a Computer Engineer passionate about AI and full-stack development. Discover innovative projects and technical skills.",
+};
 
 export default function Home() {
   const [time, setTime] = useState("");

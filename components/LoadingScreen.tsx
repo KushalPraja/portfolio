@@ -1,3 +1,4 @@
+/**
 "use client";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
@@ -56,7 +57,8 @@ export default function LoadingScreen() {
             animate={{ opacity: 1, y: 0 }}
             className="w-80 space-y-6"
           >
-            {/* Name heading */}
+           
+            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -112,3 +114,4 @@ export default function LoadingScreen() {
     </AnimatePresence>
   );
 }
+*/

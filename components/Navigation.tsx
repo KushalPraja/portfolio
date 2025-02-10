@@ -28,7 +28,7 @@ export default function Navigation() {
 
   useEffect(() => {
     // Wait for initial loading to complete
-    const timer = setTimeout(() => setIsLoading(false), 2000); // Adjust timing to match your loading screen
+    const timer = setTimeout(() => setIsLoading(false)); // Adjust timing to match your loading screen
     return () => clearTimeout(timer);
   }, []);
 

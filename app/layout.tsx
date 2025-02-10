@@ -27,23 +27,31 @@ export const metadata: Metadata = {
     "University of Waterloo",
     "Computer Engineering",
     "Web Development",
-    "Mobile App Development",
+    "Machine Learning",
   ],
   authors: [{ name: "Kushal Prajapati", url: "https://kushalprajapati.me" }],
   openGraph: {
-    title: "Kushal Prajapati - Software Engineer | AI & Full-Stack Portfolio",
+    title: "Kushal Prajapati - AI & Full-Stack Engineer | Portfolio",
     description:
-      "Explore Kushal Prajapati's portfolio showcasing expertise in Software Engineering, Artificial Intelligence, and Full-Stack Development. View projects, skills, and experience.",
+      "Explore the portfolio of Kushal Prajapati, a Computer Engineer passionate about AI and full-stack development. Discover innovative projects and technical skills.",
     url: "https://kushalprajapati.me",
     siteName: "Kushal Prajapati Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://kushalprajapati.me/favicon.ico",
+        width: 1200,
+        height: 630,
+        alt: "Kushal Prajapati Portfolio",
+      },
+    ],  
   },
   twitter: {
     card: "summary_large_image",
     title: "Kushal Prajapati - Software Engineer | AI & Full-Stack Portfolio",
     description:
-      "Explore Kushal Prajapati's portfolio showcasing expertise in Software Engineering, AI, and Full-Stack Development. View projects, skills, and experience.",
+      "Computer Engineer, AI enthusiast, and full-stack developer with expertise in Python, JavaScript, and web development. Passionate about leveraging technology to solve real-world challenges." ,
     creator: "@KushalPraj", // Replace with your Twitter handle
   },
   robots: {
@@ -71,9 +79,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="lSzkvDkFQe4neOhp4Fa00Z4NBOfJbImoKSQukgdra9c" />
-        <meta name="description" content="Kushal Prajapati's Portfolio - Showcasing projects and skills in software engineering, AI, and full-stack development." />
+        <meta name="description" content="Computer Engineer, AI enthusiast, and full-stack developer with expertise in Python, JavaScript, and web development. Passionate about leveraging technology to solve real-world challenges." />
         <meta name="author" content="Kushal Prajapati" />
-        <meta name="keywords" content="Kushal Prajapati, Portfolio, Software Engineer, AI, Full-Stack Developer, Projects, Skills" />
+        <meta name="keywords" content="Kushal Prajapati, KUSHAL PRAJAPATI, Portfolio, Software Engineer, AI, Full-Stack Developer, Projects, Skills, Kushal" />
       </head>
       <body className={`${geistMono.variable} antialiased`}>
         <Navigation />

@@ -28,8 +28,6 @@ export const metadata: Metadata = {
     "Computer Engineering",
     "Web Development",
     "Machine Learning",
-    "Projects", // Added general keyword for projects
-    "Contact", // Added general keyword for contact
   ],
   authors: [{ name: "Kushal Prajapati", url: "https://kushalprajapati.me" }],
   openGraph: {

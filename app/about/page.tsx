@@ -8,7 +8,6 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { GeistMono } from 'geist/font/mono';
-import type { Metadata } from "next";
 
 const skillCategories = {
   languages: [
@@ -81,11 +80,6 @@ const experiences = [
   }
 ];
 
-export const metadata: Metadata = {
-  title: "About Kushal Prajapati - AI & Full-Stack Engineer",
-  description:
-    "Learn more about Kushal Prajapati, a Computer Engineer passionate about AI and full-stack development. Discover innovative projects and technical skills.",
-};
 
 export default function About() {
   return (

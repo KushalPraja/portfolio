@@ -68,6 +68,17 @@ export const metadata: Metadata = {
   verification: {
     google: "lSzkvDkFQe4neOhp4Fa00Z4NBOfJbImoKSQukgdra9c",
   },
+  alternates: {
+    canonical: 'https://kushalprajapati.me',
+    types: {
+      'application/xml': [
+        {
+          url: 'sitemap.xml',
+          title: 'Sitemap',
+        },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({

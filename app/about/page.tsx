@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { GeistMono } from 'geist/font/mono';
+import { FiCode, FiCoffee, FiBook, FiAward, FiLayers, FiTool } from 'react-icons/fi';
 
 const skillCategories = {
   languages: [
@@ -80,173 +81,159 @@ const experiences = [
   }
 ];
 
+const NoiseBackground = () => (
+  <div className="fixed inset-0 -z-10 h-full w-full opacity-[0.15] pointer-events-none">
+    <svg className="absolute h-full w-full" xmlns="http://www.w3.org/2000/svg">
+      <filter id='noiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='1' 
+          stitchTiles='stitch'
+          numOctaves="3"
+        />
+      </filter>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' />
+    </svg>
+  </div>
+);
 
 export default function About() {
   return (
-    <ScrollArea className="h-screen">
-      <div className="min-h-screen p-8 md:p-16 font-mono max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-10"
-        >
-          {/* Enhanced Header Animation */}
-          <div className="text-center space-y-4 mb-12">
-            <motion.h1 
-              className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              About Me
-            </motion.h1>
-            <motion.div 
-              className="flex flex-col items-center gap-3"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <p className={`text-gray-600 max-w-2xl mx-auto ${GeistMono.className}`}>
-                Computer Engineering Student at University of Waterloo
-              </p>
-              <div className="flex gap-2">
-                <Badge variant="outline">2023 - 2028</Badge>
-                <Badge variant="outline">Full Stack Development</Badge>
-                <Badge variant="outline">AI/ML</Badge>
+    <>
+      <NoiseBackground />
+      <ScrollArea className="h-screen">
+        <div className={`min-h-screen p-8 md:p-16 max-w-5xl mx-auto ${GeistMono.className}`}>
+          <div className="space-y-10">
+            {/* Simplified Header - Removed unnecessary animations */}
+            <div className="text-center space-y-4 mb-12">
+              <h1 className="text-5xl font-bold text-gray-900">
+                About Me
+              </h1>
+              <div className="flex flex-col items-center gap-3">
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                  Computer Engineering Student at University of Waterloo
+                </p>
+                <div className="flex gap-2 flex-wrap justify-center">
+                  <Badge variant="outline">2024 - 2029</Badge>
+                  <Badge variant="outline">Full Stack Development</Badge>
+                  <Badge variant="outline">AI/ML</Badge>
+                </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
 
-          <Separator className="my-8" />
+            <Separator className="my-8" />
 
-          {/* Enhanced Tabs */}
-          <Tabs defaultValue="bio" className="w-full mb-12">
-            <TabsList className="grid w-full grid-cols-3 mb-8 bg-black/[0.02] rounded-lg p-1">
-              <TabsTrigger 
-                value="bio" 
-                className="data-[state=active]:bg-white data-[state=active]:scale-105 transition-all duration-200"
-              >
-                Bio
-              </TabsTrigger>
-              <TabsTrigger 
-                value="interests" 
-                className="data-[state=active]:bg-white data-[state=active]:scale-105 transition-all duration-200"
-              >
-                Interests
-              </TabsTrigger>
-              <TabsTrigger 
-                value="education" 
-                className="data-[state=active]:bg-white data-[state=active]:scale-105 transition-all duration-200"
-              >
-                Education
-              </TabsTrigger>
-            </TabsList>
+            {/* Simplified Tabs - Kept useful hover effects */}
+            <Tabs defaultValue="bio" className="w-full mb-12">
+              <TabsList className="grid w-full grid-cols-3 mb-8 bg-black/[0.02] rounded-lg p-1">
+                <TabsTrigger 
+                  value="bio" 
+                  className="data-[state=active]:bg-white transition-colors"
+                >
+                  Bio
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="interests" 
+                  className="data-[state=active]:bg-white transition-colors"
+                >
+                  Interests
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="education" 
+                  className="data-[state=active]:bg-white transition-colors"
+                >
+                  Education
+                </TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="bio">
-              <motion.div
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
+              <TabsContent value="bio">
                 <Card className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold mb-4">About Me</h2>
-                    <p className={`text-gray-600 leading-relaxed ${GeistMono.className}`}>
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <FiCode className="w-5 h-5" />
+                      <h2 className="text-xl font-semibold">About Me</h2>
+                    </div>
+                    <p className={`text-gray-600 leading-relaxed text-sm ${GeistMono.className}`}>
                       I&apos;m Kushal Prajapati, an aspiring AI + FullStack developer currently studying Computer Engineering at the University of Waterloo. I specialize in building modern web applications using Next.js, React, and Node.js, with a focus on creating responsive and performant solutions.                  With expertise in modern web technologies, I focus on building performant and scalable applications.
                     </p>
                   </CardContent>
                 </Card>
-              </motion.div>
-            </TabsContent>
+              </TabsContent>
 
-            <TabsContent value="interests">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {["technical", "hobbies"].map((type) => (
-                  <motion.div
-                    key={type}
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <Card className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300">
+              <TabsContent value="interests">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[
+                    { type: "technical", icon: <FiLayers className="w-5 h-5" /> },
+                    { type: "hobbies", icon: <FiCoffee className="w-5 h-5" /> }
+                  ].map(({ type, icon }) => (
+                    <Card key={type} className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300">
                       <CardContent className="p-6">
-                        <h3 className="text-lg font-semibold mb-4 capitalize">{type}</h3>
+                        <div className="flex items-center gap-2 mb-4">
+                          {icon}
+                          <h3 className="text-lg font-semibold capitalize">{type}</h3>
+                        </div>
                         <ul className="space-y-2">
-                          {interests[type as keyof typeof interests].map((item, index) => (
-                            <motion.li 
+                          {interests[type as keyof typeof interests].map((item) => (
+                            <li 
                               key={item}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              whileHover={{ x: 5 }}
-                              transition={{ 
-                                delay: index * 0.1,
-                                type: "spring",
-                                stiffness: 400
-                              }}
-                              className="flex items-center gap-2 group cursor-pointer"
+                              className="flex items-center gap-2 group cursor-pointer hover:translate-x-1 transition-transform"
                             >
                               <span className="text-black/30 group-hover:text-black/60 transition-colors">▹</span>
                               <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">{item}</span>
-                            </motion.li>
+                            </li>
                           ))}
                         </ul>
                       </CardContent>
                     </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="education">
-              <Card>
-                <CardContent className="p-6">
-                  {education.map((edu) => (
-                    <div key={edu.degree} className="space-y-4">
-                      <div className="flex items-center gap-4">
-                        <Badge variant="outline">{edu.year}</Badge>
-                        <h3 className="text-lg font-semibold">{edu.degree}</h3>
-                      </div>
-                      <p className="text-gray-600">{edu.school}</p>
-                      <p className="text-sm text-gray-500">{edu.details}</p>
-                    </div>
                   ))}
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+                </div>
+              </TabsContent>
 
-          {/* Main Content */}
-          <div className="grid gap-8">
-            {/* Skills Grid - Enhanced animations */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {Object.entries(skillCategories).map(([category, skills]) => (
-                <motion.div
-                  key={category}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <Card className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300">
+              <TabsContent value="education">
+                <Card>
+                  <CardContent className="p-6">
+                    {education.map((edu) => (
+                      <div key={edu.degree} className="space-y-4">
+                        <div className="flex items-center gap-4">
+                          <Badge variant="outline">{edu.year}</Badge>
+                          <h3 className="text-lg font-semibold">{edu.degree}</h3>
+                        </div>
+                        <p className="text-gray-600">{edu.school}</p>
+                        <p className="text-sm text-gray-500">{edu.details}</p>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+
+            {/* Main Content */}
+            <div className="grid gap-8">
+              {/* Skills Grid - Enhanced animations */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {Object.entries(skillCategories).map(([category, skills]) => (
+                  <Card 
+                    key={category} 
+                    className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300"
+                  >
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-semibold capitalize mb-6">{category}</h3>
-                      <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-6">
+                        <FiTool className="w-4 h-4" />
+                        <h3 className="text-lg font-semibold capitalize">{category}</h3>
+                      </div>
+                      <div className="space-y-4 text-sm">
                         {skills.map((skill) => (
                           <HoverCard key={skill.name}>
                             <HoverCardTrigger asChild>
-                              <motion.div 
-                                className="space-y-2 cursor-pointer"
-                                whileHover={{ x: 5 }}
-                                transition={{ type: "spring", stiffness: 400 }}
-                              >
+                              <div className="space-y-2 cursor-pointer hover:translate-x-1 transition-transform">
                                 <div className="flex justify-between items-center">
                                   <span className="text-sm font-medium">{skill.name}</span>
                                   <span className="text-xs text-gray-500">{skill.level}%</span>
                                 </div>
                                 <Progress value={skill.level} className="h-1.5" />
-                              </motion.div>
+                              </div>
                             </HoverCardTrigger>
-                            <HoverCardContent 
-                              side="top" 
-                              className="w-64 animate-in fade-in-0 zoom-in-95"
-                            >
+                            <HoverCardContent side="top" className="w-64">
                               <p className="text-sm">{skill.description}</p>
                             </HoverCardContent>
                           </HoverCard>
@@ -254,25 +241,20 @@ export default function About() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Experience Timeline - Enhanced animations */}
-            <motion.div
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
+              {/* Experience Timeline - Kept meaningful animations */}
               <Card className="border-black/5 shadow-sm hover:shadow-md transition-all duration-300">
                 <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-6">Experience</h2>
-                  <div className="space-y-6">
+                  <div className="flex items-center gap-2 mb-6">
+                    <FiAward className="w-5 h-5" />
+                    <h2 className="text-xl font-semibold">Experience</h2>
+                  </div>
+                  <div className="space-y-6 text-sm">
                     {experiences.map((exp, index) => (
-                      <motion.div
+                      <div
                         key={exp.year}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * index }}
                         className="relative pl-8 pb-6 border-l border-gray-200 last:pb-0"
                       >
                         <div className="absolute -left-1.5 top-1.5 w-3 h-3 rounded-full bg-gray-200" />
@@ -280,15 +262,15 @@ export default function About() {
                         <h3 className="font-bold text-lg mt-2">{exp.role}</h3>
                         <p className="text-gray-600 text-sm">{exp.company}</p>
                         <p className="text-gray-500 mt-2 text-sm">{exp.description}</p>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
-      </div>
-    </ScrollArea>
+        </div>
+      </ScrollArea>
+    </>
   );
 }

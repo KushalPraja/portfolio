@@ -23,14 +23,10 @@ const BackgroundPattern = () => (
           height="40"
           patternUnits="userSpaceOnUse"
         >
-          <circle cx="2" cy="2" r="1" fill="rgba(0,0,0,0.07)" />
+          <circle cx="2" cy="2" r="1" fill="rgba(0,0,0,0.2)" />
         </pattern>
-        <linearGradient id="pageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#f5f5f5" />
-        </linearGradient>
       </defs>
-      <rect x="0" y="0" width="100%" height="100%" fill="url(#pageGradient)" />
+      <rect x="0" y="0" width="100%" height="100%" fill="#f5f0f0" />
       <rect x="0" y="0" width="100%" height="100%" fill="url(#dotPattern)" />
     </svg>
   </div>

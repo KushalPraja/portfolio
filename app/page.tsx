@@ -59,7 +59,7 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-            className={`flex justify-center items-center gap-8 py-3 px-6 bg-black/[0.02] rounded-lg 
+            className={`flex justify-center items-center gap-6 py-3 px-8 bg-black/[0.02] rounded-lg 
             backdrop-blur-sm border border-black/5 ${isMobile ? 'mt-8' : 'mt-12'}`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,23 +69,28 @@ export default function Home() {
                 href="https://github.com/KushalPraja"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-black/80 hover:text-black transition-colors"
+                className="flex items-center gap-2 text-black/75 hover:text-black transition-colors group"
               >
-                <FiGithub size={20} />
+                <FiGithub size={18} className="group-hover:scale-110 transition-transform" />
+                <span className={`${GeistMono.className} text-sm hidden md:inline`}>GitHub</span>
               </a>
+              <span className="hidden md:inline text-black/20">|</span>
               <a
                 href="https://linkedin.com/in/KushalPraj"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-black/80 hover:text-black transition-colors"
+                className="flex items-center gap-2 text-black/75 hover:text-black transition-colors group"
               >
-                <FiLinkedin size={20} />
+                <FiLinkedin size={18} className="group-hover:scale-110 transition-transform" />
+                <span className={`${GeistMono.className} text-sm hidden md:inline`}>LinkedIn</span>
               </a>
+              <span className="hidden md:inline text-black/20">|</span>
               <a
                 href="mailto:kushalpraja6@gmail.com"
-                className="flex items-center gap-2 text-black/80 hover:text-black transition-colors"
+                className="flex items-center gap-2 text-black/75 hover:text-black transition-colors group"
               >
-                <FiMail size={20} />
+                <FiMail size={18} className="group-hover:scale-110 transition-transform" />
+                <span className={`${GeistMono.className} text-sm hidden md:inline`}>Email</span>
               </a>
             </motion.div>
         </motion.div>

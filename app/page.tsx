@@ -77,6 +77,8 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className={`fixed ${isMobile ? 'bottom-4 right-4 text-sm' : 'bottom-8 right-8 text-md'} text-black`}
+          aria-hidden="true"
+          data-nosnippet
         >
           [ Waterloo, Ontario ]
         </motion.div>

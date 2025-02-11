@@ -9,57 +9,58 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://kushalprajapati.me'),
-  title: "Kushal Prajapati - Software Engineer | AI & Full-Stack Portfolio",
+// Define common metadata text with specific description
+const siteInfo = {
+  title: "Kushal Prajapati - AI & Full-Stack Engineer | Portfolio",
   description: "Computer Engineer specialized in AI and Full-Stack development. Expert in Python, JavaScript, and modern web technologies. University of Waterloo student building innovative solutions.",
+  url: "https://kushalprajapati.me",
+}
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteInfo.url),
+  title: siteInfo.title,
+  description: siteInfo.description,
+  
+  // Consolidated icons
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon.png', type: 'image/png', sizes: '192x192' },
     ],
-
   },
+
+  // Single keywords array
   keywords: [
     "Kushal Prajapati",
     "Software Engineer",
     "AI",
     "Full-Stack Developer",
-    "Portfolio",
-    "React",
-    "Next.js",
-    "JavaScript",
-    "TypeScript",
     "University of Waterloo",
     "Computer Engineering",
     "Web Development",
     "Machine Learning",
   ],
-  authors: [{ name: "Kushal Prajapati", url: "https://kushalprajapati.me" }],
+
+  authors: [{ name: "Kushal Prajapati", url: siteInfo.url }],
+
+  // Consolidated OpenGraph and Twitter metadata
   openGraph: {
-    title: "Kushal Prajapati - AI & Full-Stack Engineer | Portfolio",
-    description:
-      "Explore the portfolio of Kushal Prajapati, a Computer Engineer passionate about AI and full-stack development. Discover innovative projects and technical skills.",
-    url: "https://kushalprajapati.me",
+    ...siteInfo,
     siteName: "Kushal Prajapati Portfolio",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://kushalprajapati.me/favicon.ico",
-        width: 1200,
-        height: 630,
-        alt: "Kushal Prajapati Portfolio",
-      },
-    ],  
+    images: [{ url: "/favicon.png", width: 192, height: 192, alt: "Kushal Prajapati" }],
+    description: siteInfo.description, // Ensure OG description matches
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Kushal Prajapati - Software Engineer | AI & Full-Stack Portfolio",
-    description:
-      "Computer Engineer, AI enthusiast, and full-stack developer with expertise in Python, JavaScript, and web development. Passionate about leveraging technology to solve real-world challenges." ,
-    creator: "@KushalPraj", // Replace with your Twitter handle
+    ...siteInfo,
+    creator: "@KushalPraj",
+    description: siteInfo.description, // Ensure Twitter description matches
   },
+
+  // Rest of the metadata
   robots: {
     index: true,
     follow: true,
@@ -71,18 +72,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+
   verification: {
     google: "lSzkvDkFQe4neOhp4Fa00Z4NBOfJbImoKSQukgdra9c",
   },
+
   alternates: {
-    canonical: 'https://kushalprajapati.me',
+    canonical: siteInfo.url,
     types: {
-      'application/xml': [
-        {
-          url: 'sitemap.xml',
-          title: 'Sitemap',
-        },
-      ],
+      'application/xml': [{ url: 'sitemap.xml', title: 'Sitemap' }],
     },
   },
 };
@@ -95,22 +93,34 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="google-site-verification" content="lSzkvDkFQe4neOhp4Fa00Z4NBOfJbImoKSQukgdra9c" />
-        <meta name="description" content="Computer Engineer, AI enthusiast, and full-stack developer with expertise in Python, JavaScript, and web development. Passionate about leveraging technology to solve real-world challenges." />
-        <meta name="author" content="Kushal Prajapati" />
-        <meta name="keywords" content="Kushal Prajapati, KUSHAL PRAJAPATI, Portfolio, Software Engineer, AI, Full-Stack Developer, Projects, Skills, Kushal" />
+        {/* Force meta description */}
+        <meta
+          name="description"
+          content={siteInfo.description}
+          key="description"
+        />
+        <meta
+          property="og:description"
+          content={siteInfo.description}
+          key="og:description"
+        />
+        <meta
+          name="twitter:description"
+          content={siteInfo.description}
+          key="twitter:description"
+        />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Kushal Prajapati",
-              "url": "https://kushalprajapati.me",
-              "image": "https://kushalprajapati.me/favicon.png",
+              ...siteInfo,
+              "image": `${siteInfo.url}/favicon.png`,
               "sameAs": [
-                "https://github.com/yourgithub",
-                "https://linkedin.com/in/yourlinkedin",
+                "https://github.com/KushalPraja",
+                "https://linkedin.com/in/KushalPraja",
                 "https://twitter.com/KushalPraj"
               ],
               "jobTitle": "Computer Engineer",
@@ -118,7 +128,6 @@ export default function RootLayout({
                 "@type": "Organization",
                 "name": "University of Waterloo"
               },
-              "description": "Computer Engineer specialized in AI and Full-Stack development. Experienced in Python, JavaScript, and modern web technologies.",
               "alumniOf": {
                 "@type": "CollegeOrUniversity",
                 "name": "University of Waterloo"
@@ -126,6 +135,8 @@ export default function RootLayout({
             })
           }}
         />
+        <link rel="icon" href="/favicon.ico" />
+
       </head>
       <body className={`${geistMono.variable} antialiased`}>
         <Navigation />

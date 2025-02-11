@@ -76,7 +76,7 @@ export default function Home() {
               </a>
               <span className="hidden md:inline text-black/20">|</span>
               <a
-                href="https://linkedin.com/in/KushalPraj"
+                href="https://www.linkedin.com/in/kushalpraja/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-black/75 hover:text-black transition-colors group"

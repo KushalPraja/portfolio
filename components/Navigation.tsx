@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { CodeIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 
 const links = [
   { href: "/", label: "home" },
@@ -39,7 +39,7 @@ export default function Navigation() {
       {isMobile ? (
         // Mobile Navigation
         <motion.nav 
-          className=" top-8 left-8 z-[100]"
+          className=" top-8 m-2 left-8 z-[100]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
@@ -48,8 +48,8 @@ export default function Navigation() {
             className="w-10 h-10 flex items-center justify-center"
             whileTap={{ scale: 0.95 }}
           >
-            <CodeIcon className="w-5 h-5 text-foreground" />
-          </motion.button>
+            <Menu className="w-5 h-5 text-foreground" />
+            </motion.button>
 
           <AnimatePresence>
             {isOpen && (
@@ -109,11 +109,14 @@ export default function Navigation() {
           <div className="relative">
             {/* Minimal Trigger */}
             <motion.div
-              className="w-10 h-10 flex items-center justify-center cursor-pointer"
-              whileHover={{ scale: 1.1 }}
+              className="flex justify-center items-center gap-2 py-2 px-3 bg-black/[0.02] rounded-lg shadow-md backdrop-blur-sm border border-black/5"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <CodeIcon className="w-5 h-5 text-foreground hover:text-primary transition-colors" />
+              <Menu className="w-4 h-4 text-foreground hover:text-primary transition-colors" />
+                <span className="text-sm text-foreground hover:text-primary transition-colors">menu</span>
             </motion.div>
 
             {/* Navigation Menu */}

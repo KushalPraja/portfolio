@@ -12,6 +12,12 @@ const projects: ProjectCategory[] = [
     category: "Web",
     items: [
       {
+        title: "Thorem",
+        description: "A cutting-edge SaaS platform that converts handwritten math notes into professional-quality LaTeX code using AI technology. Features include real-time LaTeX preview, intuitive UI, and PDF export capabilities.",
+        tech: ["Next.js", "Node.js", "AI","TailwindCSS", "LaTeX"],
+        link: "https://github.com/KushalPraja/Thorem"
+      },
+      {
         title: "FiscalFox",
         description: "Effortless customer management with real-time updates. FiscalFox is a sleek, modern system built with Next.js and TailwindCSS that leverages Supabase (with PostgreSQL) for live data synchronization.",
         tech: ["Next.js", "TailwindCSS", "Supabase", "PostgreSQL", "Vercel"],

@@ -534,10 +534,10 @@ export default function Home() {
           <SectionScrollIndicator targetRef={skillsRef} />
         </section>
 
-        {/* Skills Section - Improved with modern design */}
+        {/* Skills Section - Improved with modern design - Hidden on mobile */}
         <section 
           ref={skillsRef} 
-          className="relative h-screen flex flex-col justify-center py-8 px-4 md:px-16"
+          className="relative h-screen flex flex-col justify-center py-8 px-4 md:px-16 hidden md:flex"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
           <div className="max-w-4xl mx-auto relative z-10">
@@ -771,10 +771,10 @@ export default function Home() {
           <SectionScrollIndicator targetRef={experienceRef} />
         </section>
         
-        {/* Work Experience Section - Horizontal Timeline */}
+        {/* Work Experience Section - Horizontal Timeline - Hidden on mobile */}
         <section 
           ref={experienceRef}
-          className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
+          className="relative min-h-screen hidden md:flex flex-col justify-center py-24 px-4 md:px-16"
           id="experience"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>

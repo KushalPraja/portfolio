@@ -71,3 +71,418 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Horizontal Timeline Styles */
+.horizontal-timeline {
+  @apply relative w-full flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center py-8;
+  position: relative;
+}
+
+.horizontal-timeline::before {
+  @apply absolute hidden md:block;
+  content: '';
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-item-horizontal {
+  @apply relative flex flex-col items-center z-10 bg-white/70 backdrop-blur-sm p-4 md:p-6 rounded-xl border border-black/5 shadow-sm transition-all duration-300;
+  min-width: 240px;
+  max-width: 100%;
+  z-index: 2;
+}
+
+.timeline-item-horizontal:hover {
+  @apply shadow-md transform -translate-y-1;
+}
+
+.timeline-point {
+  @apply absolute -top-3 left-1/2 w-6 h-6 rounded-full bg-white border-2 border-black/10 z-20 transform -translate-x-1/2;
+}
+
+.timeline-date {
+  @apply text-xs text-black/60 mb-1;
+}
+
+.timeline-title {
+  @apply text-lg font-medium mb-2;
+}
+
+.timeline-content {
+  @apply text-sm text-black/80;
+}
+
+/* Achievement Cards */
+.achievement-card {
+  @apply relative bg-white/70 backdrop-blur-sm p-5 rounded-xl border border-black/5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+}
+
+.achievement-card::before {
+  @apply absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-slate-500 to-slate-800 rounded-l-xl;
+  content: '';
+}
+
+/* Bubble connector for vertical timelines on mobile */
+@media (max-width: 768px) {
+  .horizontal-timeline {
+    @apply gap-8 pt-4;
+  }
+  
+  .horizontal-timeline::before {
+    @apply hidden;
+  }
+  
+  .timeline-item-horizontal {
+    @apply w-full;
+    position: relative;
+  }
+  
+  .timeline-item-horizontal::before {
+    @apply absolute w-px h-8 bg-black/10 left-1/2 -top-8;
+    content: '';
+    transform: translateX(-50%);
+  }
+  
+  .timeline-item-horizontal:first-child::before {
+    @apply hidden;
+  }
+  
+  .timeline-point {
+    @apply -top-10;
+  }
+}
+
+/* Modern Work Experience Vertical Timeline */
+.experience-container {
+  @apply relative max-w-5xl mx-auto;
+}
+
+.experience-timeline {
+  @apply relative py-10;
+}
+
+.experience-timeline::before {
+  content: '';
+  @apply absolute left-[50%] top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-indigo-400 transform -translate-x-1/2;
+}
+
+.experience-item {
+  @apply relative flex justify-between items-center w-full mb-16;
+}
+
+.experience-item:last-child {
+  @apply mb-0;
+}
+
+.experience-item:nth-child(odd) .experience-content {
+  @apply ml-auto mr-12 text-right;
+}
+
+.experience-item:nth-child(even) .experience-content {
+  @apply mr-auto ml-12;
+}
+
+.experience-point {
+  @apply absolute left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full 
+  bg-white shadow-lg border-4 border-indigo-400 z-10 flex items-center justify-center;
+}
+
+.experience-point::before {
+  content: '';
+  @apply absolute w-6 h-6 rounded-full bg-indigo-200 animate-ping opacity-75;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.experience-content {
+  @apply bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/40 w-[calc(50%-3rem)] 
+  transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.1);
+}
+
+.experience-year {
+  @apply absolute left-1/2 transform -translate-x-1/2 -mt-10 px-4 py-1 
+  bg-gradient-to-r from-blue-400 to-indigo-500 text-white text-sm rounded-full shadow-md z-20;
+}
+
+.experience-content h3 {
+  @apply text-xl font-bold mb-2 text-gray-800;
+}
+
+.experience-content h4 {
+  @apply text-base text-gray-600 mb-3;
+}
+
+.experience-content p {
+  @apply text-gray-600 leading-relaxed mb-4;
+}
+
+.experience-tech {
+  @apply flex flex-wrap gap-2 justify-end;
+}
+
+.experience-item:nth-child(even) .experience-tech {
+  @apply justify-start;
+}
+
+.experience-tech-tag {
+  @apply px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-medium;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .experience-timeline::before {
+    @apply left-8;
+    transform: none;
+  }
+  
+  .experience-item {
+    @apply flex-col items-start;
+  }
+  
+  .experience-item:nth-child(odd) .experience-content,
+  .experience-item:nth-child(even) .experience-content {
+    @apply ml-16 mr-0 text-left w-[calc(100%-4rem)];
+  }
+  
+  .experience-point {
+    @apply left-8;
+    transform: none;
+  }
+  
+  .experience-year {
+    @apply left-8 -translate-x-0 mt-0 -ml-4;
+  }
+  
+  .experience-item:nth-child(even) .experience-tech {
+    @apply justify-end;
+  }
+}
+
+/* Video Project Cards */
+.video-project-card {
+  @apply relative overflow-hidden rounded-xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500;
+  height: 500px;
+}
+
+.video-project-card:hover .video-project-overlay {
+  @apply opacity-100;
+}
+
+.video-project-card:hover .video-project-content {
+  transform: translateY(0);
+}
+
+.video-project-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-80 transition-opacity duration-500 z-10;
+}
+
+.video-project-content {
+  @apply absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-500;
+  transform: translateY(30px);
+}
+
+.video-project-card iframe {
+  @apply absolute inset-0 w-full h-full object-cover;
+  pointer-events: none;
+}
+
+.video-project-card:hover iframe {
+  pointer-events: auto;
+}
+
+.video-project-title {
+  @apply text-2xl font-bold text-white mb-2;
+}
+
+.video-project-desc {
+  @apply text-white/80 text-sm mb-4;
+}
+
+.video-project-tech {
+  @apply flex flex-wrap gap-1 mb-4;
+}
+
+.video-project-tag {
+  @apply px-2 py-0.5 rounded-full bg-white/20 text-white/90 text-xs;
+}
+
+.video-project-button {
+  @apply flex items-center justify-center gap-2 py-2 px-4 
+  bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white 
+  rounded-md transition-all duration-300 text-sm border border-white/20;
+}
+
+/* Full screen project sections */
+.full-screen-project {
+  @apply relative flex flex-col md:flex-row h-screen w-full;
+}
+
+.project-video-container {
+  @apply relative w-full md:w-1/2 h-full overflow-hidden;
+}
+
+.project-video-background {
+  @apply absolute inset-0 bg-center bg-cover w-full h-full;
+  filter: brightness(0.8);
+}
+
+.project-info-container {
+  @apply w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 bg-black/90 text-white;
+}
+
+.project-title {
+  @apply text-4xl font-bold mb-4;
+}
+
+.project-description {
+  @apply text-white/80 mb-8 max-w-lg;
+}
+
+.project-links {
+  @apply flex flex-wrap gap-4 mb-8;
+}
+
+/* Horizontal work experience timeline in cleaner theme */
+.horizontal-experience-timeline {
+  @apply relative px-4 py-16 w-full overflow-x-auto bg-black/70 backdrop-blur-md text-white;
+}
+
+.timeline-track {
+  @apply relative flex min-w-max gap-0 items-center;
+  padding: 4rem 2rem;
+}
+
+.timeline-line {
+  @apply absolute top-1/2 left-0 right-0 h-0.5 bg-white/20 -translate-y-1/2;
+}
+
+.timeline-item-card {
+  @apply relative flex flex-col items-center bg-black/50 backdrop-blur-md 
+  border border-white/10 rounded-xl p-6 mx-8 min-w-[280px] w-[320px] z-10
+  shadow-lg transition-all h-[320px] flex flex-col justify-between;
+}
+
+.timeline-item-card:hover {
+  @apply border-white/20 shadow-xl transform -translate-y-2;
+  box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.1);
+}
+
+.timeline-dot {
+  @apply absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2
+  w-5 h-5 rounded-full bg-white border-4 border-black z-20;
+}
+
+.timeline-date-badge {
+  @apply absolute -top-10 left-1/2 -translate-x-1/2 
+  px-4 py-1 rounded-full bg-black/70 border border-white/20
+  text-white/80 text-xs;
+}
+
+.timeline-job-title {
+  @apply font-mono text-xl text-white mb-1 text-center;
+}
+
+.timeline-company {
+  @apply font-mono text-sm text-white/60 mb-4 text-center;
+}
+
+.timeline-description {
+  @apply text-sm text-white/80 mb-4 text-center line-clamp-4;
+}
+
+.timeline-tech-badges {
+  @apply flex flex-wrap justify-center gap-2 mt-auto pt-2;
+}
+
+.timeline-tech-badge {
+  @apply px-2 py-0.5 bg-white/10 text-white/90 text-xs rounded-full;
+}
+
+/* Clean featured project cards */
+.featured-project-card {
+  @apply relative flex flex-col md:flex-row overflow-hidden rounded-lg border border-black/10 bg-white/80 backdrop-blur-sm
+  transition-all duration-300 shadow-sm hover:shadow-md;
+}
+
+.featured-project-card:hover {
+  @apply border-black/20 -translate-y-0.5;
+}
+
+.project-thumbnail {
+  @apply relative w-full md:w-2/5 h-48 md:h-auto overflow-hidden;
+}
+
+.project-thumbnail-image {
+  @apply absolute inset-0 bg-cover bg-center w-full h-full transition-transform duration-700;
+}
+
+.featured-project-card:hover .project-thumbnail-image {
+  @apply scale-105;
+}
+
+.play-button-overlay {
+  @apply absolute inset-0 z-10 flex items-center justify-center opacity-0 
+  bg-black/20 backdrop-blur-[2px] transition-opacity duration-300;
+}
+
+.featured-project-card:hover .play-button-overlay {
+  @apply opacity-100;
+}
+
+.play-button {
+  @apply w-14 h-14 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm
+  border border-white/40 text-white transition-all duration-300;
+}
+
+.play-button:hover {
+  @apply transform scale-110 bg-white/30;
+}
+
+.project-content {
+  @apply w-full md:w-3/5 p-6 flex flex-col;
+}
+
+.project-header {
+  @apply flex flex-col mb-3;
+}
+
+.project-title {
+  @apply text-xl font-medium mb-1 text-gray-800;
+}
+
+.project-subtitle {
+  @apply text-sm text-gray-600;
+}
+
+.project-description {
+  @apply text-sm text-gray-700 mb-4 line-clamp-3;
+}
+
+.project-tech-stack {
+  @apply flex flex-wrap gap-1.5 mb-4;
+}
+
+.project-tech-tag {
+  @apply px-2.5 py-1 text-xs rounded-full bg-black/5 text-black/70;
+}
+
+.project-links {
+  @apply flex flex-wrap gap-3 mt-auto;
+}
+
+.project-link-button {
+  @apply flex items-center justify-center gap-1.5 py-1.5 px-3.5 text-xs rounded-md
+  transition-colors font-medium;
+}
+
+.project-primary-link {
+  @apply bg-black hover:bg-black/80 text-white;
+}
+
+.project-secondary-link {
+  @apply bg-white hover:bg-gray-100 text-black border border-black/10;
+}

@@ -8,6 +8,9 @@ export default function Background() {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Store containerRef.current in a variable to avoid the React hooks warning
+    const container = containerRef.current;
+
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#f5f0f0");  // Keep the background color
     // Remove fog
@@ -24,7 +27,7 @@ export default function Background() {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     // Create starfield
     const starCount = 6000;
@@ -109,8 +112,8 @@ export default function Background() {
       window.removeEventListener("mouseup", onMouseUp);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("resize", handleResize);
-      if (containerRef.current) {
-        containerRef.current.removeChild(renderer.domElement);
+      if (container) {
+        container.removeChild(renderer.domElement);
       }
       geometry.dispose();
       material.dispose();

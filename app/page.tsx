@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 import { useEffect, useState, useRef } from 'react';
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink, FiCode, FiDatabase, FiPlay } from 'react-icons/fi';
 import Link from 'next/link';
+import Image from 'next/image';
 import React from "react";
 
 // Dynamically import Background component to avoid SSR issues
@@ -771,89 +772,192 @@ export default function Home() {
           <SectionScrollIndicator targetRef={experienceRef} />
         </section>
         
-        {/* Work Experience Section - Horizontal Timeline - Hidden on mobile */}
-        <section 
-          ref={experienceRef}
-          className="relative min-h-screen hidden md:flex flex-col justify-center py-24 px-4 md:px-16"
-          id="experience"
-        >
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
-          <div className="max-w-6xl mx-auto relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className={`${GeistMono.className} text-3xl font-medium mb-4`}>Work Experience</h2>
-              <div className="h-px w-20 bg-black/20 mx-auto mb-4"></div>
-              <p className="text-[#333333]/80 max-w-lg mx-auto">
-                My professional journey and career milestones.
-              </p>
-            </motion.div>
+        {/* Work Experience Section - Responsive Vertical Timeline */}
+<section
+  ref={experienceRef}
+  className="relative flex flex-col justify-center py-20 px-4 md:px-16 min-h-[90vh]"
+  id="experience"
+>
+  <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
+  <div className="max-w-6xl mx-auto relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-12"
+    >
+      <h2 className={`${GeistMono.className} text-3xl font-medium mb-3`}>Work Experience</h2>
+      <div className="h-px w-20 bg-black/20 mx-auto mb-3"></div>
+      <p className="text-[#333333]/80 max-w-lg mx-auto">My professional journey and career milestones.</p>
+    </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="overflow-x-auto pb-8"
-            >
-              <div className="horizontal-timeline w-full min-w-[760px]">
-                {/* Kumon - Least Recent */}
-         
-                <div className="timeline-item-horizontal group">
-                  <div className="timeline-point"></div>
-                  <div className="timeline-date">Sept 2020 - Sept 2024</div>
-                  <div className="timeline-title">Senior Assistant Teacher</div>
-                  <div className="timeline-content">
-                    <p>Mentored 20+ students in advanced mathematics, achieving a 95% student retention rate and contributing to the Kumon center&apos;s ranking as 2nd in North America.</p>
-                    <div className="timeline-tech-badges mt-2">
-                      <span className="timeline-tech-badge">C++</span>
-                      <span className="timeline-tech-badge">Qt</span>
-                      <span className="timeline-tech-badge">Robotics</span>
-                    </div>
-                  </div>
-                </div>
+    {/* Timeline container */}
+    <div className="vertical-timeline-container relative mb-10">
+      {/* Vertical line for desktop */}
+      <div className="absolute left-0 md:left-[110px] top-8 bottom-8 w-px bg-transparent md:bg-black/10 hidden md:block"></div>
 
-                {/* Vex Robotics */}
-                <div className="timeline-item-horizontal group">
-                  <div className="timeline-point"></div>
-                  <div className="timeline-date">Sept 2023 - May 2024</div>
-                  <div className="timeline-title">VEX Robotics Builder</div>
-                  <div className="timeline-content">
-                    <p>Led the development of a real-time dashboard application using Qt/C++, enabling the team to visualize live robot sensor data for faster diagnostics and performance evaluation.</p>
-                    <div className="timeline-tech-badges mt-2">
-                      <span className="timeline-tech-badge">C++</span>
-                      <span className="timeline-tech-badge">Qt</span>
-                      <span className="timeline-tech-badge">Robotics</span>
-                    </div>
-                  </div>
-                </div>
+      <div className="space-y-8 md:space-y-12 relative">
+        {/* Timeline Entry */}
+        {[{
+          title: "Levanta Labs SWE Intern",
+          date: "May 2025 - Present",
+          description: "Developing custom software solutions for clients ranging from early-stage SaaS companies to established B2B organizations. Creating internal tools, AI-powered systems, and full-scale SaaS platforms.",
+          tech: ["React.js", "Next.js", "Typescript", "Tailwind"],
+          logo: "/company_icons/levantalabs_logo.jpg"
+        },
+        {
+          title: "Hacker Fab Engineer",
+          date: "Sept 2023 - May 2024",
+          description: "Led the development of a real-time dashboard application using Qt/C++, enabling the team to visualize live robot sensor data for faster diagnostics and performance evaluation.",
+          tech: ["C++", "Qt", "Robotics"],
+          logo: "/company_icons/Hacker Fab_Black w lilac.png"
+        },
+        {
+          title: "Senior Assistant Teacher",
+          date: "Sept 2020 - Sept 2024",
+          description: "Mentored 20+ students in advanced mathematics, achieving a 95% student retention rate and contributing to the Kumon center's ranking as 2nd in North America.",
+          tech: ["Education", "Mathematics", "Mentorship"],
+          logo: "/company_icons/Kumon_Method_Logo.svg.png"
+        }].map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="timeline-item pl-0 md:pl-[150px] relative max-w-3xl mx-auto"
+          >
+            <div className="timeline-dot hidden md:block left-0 md:left-[110px]"></div>
 
-                {/* Levanta Labs - Most Recent */}
-                <div className="timeline-item-horizontal group">
-                  <div className="timeline-point"></div>
-                  <div className="timeline-date">May 2025 - Present</div>
-                  <div className="timeline-title">Levanta Labs SWE Intern</div>
-                  <div className="timeline-content">
-                    <p>Developing custom software solutions for clients ranging from early-stage SaaS companies to established B2B organizations. Creating internal tools, AI-powered systems, and full-scale SaaS platforms.</p>
-                    <div className="timeline-tech-badges mt-2">
-                      <span className="timeline-tech-badge">React.js</span>
-                      <span className="timeline-tech-badge">Next.js</span>
-                      <span className="timeline-tech-badge">Typescript</span>
-                      <span className="timeline-tech-badge">Tailwind</span>
-                    </div>
-                  </div>
-                </div>
+            {/* Company logo - completely hidden on mobile devices */}
+            <div className="company-logo-container hidden md:flex">
+              <Image
+                src={item.logo}
+                alt={`${item.title} Logo`}
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="timeline-card group">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                <h3 className={`${GeistMono.className} text-lg font-medium`}>{item.title}</h3>
+                <span className="timeline-date">{item.date}</span>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Section scroll indicator */}
-          <SectionScrollIndicator targetRef={achievementsRef} />
-        </section>
+              <p className="text-[#333333]/80 text-sm mb-4">{item.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {item.tech.map((tag, i) => (
+                  <span key={i} className="timeline-tech-badge">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+
+    {/* Custom styles */}
+    <style jsx>{`
+      .timeline-dot {
+        position: absolute;
+        top: 25px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: white;
+        border: 3px solid rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        transform: translateX(-50%);
+      }
+
+      .company-logo-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        padding: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .company-logo-container {
+          display: none !important;
+        }
+      }
+
+      .timeline-card {
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        margin-bottom: 4px;
+      }
+
+      .timeline-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.04);
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      .timeline-date {
+        font-size: 0.8rem;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: GeistMono, sans-serif;
+        font-weight: 500;
+        margin-top: 4px;
+        display: inline-block;
+        background-color: rgba(0, 0, 0, 0.03);
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .timeline-tech-badge {
+        font-size: 0.75rem;
+        background-color: rgba(0, 0, 0, 0.04);
+        color: rgba(0, 0, 0, 0.7);
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
+        .timeline-card {
+          padding: 14px;
+          margin-bottom: 0;
+        }
+
+        .timeline-date {
+          font-size: 0.7rem;
+          margin-top: 2px;
+        }
+
+        .timeline-tech-badge {
+          font-size: 0.7rem;
+          padding: 1px 6px;
+        }
+      }
+    `}</style>
+  </div>
+
+  {/* Scroll indicator */}
+  <SectionScrollIndicator targetRef={achievementsRef} />
+</section>
+
 
         {/* Achievements Section */}
         <section 

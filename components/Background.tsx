@@ -70,35 +70,6 @@ export default function Background() {
     };
     animate();
 
-    // Handle mouse movement for rotation
-    let isMouseDown = false;
-    let prevMouseX = 0;
-    let prevMouseY = 0;
-
-    const onMouseDown = (event: MouseEvent) => {
-      isMouseDown = true;
-      prevMouseX = event.clientX;
-      prevMouseY = event.clientY;
-    };
-
-    const onMouseUp = () => {
-      isMouseDown = false;
-    };
-
-    const onMouseMove = (event: MouseEvent) => {
-      if (isMouseDown) {
-        const deltaX = event.clientX - prevMouseX;
-        const deltaY = event.clientY - prevMouseY;
-        stars.rotation.y += deltaX * 0.005;  // Control horizontal rotation
-        stars.rotation.x += deltaY * 0.005;  // Control vertical rotation
-        prevMouseX = event.clientX;
-        prevMouseY = event.clientY;
-      }
-    };
-
-    window.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("mousemove", onMouseMove);
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -108,10 +79,7 @@ export default function Background() {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("resize", handleResize);
+    
       if (container) {
         container.removeChild(renderer.domElement);
       }

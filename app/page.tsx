@@ -92,7 +92,7 @@ export default function Home() {
 
   // Reusable section scroll indicator
   const SectionScrollIndicator = ({ targetRef }: { targetRef: React.RefObject<HTMLDivElement> }) => (
-    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
       <motion.button 
         onClick={() => scrollToSection(targetRef)}
         className="flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
@@ -272,16 +272,16 @@ export default function Home() {
         {/* Featured Projects Section */}
         <section 
           ref={projectsRef} 
-          className="relative min-h-screen flex flex-col justify-center py-12 px-4 md:px-16"
+          className="relative min-h-screen flex flex-col justify-center py-8 px-4 md:px-8"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
-          <div className="max-w-6xl mx-auto relative z-10 my-auto mb-8">
+          <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full justify-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-4"
+              className="text-center mb-8"
             >
               <h2 className={`${GeistMono.className} text-3xl font-medium mb-2 text-[#111111]`}>Featured Projects</h2>
               <div className="h-px w-20 bg-black/20 mx-auto mb-2"></div>
@@ -290,70 +290,70 @@ export default function Home() {
               </p>
             </motion.div>
             
-            <div className="flex flex-col gap-2 mb-4">
+            {/* Project Grid - 3 columns on desktop, 1 column on mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {/* Thorem Project Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                className="flex flex-col bg-white/60 rounded-xl backdrop-blur-sm border border-black/5 shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full"
               >
-                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
-                  <div className="project-thumbnail h-28">
-                    <div 
-                      className="project-thumbnail-image" 
-                      style={{ backgroundImage: `url(https://img.youtube.com/vi/r2F_8a4ttiY/maxresdefault.jpg)` }}
-                    ></div>
+                {/* Project Preview (Top) */}
+                <div className="relative w-full aspect-video">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(https://img.youtube.com/vi/r2F_8a4ttiY/maxresdefault.jpg)` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a 
                       href="https://www.youtube.com/watch?v=r2F_8a4ttiY" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="play-button-overlay"
+                      className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
                     >
-                      <div className="play-button">
-                        <FiPlay size={20} className="ml-1" />
-                      </div>
+                      <FiPlay size={30} className="text-white ml-1" />
                     </a>
                   </div>
-                  
-                  <div className="project-content p-3">
-                    <div className="project-header mb-1">
-                      <h3 className={`${GeistMono.className} project-title text-lg`}>Thorem</h3>
-                      <span className="project-subtitle text-sm">Mathematical Notation AI Converter</span>
-                    </div>
-                    
-                    <p className="project-description text-sm mb-2">
+                </div>
+                
+                {/* Project Details (Bottom) */}
+                <div className="flex flex-col p-4 h-full flex-grow">
+                  <div className="mb-2">
+                    <h3 className={`${GeistMono.className} text-xl font-medium mb-1`}>Thorem</h3>
+                    <p className="text-[#333333]/80 text-sm line-clamp-2">
                       Supercharge your handwritten math notes through professional-quality LaTeX code with one click.
                     </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Next.js</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Node.js</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">AI</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">LaTeX</span>
+                  </div>
+                  
+                  <div className="flex gap-3 mt-auto">
+                    <a 
+                      href="https://www.youtube.com/watch?v=r2F_8a4ttiY"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-black text-white text-xs rounded-md hover:bg-black/80 transition-colors"
+                    >
+                      <FiPlay size={12} />
+                      <span className={GeistMono.className}>Watch Demo</span>
+                    </a>
                     
-                    <div className="project-tech-stack mb-2">
-                      <span className="project-tech-tag text-xs">Next.js</span>
-                      <span className="project-tech-tag text-xs">Node.js</span>
-                      <span className="project-tech-tag text-xs">AI</span>
-                      <span className="project-tech-tag text-xs">LaTeX</span>
-                    </div>
-                    
-                    <div className="project-links">
-                      <a 
-                        href="https://www.youtube.com/watch?v=r2F_8a4ttiY"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-primary-link text-xs"
-                      >
-                        <FiPlay size={12} />
-                        <span className={GeistMono.className}>Watch Demo</span>
-                      </a>
-                      
-                      <a 
-                        href="https://github.com/KushalPraja/Thorem"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link text-xs"
-                      >
-                        <FiGithub size={12} />
-                        <span className={GeistMono.className}>GitHub</span>
-                      </a>
-                    </div>
+                    <a 
+                      href="https://github.com/KushalPraja/Thorem"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-white text-black border border-black/10 text-xs rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      <FiGithub size={12} />
+                      <span className={GeistMono.className}>GitHub</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -364,72 +364,72 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex flex-col bg-white/60 rounded-xl backdrop-blur-sm border border-black/5 shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full"
               >
-                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
-                  <div className="project-thumbnail h-28">
-                    <div 
-                      className="project-thumbnail-image" 
-                      style={{ backgroundImage: `url(https://img.youtube.com/vi/hXZwNMDQX90/maxresdefault.jpg)` }}
-                    ></div>
+                {/* Project Preview (Top) */}
+                <div className="relative w-full aspect-video">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(https://img.youtube.com/vi/hXZwNMDQX90/maxresdefault.jpg)` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a 
                       href="https://www.youtube.com/watch?v=hXZwNMDQX90" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="play-button-overlay"
+                      className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
                     >
-                      <div className="play-button">
-                        <FiPlay size={20} className="ml-1" />
-                      </div>
+                      <FiPlay size={30} className="text-white ml-1" />
                     </a>
                   </div>
-                  
-                  <div className="project-content p-3">
-                    <div className="project-header mb-2">
-                      <h3 className={`${GeistMono.className} project-title text-lg`}>GreenLens</h3>
-                      <span className="project-subtitle text-sm">Sustainability AI Assistant</span>
-                    </div>
-                    
-                    <p className="project-description text-sm mb-2">
-Recycle. Rethink. Reuse. Together.
+                </div>
+                
+                {/* Project Details (Bottom) */}
+                <div className="flex flex-col p-4 h-full flex-grow">
+                  <div className="mb-2">
+                    <h3 className={`${GeistMono.className} text-xl font-medium mb-1`}>GreenLens</h3>
+                    <p className="text-[#333333]/80 text-sm line-clamp-2">
+                      Recycle. Rethink. Reuse. Together.
                     </p>
-
-                    <div className="project-tech-stack mb-2">
-                      <span className="project-tech-tag text-xs">React</span>
-                      <span className="project-tech-tag text-xs">TensorFlow</span>
-                      <span className="project-tech-tag text-xs">Firebase</span>
-                      <span className="project-tech-tag text-xs">Mobile</span>
-                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">React</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">TensorFlow</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Firebase</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Mobile</span>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3 mt-auto">
+                    <a 
+                      href="https://www.youtube.com/watch?v=hXZwNMDQX90"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-black text-white text-xs rounded-md hover:bg-black/80 transition-colors"
+                    >
+                      <FiPlay size={12} />
+                      <span className={GeistMono.className}>Watch Demo</span>
+                    </a>
                     
-                    <div className="project-links">
-                      <a 
-                        href="https://www.youtube.com/watch?v=hXZwNMDQX90"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-primary-link text-xs"
-                      >
-                        <FiPlay size={12} />
-                        <span className={GeistMono.className}>Watch Demo</span>
-                      </a>
-                      
-                      <a 
-                        href="https://github.com/KushalPraja/GreenLens"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link text-xs"
-                      >
-                        <FiGithub size={12} />
-                        <span className={GeistMono.className}>GitHub</span>
-                      </a>
-                      <a 
-                        href="https://green-lens-blond.vercel.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link text-xs"
-                      >
-                        <FiExternalLink size={12} />
-                        <span className={GeistMono.className}>Live Demo</span>
-                      </a>
-                    </div>
+                    <a 
+                      href="https://github.com/KushalPraja/GreenLens"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-white text-black border border-black/10 text-xs rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      <FiGithub size={12} />
+                      <span className={GeistMono.className}>GitHub</span>
+                    </a>
+                    
+                    <a 
+                      href="https://green-lens-blond.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-white text-black border border-black/10 text-xs rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      <FiExternalLink size={12} />
+                      <span className={GeistMono.className}>Live Demo</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -440,74 +440,73 @@ Recycle. Rethink. Reuse. Together.
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
+                className="flex flex-col bg-white/60 rounded-xl backdrop-blur-sm border border-black/5 shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full"
               >
-                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
-                  <div className="project-thumbnail h-28">
-                    <div 
-                      className="project-thumbnail-image" 
-                      style={{ backgroundImage: `url(https://img.youtube.com/vi/qL1jV-JBYxU/maxresdefault.jpg)` }}
-                    ></div>
+                {/* Project Preview (Top) */}
+                <div className="relative w-full aspect-video">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(https://img.youtube.com/vi/qL1jV-JBYxU/maxresdefault.jpg)` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <a 
                       href="https://www.youtube.com/watch?v=qL1jV-JBYxU" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="play-button-overlay"
+                      className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
                     >
-                      <div className="play-button">
-                        <FiPlay size={20} className="ml-1" />
-                      </div>
+                      <FiPlay size={30} className="text-white ml-1" />
                     </a>
                   </div>
-                  
-                  <div className="project-content p-3">
-                    <div className="project-header mb-2">
-                      <h3 className={`${GeistMono.className} project-title text-lg`}>Branch</h3>
-                      <span className="project-subtitle text-sm">Modern Link Management Platform</span>
-                    </div>
-                    
-                    <p className="project-description text-sm mb-2">
+                </div>
+                
+                {/* Project Details (Bottom) */}
+                <div className="flex flex-col p-4 h-full flex-grow">
+                  <div className="mb-2">
+                    <h3 className={`${GeistMono.className} text-xl font-medium mb-1`}>Branch</h3>
+                    <p className="text-[#333333]/80 text-sm line-clamp-2">
                       Create and share your own personalized link pages with Branch for free.
                       A modern LinkTree alternative with sleek, customizable themes and detailed analytics.
                     </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Next.js</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">FastAPI</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">TailwindCSS</span>
+                    <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Auth</span>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-3 mt-auto">
+                    <a 
+                      href="https://www.youtube.com/watch?v=qL1jV-JBYxU"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-black text-white text-xs rounded-md hover:bg-black/80 transition-colors"
+                    >
+                      <FiPlay size={12} />
+                      <span className={GeistMono.className}>Watch Demo</span>
+                    </a>
                     
-                    <div className="project-tech-stack mb-2">
-                      <span className="project-tech-tag text-xs">Next.js</span>
-                      <span className="project-tech-tag text-xs">FastAPI</span>
-                      <span className="project-tech-tag text-xs">TailwindCSS</span>
-                      <span className="project-tech-tag text-xs">Auth</span>
-                    </div>
+                    <a 
+                      href="https://github.com/KushalPraja/Branch"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-white text-black border border-black/10 text-xs rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      <FiGithub size={12} />
+                      <span className={GeistMono.className}>GitHub</span>
+                    </a>
                     
-                    <div className="project-links">
-                      <a 
-                        href="https://www.youtube.com/watch?v=qL1jV-JBYxU"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-primary-link text-xs"
-                      >
-                        <FiPlay size={12} />
-                        <span className={GeistMono.className}>Watch Demo</span>
-                      </a>
-                      
-                      <a 
-                        href="https://github.com/KushalPraja/Branch"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link text-xs"
-                      >
-                        <FiGithub size={12} />
-                        <span className={GeistMono.className}>GitHub</span>
-                      </a>
-                      
-                      <a 
-                        href="https://ashy-ground-0a637de0f.6.azurestaticapps.net/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link text-xs"
-                      >
-                        <FiExternalLink size={12} />
-                        <span className={GeistMono.className}>Live Demo</span>
-                      </a>
-                    </div>
+                    <a 
+                      href="https://ashy-ground-0a637de0f.6.azurestaticapps.net/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 py-1.5 px-3 bg-white text-black border border-black/10 text-xs rounded-md hover:bg-gray-100 transition-colors"
+                    >
+                      <FiExternalLink size={12} />
+                      <span className={GeistMono.className}>Live Demo</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -518,17 +517,28 @@ Recycle. Rethink. Reuse. Together.
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center mb-3"
+              className="text-center"
             >
               <Link
                 href="/projects"
-                className={`inline-flex items-center gap-2 py-2 px-6 border rounded-full bg-[white]/80 hover:bg-slate-200 transition-colors ${GeistMono.className} text-sm text-[black] group`}
+                className={`inline-flex items-center gap-2 py-2 px-6 border rounded-full bg-white/80 hover:bg-slate-200 transition-colors ${GeistMono.className} text-sm text-black group`}
               >
                 <span>View All Projects</span>
                 <FiArrowDown className="rotate-[270deg] group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
           </div>
+          
+          {/* Custom mobile responsive styles */}
+          <style jsx>{`
+            @media (max-width: 768px) {
+              .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+              }
+            }
+          `}</style>
+          
           {/* Section scroll indicator */}
           <SectionScrollIndicator targetRef={skillsRef} />
         </section>
@@ -536,7 +546,7 @@ Recycle. Rethink. Reuse. Together.
         {/* Skills Section - Improved with modern design - Hidden on mobile */}
         <section 
           ref={skillsRef} 
-          className="relative min-h-screen flex flex-col justify-center py-4 px-2 md:px-8 hidden md:flex"
+          className="relative min-h-screen hidden md:flex flex-col justify-center py-4 px-2 md:px-8"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
           <div className="max-w-5xl mx-auto relative z-10 w-full h-full flex flex-row gap-6 items-center min-h-[80vh]" style={{height: '80vh'}}>

@@ -18,9 +18,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <HoverCard openDelay={200}>
       <HoverCardTrigger asChild>
         <Card className="group h-full flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 relative z-10">
-          <CardHeader className="space-y-4">
+          <CardHeader className="space-y-2 p-4">
             <div className="flex justify-between items-start">
-              <CardTitle className="group-hover:text-primary transition-colors line-clamp-1">
+              <CardTitle className="group-hover:text-primary transition-colors line-clamp-1 text-base">
                 {project.title}
               </CardTitle>
               <div className="flex gap-2 shrink-0">
@@ -32,7 +32,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                       rel="noopener noreferrer"
                       className="opacity-50 hover:opacity-100 transition-opacity hover:text-primary"
                     >
-                      <Github className="h-5 w-5" />
+                      <Github className="h-4 w-4" />
                     </a>
                     {project.link.includes('github.com') && (
                       <a 
@@ -41,25 +41,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         rel="noopener noreferrer"
                         className="opacity-50 hover:opacity-100 transition-opacity hover:text-primary"
                       >
-                        <ExternalLink className="h-5 w-5" />
+                        <ExternalLink className="h-4 w-4" />
                       </a>
                     )}
                   </>
                 )}
               </div>
             </div>
-            <CardDescription className="line-clamp-3 min-h-[4.5rem]">
+            <CardDescription className="line-clamp-2 min-h-[2.5rem] text-sm">
               {project.description}
             </CardDescription>
           </CardHeader>
-          <CardContent className="mt-auto">
-            <Separator className="mb-4" />
-            <div className="flex flex-wrap gap-2">
+          <CardContent className="mt-auto p-4 pt-0">
+            <Separator className="mb-3" />
+            <div className="flex flex-wrap gap-1.5">
               {project.tech.map(tech => (
                 <Badge 
                   key={tech} 
                   variant="outline"
-                  className="hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="hover:bg-primary hover:text-primary-foreground transition-colors text-xs"
                 >
                   {tech}
                 </Badge>

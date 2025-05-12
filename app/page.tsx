@@ -7,6 +7,7 @@ import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink, FiCode, FiDa
 import Link from 'next/link';
 import Image from 'next/image';
 import React from "react";
+import RadarSkillsChart from "@/components/RadarSkillsChart";
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -271,25 +272,25 @@ export default function Home() {
         {/* Featured Projects Section */}
         <section 
           ref={projectsRef} 
-          className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
+          className="relative min-h-screen flex flex-col justify-center py-16 px-4 md:px-16"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
-          <div className="max-w-6xl mx-auto relative z-10 my-auto">
+          <div className="max-w-6xl mx-auto relative z-10 my-auto mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="text-center mb-6"
             >
-              <h2 className={`${GeistMono.className} text-3xl font-medium mb-4 text-[#111111]`}>Featured Projects</h2>
-              <div className="h-px w-20 bg-black/20 mx-auto mb-4"></div>
-              <p className="text-[#333333]/80 max-w-2xl mx-auto">
+              <h2 className={`${GeistMono.className} text-3xl font-medium mb-2 text-[#111111]`}>Featured Projects</h2>
+              <div className="h-px w-20 bg-black/20 mx-auto mb-2"></div>
+              <p className="text-[#333333]/80 max-w-2xl mx-auto text-sm">
                 A selection of the work that I am most proud of. Each project represents a unique challenge and learning experience.
               </p>
             </motion.div>
             
-            <div className="flex flex-col gap-8 mb-16">
+            <div className="flex flex-col gap-3 mb-6">
               {/* Thorem Project Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -298,7 +299,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="featured-project-card">
-                  <div className="project-thumbnail">
+                  <div className="project-thumbnail h-32">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/r2F_8a4ttiY/maxresdefault.jpg)` }}
@@ -315,21 +316,21 @@ export default function Home() {
                     </a>
                   </div>
                   
-                  <div className="project-content">
-                    <div className="project-header">
-                      <h3 className={`${GeistMono.className} project-title`}>Thorem</h3>
-                      <span className="project-subtitle">Mathematical Notation AI Converter</span>
+                  <div className="project-content p-4">
+                    <div className="project-header mb-2">
+                      <h3 className={`${GeistMono.className} project-title text-lg`}>Thorem</h3>
+                      <span className="project-subtitle text-sm">Mathematical Notation AI Converter</span>
                     </div>
                     
-                    <p className="project-description">
+                    <p className="project-description text-sm mb-2">
                       Supercharge your handwritten math notes through professional-quality LaTeX code with one click.
                     </p>
                     
-                    <div className="project-tech-stack">
-                      <span className="project-tech-tag">Next.js</span>
-                      <span className="project-tech-tag">Node.js</span>
-                      <span className="project-tech-tag">AI</span>
-                      <span className="project-tech-tag">LaTeX</span>
+                    <div className="project-tech-stack mb-2">
+                      <span className="project-tech-tag text-xs">Next.js</span>
+                      <span className="project-tech-tag text-xs">Node.js</span>
+                      <span className="project-tech-tag text-xs">AI</span>
+                      <span className="project-tech-tag text-xs">LaTeX</span>
                     </div>
                     
                     <div className="project-links">
@@ -337,7 +338,7 @@ export default function Home() {
                         href="https://www.youtube.com/watch?v=r2F_8a4ttiY"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-primary-link"
+                        className="project-link-button project-primary-link text-xs"
                       >
                         <FiPlay size={12} />
                         <span className={GeistMono.className}>Watch Demo</span>
@@ -347,7 +348,7 @@ export default function Home() {
                         href="https://github.com/KushalPraja/Thorem"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link"
+                        className="project-link-button project-secondary-link text-xs"
                       >
                         <FiGithub size={12} />
                         <span className={GeistMono.className}>GitHub</span>
@@ -365,7 +366,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
                 <div className="featured-project-card">
-                  <div className="project-thumbnail">
+                  <div className="project-thumbnail h-32">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/hXZwNMDQX90/maxresdefault.jpg)` }}
@@ -382,21 +383,21 @@ export default function Home() {
                     </a>
                   </div>
                   
-                  <div className="project-content">
-                    <div className="project-header">
-                      <h3 className={`${GeistMono.className} project-title`}>GreenLens</h3>
-                      <span className="project-subtitle">Sustainability AI Assistant</span>
+                  <div className="project-content p-4">
+                    <div className="project-header mb-2">
+                      <h3 className={`${GeistMono.className} project-title text-lg`}>GreenLens</h3>
+                      <span className="project-subtitle text-sm">Sustainability AI Assistant</span>
                     </div>
                     
-                    <p className="project-description">
+                    <p className="project-description text-sm mb-2">
                       Point your camera at any product, and GreenLens will analyze its environmental impact.
                     </p>
                     
-                    <div className="project-tech-stack">
-                      <span className="project-tech-tag">React</span>
-                      <span className="project-tech-tag">TensorFlow</span>
-                      <span className="project-tech-tag">Firebase</span>
-                      <span className="project-tech-tag">Mobile</span>
+                    <div className="project-tech-stack mb-2">
+                      <span className="project-tech-tag text-xs">React</span>
+                      <span className="project-tech-tag text-xs">TensorFlow</span>
+                      <span className="project-tech-tag text-xs">Firebase</span>
+                      <span className="project-tech-tag text-xs">Mobile</span>
                     </div>
                     
                     <div className="project-links">
@@ -404,7 +405,7 @@ export default function Home() {
                         href="https://www.youtube.com/watch?v=hXZwNMDQX90"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-primary-link"
+                        className="project-link-button project-primary-link text-xs"
                       >
                         <FiPlay size={12} />
                         <span className={GeistMono.className}>Watch Demo</span>
@@ -414,7 +415,7 @@ export default function Home() {
                         href="https://github.com/KushalPraja/GreenLens"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link"
+                        className="project-link-button project-secondary-link text-xs"
                       >
                         <FiGithub size={12} />
                         <span className={GeistMono.className}>GitHub</span>
@@ -423,7 +424,7 @@ export default function Home() {
                         href="https://green-lens-blond.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link"
+                        className="project-link-button project-secondary-link text-xs"
                       >
                         <FiExternalLink size={12} />
                         <span className={GeistMono.className}>Live Demo</span>
@@ -441,7 +442,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <div className="featured-project-card">
-                  <div className="project-thumbnail">
+                  <div className="project-thumbnail h-32">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/qL1jV-JBYxU/maxresdefault.jpg)` }}
@@ -456,27 +457,24 @@ export default function Home() {
                         <FiPlay size={20} className="ml-1" />
                       </div>
                     </a>
-                    
                   </div>
                   
-                  <div className="project-content">
-                    <div className="project-header">
-                      <h3 className={`${GeistMono.className} project-title`}>Branch</h3>
-                      <span className="project-subtitle">Modern Link Management Platform</span>
+                  <div className="project-content p-4">
+                    <div className="project-header mb-2">
+                      <h3 className={`${GeistMono.className} project-title text-lg`}>Branch</h3>
+                      <span className="project-subtitle text-sm">Modern Link Management Platform</span>
                     </div>
                     
-                    <p className="project-description">
-
+                    <p className="project-description text-sm mb-2">
                       Create and share your own personalized link pages with Branch for free.
-                      A modern LinkTree alternative that allows users to create customized link pages to share their online presence through a single URL.
-                      With sleek, customizable themes and detailed analytics for content creators.
+                      A modern LinkTree alternative with sleek, customizable themes and detailed analytics.
                     </p>
                     
-                    <div className="project-tech-stack">
-                      <span className="project-tech-tag">Next.js</span>
-                      <span className="project-tech-tag">FastAPI</span>
-                      <span className="project-tech-tag">TailwindCSS</span>
-                      <span className="project-tech-tag">Authentication</span>
+                    <div className="project-tech-stack mb-2">
+                      <span className="project-tech-tag text-xs">Next.js</span>
+                      <span className="project-tech-tag text-xs">FastAPI</span>
+                      <span className="project-tech-tag text-xs">TailwindCSS</span>
+                      <span className="project-tech-tag text-xs">Auth</span>
                     </div>
                     
                     <div className="project-links">
@@ -484,7 +482,7 @@ export default function Home() {
                         href="https://www.youtube.com/watch?v=qL1jV-JBYxU"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-primary-link"
+                        className="project-link-button project-primary-link text-xs"
                       >
                         <FiPlay size={12} />
                         <span className={GeistMono.className}>Watch Demo</span>
@@ -494,7 +492,7 @@ export default function Home() {
                         href="https://github.com/KushalPraja/Branch"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link"
+                        className="project-link-button project-secondary-link text-xs"
                       >
                         <FiGithub size={12} />
                         <span className={GeistMono.className}>GitHub</span>
@@ -504,7 +502,7 @@ export default function Home() {
                         href="https://ashy-ground-0a637de0f.6.azurestaticapps.net/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-button project-secondary-link"
+                        className="project-link-button project-secondary-link text-xs"
                       >
                         <FiExternalLink size={12} />
                         <span className={GeistMono.className}>Live Demo</span>
@@ -520,11 +518,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
+              className="text-center mb-6"
             >
               <Link
                 href="/projects"
-                className={`inline-flex items-center gap-2 py-2 px-6 border  rounded-full bg-[white]/80 hover:bg-slate-200 transition-colors ${GeistMono.className} text-sm text-[black] group`}
+                className={`inline-flex items-center gap-2 py-2 px-6 border rounded-full bg-[white]/80 hover:bg-slate-200 transition-colors ${GeistMono.className} text-sm text-[black] group`}
               >
                 <span>View All Projects</span>
                 <FiArrowDown className="rotate-[270deg] group-hover:translate-x-1 transition-transform" />
@@ -538,210 +536,197 @@ export default function Home() {
         {/* Skills Section - Improved with modern design - Hidden on mobile */}
         <section 
           ref={skillsRef} 
-          className="relative h-screen flex flex-col justify-center py-8 px-4 md:px-16 hidden md:flex"
+          className="relative min-h-screen flex flex-col justify-center py-4 px-2 md:px-8 hidden md:flex"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
-          <div className="max-w-4xl mx-auto relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-6"
-            >
-              <h2 className={`${GeistMono.className} text-3xl font-medium mb-2`}>Technical Skills</h2>
-              <div className="h-px w-16 bg-black/20 mx-auto mb-2"></div>
-              <p className="text-[#333333]/80 max-w-lg mx-auto">
-          Technologies and tools I specialize in for building modern applications.
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {/* Frontend Skills - Modern Card */}
-              <div className="group relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
-          <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-black/5 shadow-sm h-full">
-            <div className="flex items-center mb-4">
-              <div className="mr-3 p-2 bg-black/5 rounded-lg">
-                <FiCode className="text-black h-5 w-5" />
+          <div className="max-w-5xl mx-auto relative z-10 w-full h-full flex flex-row gap-6 items-center min-h-[80vh]" style={{height: '80vh'}}>
+            {/* Left: Title, subtitle, radar chart */}
+            <div className="w-1/2 flex flex-col items-center justify-center h-full gap-2">
+              <div className="text-center mb-2">
+                <h2 className={`${GeistMono.className} text-2xl font-medium mb-1`}>Technical Skills</h2>
+                <div className="h-px w-12 bg-black/20 mx-auto mb-1"></div>
+                <p className="text-[#333333]/80 max-w-xs mx-auto text-sm">
+                  Technologies and tools I specialize in for building modern applications.
+                </p>
               </div>
-              <h3 className={`${GeistMono.className} text-lg font-medium`}>Frontend Development</h3>
+              <RadarSkillsChart />
             </div>
-            
-            <div className="space-y-3">
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">React, Next.js, Vue</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "95%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">TypeScript, JavaScript</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Tailwind CSS, SCSS</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Three.js, WebGL, Canvas</span>
-            <span className="text-xs text-black/50">Proficient</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "80%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Framer Motion, GSAP</span>
-            <span className="text-xs text-black/50">Proficient</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "85%" }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-              </div>
-              
-              {/* Backend Skills - Modern Card */}
-              <div className="group relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
-          <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-black/5 shadow-sm h-full">
-            <div className="flex items-center mb-4">
-              <div className="mr-3 p-2 bg-black/5 rounded-lg">
-                <FiDatabase className="text-black h-5 w-5" />
-              </div>
-              <h3 className={`${GeistMono.className} text-lg font-medium`}>Backend Development</h3>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Node.js, Express, FastAPI</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">Python, Java, C++</span>
-            <span className="text-xs text-black/50">Proficient</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "85%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">MongoDB, PostgreSQL, Firebase</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">RESTful APIs, GraphQL</span>
-            <span className="text-xs text-black/50">Advanced</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "95%" }}></div>
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium">AWS, Docker, CI/CD</span>
-            <span className="text-xs text-black/50">Proficient</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-1.5">
-            <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "80%" }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-              </div>
-              
-              {/* Additional Skills Section - New Card for More Skills */}
+            {/* Right: Skills cards and expertise */}
+            <div className="w-1/2 h-full flex flex-col justify-center gap-2 pr-1">
               <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="group relative md:col-span-2 mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="grid grid-cols-1 gap-3"
               >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
-          <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-xl border border-black/5 shadow-sm">
-            <h3 className={`${GeistMono.className} text-lg font-medium mb-3`}>Additional Expertise</h3>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              <div className="skill-pill">
-                <span className="skill-icon">🔒</span>
-                <span className="skill-name">Cybersecurity</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">🤖</span>
-                <span className="skill-name">Machine Learning</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">📱</span>
-                <span className="skill-name">Mobile Dev</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">🧪</span>
-                <span className="skill-name">Testing</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">🔄</span>
-                <span className="skill-name">CI/CD</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">🎨</span>
-                <span className="skill-name">UI/UX</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">📊</span>
-                <span className="skill-name">Data Viz</span>
-              </div>
-              <div className="skill-pill">
-                <span className="skill-icon">☁️</span>
-                <span className="skill-name">Cloud Arch</span>
-              </div>
-            </div>
-          </div>
+                {/* Frontend Skills - Modern Card */}
+                <div className="group relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
+                  <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 shadow-sm h-full">
+                    <div className="flex items-center mb-4">
+                      <div className="mr-3 p-2 bg-black/5 rounded-lg">
+                        <FiCode className="text-black h-5 w-5" />
+                      </div>
+                      <h3 className={`${GeistMono.className} text-lg font-medium`}>Frontend Development</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">React, Next.js, Vue</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "95%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">TypeScript, JavaScript</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">Tailwind CSS, SCSS</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">Three.js, WebGL, Canvas</span>
+                          <span className="text-xs text-black/50">Proficient</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "80%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">Framer Motion, GSAP</span>
+                          <span className="text-xs text-black/50">Proficient</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "85%" }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Backend Skills - Modern Card */}
+                <div className="group relative">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
+                  <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 shadow-sm h-full">
+                    <div className="flex items-center mb-4">
+                      <div className="mr-3 p-2 bg-black/5 rounded-lg">
+                        <FiDatabase className="text-black h-5 w-5" />
+                      </div>
+                      <h3 className={`${GeistMono.className} text-lg font-medium`}>Backend Development</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">Node.js, Express, FastAPI</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">Python, Java, C++</span>
+                          <span className="text-xs text-black/50">Proficient</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "85%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">MongoDB, PostgreSQL, Firebase</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "90%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">RESTful APIs, GraphQL</span>
+                          <span className="text-xs text-black/50">Advanced</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/70 h-1.5 rounded-full" style={{ width: "95%" }}></div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex justify-between mb-1">
+                          <span className="text-sm font-medium">AWS, Docker, CI/CD</span>
+                          <span className="text-xs text-black/50">Proficient</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className="bg-black/60 h-1.5 rounded-full" style={{ width: "80%" }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Additional Skills Section - New Card for More Skills */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="group relative mt-2"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
+                  <div className="relative bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-black/5 shadow-sm">
+                    <h3 className={`${GeistMono.className} text-lg font-medium mb-3`}>Additional Expertise</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5">
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">🔒</span>
+                        <span className="skill-name">Cyber Security</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">🤖</span>
+                        <span className="skill-name">Machine Learning</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">📱</span>
+                        <span className="skill-name">Mobile Dev</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">🧪</span>
+                        <span className="skill-name">Testing</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">🔄</span>
+                        <span className="skill-name">CI/CD</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">🎨</span>
+                        <span className="skill-name">UI/UX</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">📊</span>
+                        <span className="skill-name">Data Viz</span>
+                      </div>
+                      <div className="skill-pill border border-black/10 bg-white/60 rounded-lg flex items-center px-2 py-1 text-xs font-medium gap-1">
+                        <span className="skill-icon">☁️</span>
+                        <span className="skill-name">Cloud Arch</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
           
           {/* Add some custom CSS for the additional pills */}

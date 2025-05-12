@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import CustomCursor from "@/components/CustomCursor";
 import { Analytics } from "@vercel/analytics/react"
 
 const geistMono = Geist_Mono({
@@ -93,7 +92,6 @@ export default function RootLayout({
       </head>
       <body className={`${geistMono.variable} antialiased`}>
         <Navigation />
-        <CustomCursor />
         {children}
         <Analytics/>
       </body>

@@ -92,7 +92,7 @@ export default function Home() {
 
   // Reusable section scroll indicator
   const SectionScrollIndicator = ({ targetRef }: { targetRef: React.RefObject<HTMLDivElement> }) => (
-    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
       <motion.button 
         onClick={() => scrollToSection(targetRef)}
         className="flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
@@ -272,16 +272,16 @@ export default function Home() {
         {/* Featured Projects Section */}
         <section 
           ref={projectsRef} 
-          className="relative min-h-screen flex flex-col justify-center py-16 px-4 md:px-16"
+          className="relative min-h-screen flex flex-col justify-center py-12 px-4 md:px-16"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
-          <div className="max-w-6xl mx-auto relative z-10 my-auto mb-16">
+          <div className="max-w-6xl mx-auto relative z-10 my-auto mb-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-6"
+              className="text-center mb-4"
             >
               <h2 className={`${GeistMono.className} text-3xl font-medium mb-2 text-[#111111]`}>Featured Projects</h2>
               <div className="h-px w-20 bg-black/20 mx-auto mb-2"></div>
@@ -290,7 +290,7 @@ export default function Home() {
               </p>
             </motion.div>
             
-            <div className="flex flex-col gap-3 mb-6">
+            <div className="flex flex-col gap-2 mb-4">
               {/* Thorem Project Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -298,8 +298,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="featured-project-card">
-                  <div className="project-thumbnail h-32">
+                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
+                  <div className="project-thumbnail h-28">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/r2F_8a4ttiY/maxresdefault.jpg)` }}
@@ -316,8 +316,8 @@ export default function Home() {
                     </a>
                   </div>
                   
-                  <div className="project-content p-4">
-                    <div className="project-header mb-2">
+                  <div className="project-content p-3">
+                    <div className="project-header mb-1">
                       <h3 className={`${GeistMono.className} project-title text-lg`}>Thorem</h3>
                       <span className="project-subtitle text-sm">Mathematical Notation AI Converter</span>
                     </div>
@@ -365,8 +365,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <div className="featured-project-card">
-                  <div className="project-thumbnail h-32">
+                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
+                  <div className="project-thumbnail h-28">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/hXZwNMDQX90/maxresdefault.jpg)` }}
@@ -383,16 +383,16 @@ export default function Home() {
                     </a>
                   </div>
                   
-                  <div className="project-content p-4">
+                  <div className="project-content p-3">
                     <div className="project-header mb-2">
                       <h3 className={`${GeistMono.className} project-title text-lg`}>GreenLens</h3>
                       <span className="project-subtitle text-sm">Sustainability AI Assistant</span>
                     </div>
                     
                     <p className="project-description text-sm mb-2">
-                      Point your camera at any product, and GreenLens will analyze its environmental impact.
+Recycle. Rethink. Reuse. Together.
                     </p>
-                    
+
                     <div className="project-tech-stack mb-2">
                       <span className="project-tech-tag text-xs">React</span>
                       <span className="project-tech-tag text-xs">TensorFlow</span>
@@ -441,8 +441,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="featured-project-card">
-                  <div className="project-thumbnail h-32">
+                <div className="featured-project-card" style={{ maxHeight: "220px" }}>
+                  <div className="project-thumbnail h-28">
                     <div 
                       className="project-thumbnail-image" 
                       style={{ backgroundImage: `url(https://img.youtube.com/vi/qL1jV-JBYxU/maxresdefault.jpg)` }}
@@ -459,7 +459,7 @@ export default function Home() {
                     </a>
                   </div>
                   
-                  <div className="project-content p-4">
+                  <div className="project-content p-3">
                     <div className="project-header mb-2">
                       <h3 className={`${GeistMono.className} project-title text-lg`}>Branch</h3>
                       <span className="project-subtitle text-sm">Modern Link Management Platform</span>
@@ -518,7 +518,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center mb-6"
+              className="text-center mb-3"
             >
               <Link
                 href="/projects"

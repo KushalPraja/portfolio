@@ -406,7 +406,7 @@ body {
 .featured-project-card {
   @apply relative flex flex-col md:flex-row overflow-hidden rounded-lg border border-black/10 bg-white/80 backdrop-blur-sm
   transition-all duration-300 shadow-sm hover:shadow-md;
-  max-height: 280px;
+  max-height: 240px;
 }
 
 .featured-project-card:hover {

@@ -54,7 +54,7 @@ const options = {
       grid: { color: 'rgba(0,0,0,0.08)' },
       pointLabels: {
         color: '#222',
-        font: { size: 14, weight: 'bold' },
+        font: { size: 14, weight: 'bold' as const },
       },
       min: 0,
       max: 100,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import CustomCursor from "@/components/CustomCursor";
 import { Analytics } from "@vercel/analytics/react"
 
 const geistMono = Geist_Mono({
@@ -51,6 +52,20 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="description" content={siteInfo.description} />
+        <style>
+          {`
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            ::-webkit-scrollbar {
+              display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            html {
+              -ms-overflow-style: none;  /* IE and Edge */
+              scrollbar-width: none;  /* Firefox */
+            }
+          `}
+        </style>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -78,6 +93,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistMono.variable} antialiased`}>
         <Navigation />
+        <CustomCursor />
         {children}
         <Analytics/>
       </body>

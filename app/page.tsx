@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from "react";
 import RadarSkillsChart from "@/components/RadarSkillsChart";
+import ChatBot from "@/components/ChatBot";
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -32,12 +33,13 @@ export default function Home() {
   const skillsRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
   const achievementsRef = useRef<HTMLDivElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Set loaded state after a slight delay for animations
     const timer = setTimeout(() => setIsLoaded(true), 300);
-    
+
     return () => {
       clearTimeout(timer);
     };
@@ -64,6 +66,7 @@ export default function Home() {
         { ref: skillsRef, id: "skills" },
         { ref: experienceRef, id: "experience" },
         { ref: achievementsRef, id: "achievements" },
+        { ref: chatRef, id: "chat" },
         { ref: contactRef, id: "contact" },
       ];
 
@@ -90,19 +93,28 @@ export default function Home() {
     }
   };
 
+  // Handle suggestion clicks to open chat with preset message
+  const handleSuggestionClick = (message: string) => {
+    // Create a custom event to trigger the chat with a specific message
+    const event = new CustomEvent('openChatWithMessage', { 
+      detail: { message } 
+    });
+    window.dispatchEvent(event);
+  };
+
   // Reusable section scroll indicator
   const SectionScrollIndicator = ({ targetRef }: { targetRef: React.RefObject<HTMLDivElement> }) => (
     <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
-      <motion.button 
+      <motion.button
         onClick={() => scrollToSection(targetRef)}
         className="flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7, y: [0, 5, 0] }}
-        transition={{ 
-          y: { 
-            repeat: Infinity, 
+        transition={{
+          y: {
+            repeat: Infinity,
             duration: 2,
-            ease: "easeInOut" 
+            ease: "easeInOut"
           }
         }}
       >
@@ -117,7 +129,7 @@ export default function Home() {
       <Background />
       <div className="relative">
         {/* Hero Section */}
-        <section 
+        <section
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center"
         >
@@ -125,14 +137,14 @@ export default function Home() {
           {!isMobile && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ 
+              animate={{
                 opacity: isLoaded ? 1 : 0,
                 scale: isLoaded ? 1 : 0.9
               }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="absolute top-24 left-12"
             >
-             
+
             </motion.div>
           )}
 
@@ -142,7 +154,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center font-mono z-10"
           >
-              <motion.h1 
+              <motion.h1
                 className={`text-5xl mb-4 tracking-tight text-[#111111] font-medium drop-shadow-md ${isMobile ? 'px-4' : ''}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -150,8 +162,8 @@ export default function Home() {
               >
                 Kushal Prajapati
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className={`text-[#000000] text-base tracking-wide drop-shadow-sm ${GeistMono.className} mb-8`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -159,9 +171,9 @@ export default function Home() {
               >
                 COMPUTER ENGINEER
               </motion.p>
-              
+
               <motion.div
-                className={`flex justify-center items-center gap-6 py-3 px-8 bg-black/[0.02] rounded-lg 
+                className={`flex justify-center items-center gap-6 py-3 px-8 bg-black/[0.02] rounded-lg
                 backdrop-blur-sm border border-black/5 mb-12 ${isMobile ? 'mx-4' : ''}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -213,20 +225,12 @@ export default function Home() {
             </motion.div>
           )}
 
-          {/* Location indicator */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className={`fixed ${isMobile ? 'bottom-4 right-4 text-sm' : 'bottom-8 right-8 text-base'} text-black z-50`}
-          >
-            [ Waterloo, Ontario ]
-          </motion.div>
+
         </section>
 
         {/* About Me Section */}
-        <section 
-          ref={aboutRef} 
+        <section
+          ref={aboutRef}
           className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
@@ -241,7 +245,7 @@ export default function Home() {
               <h2 className={`${GeistMono.className} text-3xl font-medium mb-4`}>About Me</h2>
               <div className="h-px w-20 bg-black/20 mx-auto"></div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -251,27 +255,25 @@ export default function Home() {
             >
               <div className="prose prose-slate max-w-none">
               <p className="mb-4 text-[#111111]/90 leading-relaxed">
-                I&apos;m a second-year Computer Engineering student fueled by creativity, curiosity, and a healthy dose of chaos. Whether I&apos;m building something cool or chasing random ideas at 2 AM, I&apos;m always up for a good challenge.
+                I&apos;m Kushal Prajapati, a second-year Computer Engineering student at the University of Waterloo, fueled by creativity, curiosity, and a healthy dose of chaos. Whether I&apos;m building something cool or chasing random ideas at 2 AM, I&apos;m always up for a good challenge.
               </p>
               <p className="mb-4 text-[#111111]/90 leading-relaxed">
-                My journey so far has been all about exploring and experimenting. I&apos;ve dipped my toes into everything from design to AI, constantly chasing that &quot;wait, I actually made this?&quot; moment. It&apos;s not always glamorous—but it&apos;s never boring.
+                Living in Canada has been an incredible journey of exploring and experimenting. I&apos;ve dipped my toes into everything from design to AI, constantly chasing that &quot;wait, I actually made this?&quot; moment. It&apos;s not always glamorous—but it&apos;s never boring. When I&apos;m not coding, you&apos;ll find me indulging in my love for gaming, photography, and everything in between. I have a serious weakness for chicken, especially Lazeez shawarma!
               </p>
               <p className="text-[#111111]/90 leading-relaxed">
-                Outside the screen, you&apos;ll catch me grinding in League (Irelia main), fiddling with Linux (yes, I use Arch, btw), snapping photos, or stepping out to touch some grass and reset. <strong> Hope you enjoy my portfolio as much as I enjoyed making it!</strong>
+                Outside the screen, you&apos;ll catch me grinding in League (Irelia main), fiddling with Linux (yes, I use Arch, btw), snapping photos, or stepping out to touch some grass and reset. <strong>Hope you enjoy my portfolio as much as I enjoyed making it!</strong>
               </p>
-
-
               </div>
             </motion.div>
           </div>
-          
+
           {/* Section scroll indicator */}
           <SectionScrollIndicator targetRef={projectsRef} />
         </section>
 
         {/* Featured Projects Section */}
-        <section 
-          ref={projectsRef} 
+        <section
+          ref={projectsRef}
           className="relative min-h-screen flex flex-col justify-center py-8 px-4 md:px-8"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
@@ -289,7 +291,7 @@ export default function Home() {
                 A selection of the work that I am most proud of. Each project represents a unique challenge and learning experience.
               </p>
             </motion.div>
-            
+
             {/* Project Grid - 3 columns on desktop, 1 column on mobile */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {/* Thorem Project Card */}
@@ -302,13 +304,13 @@ export default function Home() {
               >
                 {/* Project Preview (Top) */}
                 <div className="relative w-full aspect-video">
-                  <div 
+                  <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(https://img.youtube.com/vi/r2F_8a4ttiY/maxresdefault.jpg)` }}
                   ></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a 
-                      href="https://www.youtube.com/watch?v=r2F_8a4ttiY" 
+                    <a
+                      href="https://www.youtube.com/watch?v=r2F_8a4ttiY"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
@@ -317,7 +319,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                
+
                 {/* Project Details (Bottom) */}
                 <div className="flex flex-col p-4 h-full flex-grow">
                   <div className="mb-2">
@@ -326,16 +328,16 @@ export default function Home() {
                       Supercharge your handwritten math notes through professional-quality LaTeX code with one click.
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Next.js</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Node.js</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">AI</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">LaTeX</span>
                   </div>
-                  
+
                   <div className="flex gap-3 mt-auto">
-                    <a 
+                    <a
                       href="https://www.youtube.com/watch?v=r2F_8a4ttiY"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -344,8 +346,8 @@ export default function Home() {
                       <FiPlay size={12} />
                       <span className={GeistMono.className}>Watch Demo</span>
                     </a>
-                    
-                    <a 
+
+                    <a
                       href="https://github.com/KushalPraja/Thorem"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -357,7 +359,7 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
-              
+
               {/* GreenLens Project Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -368,13 +370,13 @@ export default function Home() {
               >
                 {/* Project Preview (Top) */}
                 <div className="relative w-full aspect-video">
-                  <div 
+                  <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(https://img.youtube.com/vi/hXZwNMDQX90/maxresdefault.jpg)` }}
                   ></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a 
-                      href="https://www.youtube.com/watch?v=hXZwNMDQX90" 
+                    <a
+                      href="https://www.youtube.com/watch?v=hXZwNMDQX90"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
@@ -383,7 +385,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                
+
                 {/* Project Details (Bottom) */}
                 <div className="flex flex-col p-4 h-full flex-grow">
                   <div className="mb-2">
@@ -392,16 +394,16 @@ export default function Home() {
                       Recycle. Rethink. Reuse. Together.
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">React</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">TensorFlow</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Firebase</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Mobile</span>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3 mt-auto">
-                    <a 
+                    <a
                       href="https://www.youtube.com/watch?v=hXZwNMDQX90"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -410,8 +412,8 @@ export default function Home() {
                       <FiPlay size={12} />
                       <span className={GeistMono.className}>Watch Demo</span>
                     </a>
-                    
-                    <a 
+
+                    <a
                       href="https://github.com/KushalPraja/GreenLens"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -420,8 +422,8 @@ export default function Home() {
                       <FiGithub size={12} />
                       <span className={GeistMono.className}>GitHub</span>
                     </a>
-                    
-                    <a 
+
+                    <a
                       href="https://green-lens-blond.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -433,7 +435,7 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
-              
+
               {/* Branch Project Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -444,13 +446,13 @@ export default function Home() {
               >
                 {/* Project Preview (Top) */}
                 <div className="relative w-full aspect-video">
-                  <div 
+                  <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(https://img.youtube.com/vi/qL1jV-JBYxU/maxresdefault.jpg)` }}
                   ></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <a 
-                      href="https://www.youtube.com/watch?v=qL1jV-JBYxU" 
+                    <a
+                      href="https://www.youtube.com/watch?v=qL1jV-JBYxU"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/40 transform transition-transform duration-300 hover:scale-110"
@@ -459,7 +461,7 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                
+
                 {/* Project Details (Bottom) */}
                 <div className="flex flex-col p-4 h-full flex-grow">
                   <div className="mb-2">
@@ -469,16 +471,16 @@ export default function Home() {
                       A modern LinkTree alternative with sleek, customizable themes and detailed analytics.
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Next.js</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">FastAPI</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">TailwindCSS</span>
                     <span className="px-2 py-0.5 bg-black/5 text-black/70 rounded-full text-xs">Auth</span>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-3 mt-auto">
-                    <a 
+                    <a
                       href="https://www.youtube.com/watch?v=qL1jV-JBYxU"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -487,8 +489,8 @@ export default function Home() {
                       <FiPlay size={12} />
                       <span className={GeistMono.className}>Watch Demo</span>
                     </a>
-                    
-                    <a 
+
+                    <a
                       href="https://github.com/KushalPraja/Branch"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -497,8 +499,8 @@ export default function Home() {
                       <FiGithub size={12} />
                       <span className={GeistMono.className}>GitHub</span>
                     </a>
-                    
-                    <a 
+
+                    <a
                       href="https://ashy-ground-0a637de0f.6.azurestaticapps.net/"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -511,7 +513,7 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -528,7 +530,7 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-          
+
           {/* Custom mobile responsive styles */}
           <style jsx>{`
             @media (max-width: 768px) {
@@ -538,14 +540,14 @@ export default function Home() {
               }
             }
           `}</style>
-          
+
           {/* Section scroll indicator */}
           <SectionScrollIndicator targetRef={skillsRef} />
         </section>
 
         {/* Skills Section - Improved with modern design - Hidden on mobile */}
-        <section 
-          ref={skillsRef} 
+        <section
+          ref={skillsRef}
           className="relative min-h-screen hidden md:flex flex-col justify-center py-4 px-2 md:px-8"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
@@ -738,7 +740,7 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
-          
+
           {/* Add some custom CSS for the additional pills */}
           <style jsx>{`
             .skill-pill {
@@ -762,11 +764,11 @@ export default function Home() {
               color: rgba(0, 0, 0, 0.8);
             }
           `}</style>
-          
+
           {/* Section scroll indicator */}
           <SectionScrollIndicator targetRef={experienceRef} />
         </section>
-        
+
         {/* Work Experience Section - Responsive Vertical Timeline */}
 <section
   ref={experienceRef}
@@ -955,7 +957,7 @@ export default function Home() {
 
 
         {/* Achievements Section */}
-        <section 
+        <section
           ref={achievementsRef}
           className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
           id="achievements"
@@ -998,15 +1000,15 @@ export default function Home() {
                     </div>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Mar 2025</span>
                   </div>
-                  
+
                   <div className="flex items-center mb-3">
                     <span className="text-sm font-semibold bg-black/10 text-black/80 py-1 px-3 rounded-full">1st Place Winner</span>
                   </div>
-                  
+
                   <p className="text-[#333333]/80 text-sm flex-grow">
                     Won in Canada&apos;s largest AI hackathon with 700+ participants across 130+ teams, earning recognition for GreenLens—an AI-powered app that simplifies eco-friendly choices through image recognition.
                   </p>
-                  
+
                   <div className="mt-4 pt-4 border-t border-black/5 flex flex-wrap gap-2">
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">AI/ML</span>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Environmental Tech</span>
@@ -1014,7 +1016,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Achievement Card 2 */}
               <div className="group relative overflow-hidden">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-black/40 to-black/20 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
@@ -1031,15 +1033,15 @@ export default function Home() {
                     </div>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Jun 2023</span>
                   </div>
-                  
+
                   <div className="flex items-center mb-3">
                     <span className="text-sm font-semibold bg-black/10 text-black/80 py-1 px-3 rounded-full">Top 10 Finalist</span>
                   </div>
-                  
+
                   <p className="text-[#333333]/80 text-sm flex-grow">
                     Placed in the top 10 nationally in FBLA&apos;s Coding and Programming competition by developing an innovative web application that streamlines school club management and engagement tracking.
                   </p>
-                  
+
                   <div className="mt-4 pt-4 border-t border-black/5 flex flex-wrap gap-2">
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Full-Stack Development</span>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">UI/UX Design</span>
@@ -1047,7 +1049,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Achievement Card 3 */}
               <div className="group relative overflow-hidden">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-black/40 to-black/20 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-1000 group-hover:duration-300"></div>
@@ -1067,15 +1069,15 @@ export default function Home() {
                     </div>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Apr 2023</span>
                   </div>
-                  
+
                   <div className="flex items-center mb-3">
                     <span className="text-sm font-semibold bg-black/10 text-black/80 py-1 px-3 rounded-full">National Winner</span>
                   </div>
-                  
+
                   <p className="text-[#333333]/80 text-sm flex-grow">
                     Secured 1st place in DECA&apos;s Personal Financial Literacy Project (PMFL) with Undebtify—a digital financial literacy platform that successfully engaged 200+ participants across the Greater Toronto Area.
                   </p>
-                  
+
                   <div className="mt-4 pt-4 border-t border-black/5 flex flex-wrap gap-2">
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Financial Technology</span>
                     <span className="text-xs bg-black/5 py-1 px-2 rounded-full">Community Impact</span>
@@ -1085,14 +1087,105 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          
+
+          {/* Section scroll indicator */}
+          <SectionScrollIndicator targetRef={chatRef} />
+        </section>
+
+        {/* Chat with me Section */}
+        <section
+          ref={chatRef}
+          className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
+          id="chat"
+        >
+          <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
+          <div className="max-w-4xl mx-auto relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className={`${GeistMono.className} text-3xl font-medium mb-4`}>Chat with Me</h2>
+              <div className="h-px w-20 bg-black/20 mx-auto mb-4"></div>
+              <p className="text-[#333333]/80 max-w-lg mx-auto">
+                Have questions about my work, experience, or projects? Chat with my AI assistant to learn more about me!
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex justify-center"
+            >
+              <div className="w-full max-w-2xl bg-white/70 backdrop-blur-sm rounded-2xl border border-black/5 shadow-sm p-8">
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-black/5 rounded-full mb-6">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      <path d="M8 10h.01"></path>
+                      <path d="M12 10h.01"></path>
+                      <path d="M16 10h.01"></path>
+                    </svg>
+                  </div>
+
+                  <h3 className={`${GeistMono.className} text-xl font-medium mb-3`}>AI Assistant</h3>
+                  <p className="text-[#333333]/80 mb-6">
+                    Ask me anything about Kushal&apos;s background, projects, skills, or experience. I&apos;m here to help you learn more about his work and capabilities.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    <button 
+                      onClick={() => handleSuggestionClick("What projects has Kushal worked on?")}
+                      className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                    >
+                      <p className="text-sm text-[#333333]/70 mb-1">Try asking:</p>
+                      <p className="text-sm font-medium">&quot;What projects has Kushal worked on?&quot;</p>
+                    </button>
+                    <button 
+                      onClick={() => handleSuggestionClick("What are his technical skills?")}
+                      className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                    >
+                      <p className="text-sm text-[#333333]/70 mb-1">Or:</p>
+                      <p className="text-sm font-medium">&quot;What are his technical skills?&quot;</p>
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    <button 
+                      onClick={() => handleSuggestionClick("Tell me about Kushal's experience")}
+                      className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                    >
+                      <p className="text-sm text-[#333333]/70 mb-1">Ask about:</p>
+                      <p className="text-sm font-medium">&quot;Tell me about his experience&quot;</p>
+                    </button>
+                    <button 
+                      onClick={() => handleSuggestionClick("What are Kushal's interests and hobbies?")}
+                      className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                    >
+                      <p className="text-sm text-[#333333]/70 mb-1">Or discover:</p>
+                      <p className="text-sm font-medium">&quot;What are his interests?&quot;</p>
+                    </button>
+                  </div>
+
+                  <p className="text-xs text-[#333333]/60">
+                    Click any suggestion above or use the chat icon in the bottom right corner to start a conversation
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
           {/* Section scroll indicator */}
           <SectionScrollIndicator targetRef={contactRef} />
         </section>
 
         {/* Contact Section - Updated to be more minimal with glass effect */}
-        <section 
-          ref={contactRef} 
+        <section
+          ref={contactRef}
           className="relative min-h-screen flex flex-col justify-center py-24 px-4 md:px-16"
         >
           <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px] -z-0"></div>
@@ -1110,7 +1203,7 @@ export default function Home() {
                 Interested in working together? Feel free to reach out through any of these platforms.
               </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1133,12 +1226,12 @@ export default function Home() {
                   </div>
                   <span className={`${GeistMono.className} text-sm font-medium`}>GitHub</span>
                 </motion.a>
-                
+
                 {/* LinkedIn */}
                 <motion.a
                   href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
-                  rel="noopener noreferrer" 
+                  rel="noopener noreferrer"
                   className="group flex flex-col items-center p-6 bg-white/50 hover:bg-white/70 backdrop-blur-sm rounded-xl border border-black/5 shadow-sm transition-all duration-300 hover:shadow-md"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -1148,7 +1241,7 @@ export default function Home() {
                   </div>
                   <span className={`${GeistMono.className} text-sm font-medium`}>LinkedIn</span>
                 </motion.a>
-                
+
                 {/* Email */}
                 <motion.a
                   href="mailto:kushalpraja6@gmail.com"
@@ -1163,9 +1256,9 @@ export default function Home() {
                 </motion.a>
               </div>
             </motion.div>
-            
+
             {/* Contact Page Button */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -1179,14 +1272,14 @@ export default function Home() {
           <span>Contact Me</span>
           <FiArrowDown className="rotate-[270deg] group-hover:translate-x-1 transition-transform" />
               </Link>
-              
+
               <p className="mt-3 text-xs text-black/50">
                 Or send me an email at <span className="font-medium">kushalpraja6@gmail.com</span>
               </p>
             </motion.div>
           </div>
         </section>
-        
+
         {/* Footer */}
         <footer className="py-8 px-4">
           <div className="max-w-4xl mx-auto text-center text-black/60 text-sm">
@@ -1194,6 +1287,9 @@ export default function Home() {
           </div>
         </footer>
       </div>
+
+      {/* Chat Bot */}
+      <ChatBot />
     </>
   );
 }

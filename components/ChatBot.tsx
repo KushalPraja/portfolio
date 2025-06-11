@@ -1,8 +1,8 @@
 "use client";
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { GeistMono } from 'geist/font/mono';
-import { FiSend, FiMessageCircle, FiUser, FiCpu, FiMaximize2, FiMinimize2, FiX } from 'react-icons/fi';
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { GeistMono } from "geist/font/mono";
+import { FiSend, FiMessageCircle, FiUser, FiCpu, FiMaximize2, FiMinimize2, FiX } from "react-icons/fi";
 
 interface Message {
   id: string;
@@ -14,13 +14,14 @@ interface Message {
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
-      content: "Hey there! 👋 I'm Kushal's AI assistant. I know all about his projects, experience, and interests. What would you like to know about him?",
+      id: "1",
+      content:
+        "Hey hey! 🤖 I'm *totally* Kushal. Well... his digital clone ofc. I come preloaded with all his projects, hobbies, and questionable habits. What do you wanna know about me? 😎💻",
       isUser: false,
       timestamp: new Date(),
-    }
+    },
   ]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -62,96 +63,99 @@ export default function ChatBot() {
               timestamp: new Date(),
             };
 
-            setMessages(prev => [...prev, userMessage]);
-            setInputMessage('');
+            setMessages((prev) => [...prev, userMessage]);
+            setInputMessage("");
             setIsLoading(true);
 
-            fetch('/api/chat', {
-              method: 'POST',
+            fetch("/api/chat", {
+              method: "POST",
               headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
               },
               body: JSON.stringify({ message: message.trim() }),
             })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Failed to get response');
-              }
-              return response.json();
-            })
-            .then(data => {
-              const botMessage: Message = {
-                id: (Date.now() + 1).toString(),
-                content: data.response,
-                isUser: false,
-                timestamp: new Date(),
-              };
-              setMessages(prev => [...prev, botMessage]);
-            })
-            .catch(error => {
-              console.error('Error sending message:', error);
-              const errorMessage: Message = {
-                id: (Date.now() + 1).toString(),
-                content: "Sorry, I'm having trouble connecting right now. Please try again later!",
-                isUser: false,
-                timestamp: new Date(),
-              };
-              setMessages(prev => [...prev, errorMessage]);
-            })
-            .finally(() => {
-              setIsLoading(false);
-            });
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Failed to get response");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                const botMessage: Message = {
+                  id: (Date.now() + 1).toString(),
+                  content: data.response,
+                  isUser: false,
+                  timestamp: new Date(),
+                };
+                setMessages((prev) => [...prev, botMessage]);
+              })
+              .catch((error) => {
+                console.error("Error sending message:", error);
+                const errorMessage: Message = {
+                  id: (Date.now() + 1).toString(),
+                  content: "Sorry, I'm having trouble connecting right now. Please try again later!",
+                  isUser: false,
+                  timestamp: new Date(),
+                };
+                setMessages((prev) => [...prev, errorMessage]);
+              })
+              .finally(() => {
+                setIsLoading(false);
+              });
           }
         }, 300);
       }, 100);
     };
 
-    window.addEventListener('openChatWithMessage', handlePresetMessage as EventListener);
+    window.addEventListener("openChatWithMessage", handlePresetMessage as EventListener);
     return () => {
-      window.removeEventListener('openChatWithMessage', handlePresetMessage as EventListener);
+      window.removeEventListener("openChatWithMessage", handlePresetMessage as EventListener);
     };
   }, []);
 
   // Resize functionality
-  const handleResizeStart = useCallback((e: React.MouseEvent, direction: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsResizing(true);
+  const handleResizeStart = useCallback(
+    (e: React.MouseEvent, direction: string) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsResizing(true);
 
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const startWidth = dimensions.width;
-    const startHeight = dimensions.height;
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startWidth = dimensions.width;
+      const startHeight = dimensions.height;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      let newWidth = startWidth;
-      let newHeight = startHeight;
+      const handleMouseMove = (e: MouseEvent) => {
+        let newWidth = startWidth;
+        let newHeight = startHeight;
 
-      if (direction.includes('right')) {
-        newWidth = Math.max(300, Math.min(800, startWidth + (e.clientX - startX)));
-      }
-      if (direction.includes('left')) {
-        newWidth = Math.max(300, Math.min(800, startWidth - (e.clientX - startX)));
-      }
-      if (direction.includes('bottom')) {
-        newHeight = Math.max(400, Math.min(700, startHeight + (e.clientY - startY)));
-      }
-      if (direction.includes('top')) {
-        newHeight = Math.max(400, Math.min(700, startHeight - (e.clientY - startY)));
-      }
+        if (direction.includes("right")) {
+          newWidth = Math.max(300, Math.min(800, startWidth + (e.clientX - startX)));
+        }
+        if (direction.includes("left")) {
+          newWidth = Math.max(300, Math.min(800, startWidth - (e.clientX - startX)));
+        }
+        if (direction.includes("bottom")) {
+          newHeight = Math.max(400, Math.min(700, startHeight + (e.clientY - startY)));
+        }
+        if (direction.includes("top")) {
+          newHeight = Math.max(400, Math.min(700, startHeight - (e.clientY - startY)));
+        }
 
-      setDimensions({ width: newWidth, height: newHeight });
-    };
+        setDimensions({ width: newWidth, height: newHeight });
+      };
 
-    const handleMouseUp = () => {
-      setIsResizing(false);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
+      const handleMouseUp = () => {
+        setIsResizing(false);
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-  }, [dimensions]);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+    },
+    [dimensions]
+  );
 
   // Toggle fullscreen
   const toggleFullscreen = () => {
@@ -168,21 +172,21 @@ export default function ChatBot() {
       timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputMessage('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInputMessage("");
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
+      const response = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ message: inputMessage.trim() }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        throw new Error("Failed to get response");
       }
 
       const data = await response.json();
@@ -194,23 +198,23 @@ export default function ChatBot() {
         timestamp: new Date(),
       };
 
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error("Error sending message:", error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: "Sorry, I'm having trouble connecting right now. Please try again later!",
         isUser: false,
         timestamp: new Date(),
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
@@ -234,7 +238,7 @@ export default function ChatBot() {
           transition={{
             duration: 2,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
 
@@ -249,7 +253,7 @@ export default function ChatBot() {
             duration: 2,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 0.5
+            delay: 0.5,
           }}
         />
 
@@ -259,7 +263,7 @@ export default function ChatBot() {
           className="relative w-12 h-12 md:w-14 md:h-14 bg-[#f5f0f0]/95 backdrop-blur-sm border border-black/10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group overflow-hidden"
           whileHover={{
             scale: 1.1,
-            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
           }}
           whileTap={{ scale: 0.95 }}
         >
@@ -277,7 +281,7 @@ export default function ChatBot() {
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="relative z-10"
           >
@@ -294,7 +298,7 @@ export default function ChatBot() {
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              delay: 0.3
+              delay: 0.3,
             }}
           />
           <motion.div
@@ -306,7 +310,7 @@ export default function ChatBot() {
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              delay: 0.8
+              delay: 0.8,
             }}
           />
         </motion.button>
@@ -332,104 +336,88 @@ export default function ChatBot() {
         animate={{
           opacity: 1,
           scale: 1,
-          x: isFullscreen ? '-50%' : 0,
-          y: isFullscreen ? '-50%' : 0
+          x: isFullscreen ? "-50%" : 0,
+          y: isFullscreen ? "-50%" : 0,
         }}
         exit={{ opacity: 0, scale: 0.8, y: 20 }}
         style={{
-          width: isFullscreen ? '90vw' : `${dimensions.width}px`,
-          height: isFullscreen ? '90vh' : `${dimensions.height}px`,
-          maxWidth: isFullscreen ? '1200px' : 'none',
-          maxHeight: isFullscreen ? '800px' : 'none',
+          width: isFullscreen ? "90vw" : `${dimensions.width}px`,
+          height: isFullscreen ? "90vh" : `${dimensions.height}px`,
+          maxWidth: isFullscreen ? "1200px" : "none",
+          maxHeight: isFullscreen ? "800px" : "none",
         }}
         className={`
           fixed z-50 bg-[#f5f0f0]/95 backdrop-blur-sm border border-black/10 shadow-xl
-          ${isFullscreen
-            ? 'top-1/2 left-1/2 rounded-2xl'
-            : 'bottom-4 right-4 md:bottom-6 md:right-6 rounded-xl'
-          }
-          ${isResizing ? 'select-none' : ''}
+          ${isFullscreen ? "top-1/2 left-1/2 rounded-2xl" : "bottom-4 right-4 md:bottom-6 md:right-6 rounded-xl"}
+          ${isResizing ? "select-none" : ""}
           flex flex-col
         `}
       >
-      {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-black/5">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-black/5 rounded-full">
-            <FiCpu size={16} className="text-black" />
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-black/5">
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 bg-black/5 rounded-full">
+              <FiCpu size={16} className="text-black" />
+            </div>
+            <div>
+              <h3 className={`${GeistMono.className} text-sm font-medium`}>Chat with Kushal</h3>
+              <p className="text-xs text-black/60">AI Assistant</p>
+            </div>
           </div>
-          <div>
-            <h3 className={`${GeistMono.className} text-sm font-medium`}>Chat with Kushal</h3>
-            <p className="text-xs text-black/60">AI Assistant</p>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleFullscreen}
+              className="p-1.5 hover:bg-black/5 rounded-full transition-colors"
+              title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            >
+              {isFullscreen ? <FiMinimize2 size={14} /> : <FiMaximize2 size={14} />}
+            </button>
+            <button onClick={() => setIsExpanded(false)} className="p-1 hover:bg-black/5 rounded-full transition-colors">
+              <FiX size={16} />
+            </button>
           </div>
         </div>
-        <div className="flex items-center gap-1">
-          <button
-            onClick={toggleFullscreen}
-            className="p-1.5 hover:bg-black/5 rounded-full transition-colors"
-            title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-          >
-            {isFullscreen ? <FiMinimize2 size={14} /> : <FiMaximize2 size={14} />}
-          </button>
-          <button
-            onClick={() => setIsExpanded(false)}
-            className="p-1 hover:bg-black/5 rounded-full transition-colors"
-          >
-            <FiX size={16} />
-          </button>
-        </div>
-      </div>
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
-        <AnimatePresence>
-          {messages.map((message) => (
-            <motion.div
-              key={message.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-            >
-              <div className={`flex items-start gap-2 max-w-[80%] ${message.isUser ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className={`p-1.5 rounded-full ${message.isUser ? 'bg-black/10' : 'bg-black/5'}`}>
-                  {message.isUser ? <FiUser size={12} /> : <FiCpu size={12} />}
+          <AnimatePresence>
+            {messages.map((message) => (
+              <motion.div
+                key={message.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
+              >
+                <div className={`flex items-start gap-2 max-w-[80%] ${message.isUser ? "flex-row-reverse" : "flex-row"}`}>
+                  <div className={`p-1.5 rounded-full ${message.isUser ? "bg-black/10" : "bg-black/5"}`}>
+                    {message.isUser ? <FiUser size={12} /> : <FiCpu size={12} />}
+                  </div>
+                  <div className={`px-3 py-2 rounded-lg text-sm ${message.isUser ? "bg-black text-white" : "bg-white/70 text-black border border-black/5"}`}>
+                    {message.content}
+                  </div>
                 </div>
-                <div
-                  className={`px-3 py-2 rounded-lg text-sm ${
-                    message.isUser
-                      ? 'bg-black text-white'
-                      : 'bg-white/70 text-black border border-black/5'
-                  }`}
-                >
-                  {message.content}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {isLoading && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
+              <div className="flex items-start gap-2">
+                <div className="p-1.5 bg-black/5 rounded-full">
+                  <FiCpu size={12} />
+                </div>
+                <div className="px-3 py-2 rounded-lg bg-white/70 border border-black/5">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                    <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  </div>
                 </div>
               </div>
             </motion.div>
-          ))}
-        </AnimatePresence>
-
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex justify-start"
-          >
-            <div className="flex items-start gap-2">
-              <div className="p-1.5 bg-black/5 rounded-full">
-                <FiCpu size={12} />
-              </div>
-              <div className="px-3 py-2 rounded-lg bg-white/70 border border-black/5">
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                  <div className="w-2 h-2 bg-black/40 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
 
         {/* Input */}
         <div className="flex-shrink-0 p-4 border-t border-black/5 bg-white/50">
@@ -460,25 +448,25 @@ export default function ChatBot() {
             {/* Corner handles */}
             <div
               className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize bg-transparent hover:bg-black/10 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'bottom-right')}
+              onMouseDown={(e) => handleResizeStart(e, "bottom-right")}
             >
               <div className="absolute bottom-1 right-1 w-2 h-2 bg-black/30 rounded-sm" />
             </div>
             <div
               className="absolute top-0 right-0 w-4 h-4 cursor-ne-resize bg-transparent hover:bg-black/10 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'top-right')}
+              onMouseDown={(e) => handleResizeStart(e, "top-right")}
             >
               <div className="absolute top-1 right-1 w-2 h-2 bg-black/30 rounded-sm" />
             </div>
             <div
               className="absolute bottom-0 left-0 w-4 h-4 cursor-sw-resize bg-transparent hover:bg-black/10 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'bottom-left')}
+              onMouseDown={(e) => handleResizeStart(e, "bottom-left")}
             >
               <div className="absolute bottom-1 left-1 w-2 h-2 bg-black/30 rounded-sm" />
             </div>
             <div
               className="absolute top-0 left-0 w-4 h-4 cursor-nw-resize bg-transparent hover:bg-black/10 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'top-left')}
+              onMouseDown={(e) => handleResizeStart(e, "top-left")}
             >
               <div className="absolute top-1 left-1 w-2 h-2 bg-black/30 rounded-sm" />
             </div>
@@ -486,23 +474,23 @@ export default function ChatBot() {
             {/* Edge handles */}
             <div
               className="absolute top-0 left-4 right-4 h-2 cursor-n-resize bg-transparent hover:bg-black/5 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'top')}
+              onMouseDown={(e) => handleResizeStart(e, "top")}
             />
             <div
               className="absolute bottom-0 left-4 right-4 h-2 cursor-s-resize bg-transparent hover:bg-black/5 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'bottom')}
+              onMouseDown={(e) => handleResizeStart(e, "bottom")}
             />
             <div
               className="absolute left-0 top-4 bottom-4 w-2 cursor-w-resize bg-transparent hover:bg-black/5 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'left')}
+              onMouseDown={(e) => handleResizeStart(e, "left")}
             />
             <div
               className="absolute right-0 top-4 bottom-4 w-2 cursor-e-resize bg-transparent hover:bg-black/5 transition-colors"
-              onMouseDown={(e) => handleResizeStart(e, 'right')}
+              onMouseDown={(e) => handleResizeStart(e, "right")}
             />
           </>
         )}
-    </motion.div>
+      </motion.div>
     </>
   );
 }

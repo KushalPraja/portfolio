@@ -1134,23 +1134,23 @@ export default function Home() {
 
                   <h3 className={`${GeistMono.className} text-xl font-medium mb-3`}>AI Assistant</h3>
                   <p className="text-[#333333]/80 mb-6">
-                    Ask me anything about Kushal&apos;s background, projects, skills, or experience. I&apos;m here to help you learn more about his work and capabilities.
+                    Ask me anything about my background, projects, skills, or experience. I&apos;m here to help you know more about me!
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                     <button 
-                      onClick={() => handleSuggestionClick("What projects has Kushal worked on?")}
+                      onClick={() => handleSuggestionClick("What projects have you worked on?")}
                       className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                     >
                       <p className="text-sm text-[#333333]/70 mb-1">Try asking:</p>
-                      <p className="text-sm font-medium">&quot;What projects has Kushal worked on?&quot;</p>
+                      <p className="text-sm font-medium">&quot;What projects have you worked on?&quot;</p>
                     </button>
                     <button 
                       onClick={() => handleSuggestionClick("What are his technical skills?")}
                       className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                     >
                       <p className="text-sm text-[#333333]/70 mb-1">Or:</p>
-                      <p className="text-sm font-medium">&quot;What are his technical skills?&quot;</p>
+                      <p className="text-sm font-medium">&quot;What are your technical skills?&quot;</p>
                     </button>
                   </div>
 
@@ -1160,14 +1160,14 @@ export default function Home() {
                       className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                     >
                       <p className="text-sm text-[#333333]/70 mb-1">Ask about:</p>
-                      <p className="text-sm font-medium">&quot;Tell me about his experience&quot;</p>
+                      <p className="text-sm font-medium">&quot;Tell me about your experiences&quot;</p>
                     </button>
                     <button 
                       onClick={() => handleSuggestionClick("What are Kushal's interests and hobbies?")}
                       className="p-3 bg-white/50 rounded-lg border border-black/5 text-left hover:bg-white/70 hover:border-black/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                     >
                       <p className="text-sm text-[#333333]/70 mb-1">Or discover:</p>
-                      <p className="text-sm font-medium">&quot;What are his interests?&quot;</p>
+                      <p className="text-sm font-medium">&quot;What are your interests?&quot;</p>
                     </button>
                   </div>
 

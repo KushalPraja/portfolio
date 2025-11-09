@@ -369,7 +369,9 @@ export default function Home() {
             {/* Name - Positioned Higher */}
             <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
               <h1
-                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-medium ${spaceGrotesk.className}`}
+                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-medium ${
+                  spaceGrotesk.className
+                }`}
               >
                 kushal prajapati
               </h1>

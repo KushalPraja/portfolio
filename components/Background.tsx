@@ -5,6 +5,7 @@ import { useTheme } from "@/lib/theme-context";
 export default function Background() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { isDark } = useTheme();
+  const hasDrawnRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,15 +13,6 @@ export default function Background() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    // Set canvas size
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    setCanvasSize();
-
-    window.addEventListener("resize", setCanvasSize);
 
     // Draw simple background with grain texture
     const draw = () => {
@@ -33,19 +25,38 @@ export default function Background() {
       const data = imageData.data;
 
       for (let i = 0; i < data.length; i += 4) {
-        const noise = (Math.random() - 0.5) * 8; // Reduced noise intensity from 10 to 8
+        const noise = (Math.random() - 0.5) * 8; // Reduced noise intensity
         data[i] += noise; // R
         data[i + 1] += noise; // G
         data[i + 2] += noise; // B
       }
 
       ctx.putImageData(imageData, 0, 0);
+      hasDrawnRef.current = true;
     };
 
-    draw();
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      hasDrawnRef.current = false; // Reset drawn state on resize
+      draw();
+    };
+    setCanvasSize();
+
+    // Only draw if not already drawn or theme changed
+    if (!hasDrawnRef.current) {
+      draw();
+    }
+
+    const handleResize = () => {
+      setCanvasSize();
+    };
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", setCanvasSize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isDark]);
 

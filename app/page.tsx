@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { useEffect, useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
 import { RiArrowRightDownLine } from "react-icons/ri";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
 const inter = Inter({ subsets: ["latin"] });
-const playfair = Playfair_Display({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -369,7 +369,7 @@ export default function Home() {
             {/* Name - Positioned Higher */}
             <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
               <h1
-                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${playfair.className}`}
+                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-medium ${spaceGrotesk.className}`}
               >
                 kushal prajapati
               </h1>

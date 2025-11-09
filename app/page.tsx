@@ -365,7 +365,7 @@ export default function Home() {
 
         {/* Main Content - Perfectly Centered */}
         <section className="min-h-screen flex items-center justify-center px-4 py-20">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-xl w-full">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
             {/* Name - Positioned Higher */}
             <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
               <h1
@@ -373,14 +373,14 @@ export default function Home() {
               >
                 kushal prajapati
               </h1>
-              <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-xs ${inter.className}`}>
+              <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-sm ${inter.className}`}>
                 <a
                   href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
                 >
-                  Computer Engineer
+                  Computer Engineering
                 </a>
                 {" @ "}
                 <a
@@ -398,10 +398,10 @@ export default function Home() {
 
             {/* About Me Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-xs font-medium ${inter.className} mb-3`}>about me</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-xs ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
                     Second-year{" "}
                     <a
@@ -436,10 +436,10 @@ export default function Home() {
 
             {/* Currently Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-xs font-medium ${inter.className} mb-3`}>currently</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-xs ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>currently</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
                     Studying{" "}
                     <a
@@ -486,10 +486,10 @@ export default function Home() {
 
             {/* Previously Section (Work Experience) */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-xs font-medium ${inter.className} mb-3`}>previously</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-xs ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>previously</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
                     Software Engineer @{" "}
                     <a
@@ -504,7 +504,7 @@ export default function Home() {
                       <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 rounded-sm inline-block" />
                       Levanta Labs
                     </a>{" "}
-                    (May 2025 - August 2025)
+                    - developing scalable B2B SaaS platforms
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -519,7 +519,7 @@ export default function Home() {
                     >
                       WATonomous
                     </a>{" "}
-                    (2023-2024)
+                    - developed PID algorithms for autonomous systems
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -551,19 +551,22 @@ export default function Home() {
             <motion.div className="mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}>
               <Link href="/projects">
                 <motion.div
-                  className={`group relative backdrop-blur-sm rounded-lg p-3 transition-all duration-300 border ${
+                  className={`group relative backdrop-blur-md rounded-lg p-4 transition-all duration-300 border ${
                     isDark
-                      ? "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20"
-                      : "bg-black/[0.02] border-black/10 hover:bg-black/[0.05] hover:border-black/20"
+                      ? "bg-white/[0.03] border-white/15 hover:bg-white/[0.06] hover:border-white/25"
+                      : "bg-black/[0.03] border-black/15 hover:bg-black/[0.06] hover:border-black/25"
                   }`}
-                  whileHover={{ scale: 1.02 }}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E")`,
+                  }}
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <svg
-                        width="12"
-                        height="12"
+                        width="14"
+                        height="14"
                         viewBox="0 0 12 12"
                         fill="none"
                         className={`${
@@ -573,7 +576,7 @@ export default function Home() {
                         <path d="M2 6h8M6 2v8" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                       <span
-                        className={`text-xs ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
+                        className={`text-sm ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
                           inter.className
                         } transition-colors`}
                       >
@@ -581,7 +584,7 @@ export default function Home() {
                       </span>
                     </div>
                     <RiArrowRightDownLine
-                      size={16}
+                      size={18}
                       className={`rotate-90 ${
                         isDark ? "text-white/40 group-hover:text-white/70" : "text-black/40 group-hover:text-black/70"
                       } transition-all group-hover:translate-x-1`}

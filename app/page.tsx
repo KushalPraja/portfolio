@@ -387,7 +387,7 @@ export default function Home() {
                   href="https://uwaterloo.ca/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
+                  className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
                 >
                   University of Waterloo
                 </a>
@@ -441,9 +441,11 @@ export default function Home() {
                       href="https://uwaterloo.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
-                      Waterloo
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-3 h-3 rounded-sm inline-block" />
+                      uWaterloo
                     </a>
                     , focusing on AI/ML and systems design
                   </span>
@@ -460,22 +462,7 @@ export default function Home() {
                     >
                       Thorem
                     </a>
-                    : AI-powered handwritten notes to LaTeX converter (3M+ views, 1.9k+ stars)
-                  </span>
-                </motion.li>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>
-                    Software Engineer Intern @{" "}
-                    <a
-                      href="https://www.levantalabs.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
-                    >
-                      Levanta Labs
-                    </a>
-                    , developing B2B SaaS platforms
+                    : AI-powered handwritten notes to LaTeX converter
                   </span>
                 </motion.li>
               </ul>
@@ -493,24 +480,26 @@ export default function Home() {
                       href="https://www.levantalabs.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 rounded-sm inline-block" />
                       Levanta Labs
                     </a>{" "}
-                    (May 2025 - Present)
+                    (May 2025 - August 2025)
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    Hacker Fab Engineer @{" "}
+                    Software Engineer @{" "}
                     <a
-                      href="https://uwaterloo.ca/engineering-student-design-teams/robotics"
+                      href="https://www.watonomous.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
-                      UWaterloo Robotics
+                      WATonomous
                     </a>{" "}
                     (2023-2024)
                   </span>
@@ -535,6 +524,37 @@ export default function Home() {
                   </span>
                 </motion.li>
               </ul>
+            </motion.div>
+
+            {/* View All Projects Button */}
+            <motion.div className="mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}>
+              <Link href="/projects">
+                <motion.div
+                  className={`group relative backdrop-blur-sm rounded-lg p-3 transition-all duration-300 border ${
+                    isDark
+                      ? "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20"
+                      : "bg-black/[0.02] border-black/10 hover:bg-black/[0.05] hover:border-black/20"
+                  }`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`text-xs ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
+                        inter.className
+                      } transition-colors`}
+                    >
+                      view all projects
+                    </span>
+                    <RiArrowRightDownLine
+                      size={16}
+                      className={`rotate-90 ${
+                        isDark ? "text-white/40 group-hover:text-white/70" : "text-black/40 group-hover:text-black/70"
+                      } transition-all group-hover:translate-x-1`}
+                    />
+                  </div>
+                </motion.div>
+              </Link>
             </motion.div>
 
             {/* Social Links & Ctrl+Q Indicator - Centered */}

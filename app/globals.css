@@ -9,18 +9,26 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+html.dark {
+  background-color: #0a0a0a;
+}
+
+html.light {
+  background-color: #f5f0f0;
 }
 
 body {
   font-family: var(--font-geist-mono);
-  background-color: #f5f0f0;
+  background-color: transparent;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 96%;  /* Updated to match #f5f0f0 */
+    --background: 0 0% 96%; /* Updated to match #f5f0f0 */
     --foreground: 0 0% 11%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -91,7 +99,7 @@ body {
 
 .horizontal-timeline::before {
   @apply absolute hidden md:block;
-  content: '';
+  content: "";
   height: 2px;
   background: rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -134,7 +142,7 @@ body {
 
 .achievement-card::before {
   @apply absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-slate-500 to-slate-800 rounded-l-xl;
-  content: '';
+  content: "";
 }
 
 /* Bubble connector for vertical timelines on mobile */
@@ -142,26 +150,26 @@ body {
   .horizontal-timeline {
     @apply gap-8 pt-4;
   }
-  
+
   .horizontal-timeline::before {
     @apply hidden;
   }
-  
+
   .timeline-item-horizontal {
     @apply w-full;
     position: relative;
   }
-  
+
   .timeline-item-horizontal::before {
     @apply absolute w-px h-8 bg-black/10 left-1/2 -top-8;
-    content: '';
+    content: "";
     transform: translateX(-50%);
   }
-  
+
   .timeline-item-horizontal:first-child::before {
     @apply hidden;
   }
-  
+
   .timeline-point {
     @apply -top-10;
   }
@@ -177,7 +185,7 @@ body {
 }
 
 .experience-timeline::before {
-  content: '';
+  content: "";
   @apply absolute left-[50%] top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-indigo-400 transform -translate-x-1/2;
 }
 
@@ -203,7 +211,7 @@ body {
 }
 
 .experience-point::before {
-  content: '';
+  content: "";
   @apply absolute w-6 h-6 rounded-full bg-indigo-200 animate-ping opacity-75;
   animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
@@ -249,25 +257,25 @@ body {
     @apply left-8;
     transform: none;
   }
-  
+
   .experience-item {
     @apply flex-col items-start;
   }
-  
+
   .experience-item:nth-child(odd) .experience-content,
   .experience-item:nth-child(even) .experience-content {
     @apply ml-16 mr-0 text-left w-[calc(100%-4rem)];
   }
-  
+
   .experience-point {
     @apply left-8;
     transform: none;
   }
-  
+
   .experience-year {
     @apply left-8 -translate-x-0 mt-0 -ml-4;
   }
-  
+
   .experience-item:nth-child(even) .experience-tech {
     @apply justify-end;
   }

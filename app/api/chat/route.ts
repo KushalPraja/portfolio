@@ -1,8 +1,8 @@
-import { GoogleGenAI } from '@google/genai';
-import { NextRequest, NextResponse } from 'next/server';
+import { GoogleGenAI } from "@google/genai";
+import { NextRequest, NextResponse } from "next/server";
 
 // Initialize Gemini AI
-const genAI = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY });
+const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Kushal's context - detailed information about him
 const KUSHAL_CONTEXT = `
@@ -139,39 +139,42 @@ Remember to:
 
 export async function POST(request: NextRequest) {
   try {
+    const { messages } = await request.json();
 
-    const { message } = await request.json();
-
-    if (!message || typeof message !== 'string') {
-      return NextResponse.json(
-        { error: 'Message is required' },
-        { status: 400 }
-      );
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return NextResponse.json({ error: "Messages array is required" }, { status: 400 });
     }
 
+    // Filter out assistant messages without content and get the last user message
+    const validMessages = messages.filter((msg) => msg.role === "user" && msg.content && typeof msg.content === "string");
+
+    if (validMessages.length === 0) {
+      return NextResponse.json({ error: "No valid user message found" }, { status: 400 });
+    }
+
+    const lastUserMessage = validMessages[validMessages.length - 1].content;
+
     if (!process.env.GEMINI_API_KEY) {
-      return NextResponse.json(
-        { error: 'Gemini API key not configured' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Gemini API key not configured" }, { status: 500 });
     }
 
     const prompt = `${KUSHAL_CONTEXT}
 
-User question: ${message}
+User question: ${lastUserMessage}
 
 Please provide a helpful, friendly, and informative response about Kushal Prajapati. Keep the response conversational and engaging, typically 1-3 sentences unless more detail is specifically requested. If the question is not directly about Kushal, try to relate it back to his skills or experience when possible.`;
 
-    const result = await genAI.models.generateContent({model: "gemini-2.0-flash-lite", contents: [{ role: 'user', parts: [{ text: prompt }] }], config: { temperature: 0.4, maxOutputTokens: 500 } });  
+    const result = await genAI.models.generateContent({
+      model: "gemini-2.0-flash-lite",
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      config: { temperature: 0.4, maxOutputTokens: 500 },
+    });
     const text = result.text;
-    
+
     console.log(text);
-    return NextResponse.json({ response: text });
+    return NextResponse.json({ message: text });
   } catch (error) {
-    console.error('Error in chat API:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate response' },
-      { status: 500 }
-    );
+    console.error("Error in chat API:", error);
+    return NextResponse.json({ error: "Failed to generate response" }, { status: 500 });
   }
 }

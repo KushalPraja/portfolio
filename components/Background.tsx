@@ -1,92 +1,53 @@
 "use client";
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
+import { useTheme } from "@/lib/theme-context";
 
 export default function Background() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { isDark } = useTheme();
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Store containerRef.current in a variable to avoid the React hooks warning
-    const container = containerRef.current;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#f5f0f0");  // Keep the background color
-    // Remove fog
-    scene.fog = new THREE.FogExp2("#f5f0f0", 0.025);  // Removed fog
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setCanvasSize();
 
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 5;
+    window.addEventListener("resize", setCanvasSize);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+    // Draw simple background with grain texture
+    const draw = () => {
+      // Base color
+      ctx.fillStyle = isDark ? "#0a0a0a" : "#f5f0f0";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Create starfield
-    const starCount = 6000;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(starCount * 3);
+      // Add subtle grain texture with reduced opacity
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
 
-    for (let i = 0; i < starCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 150;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 150;
-      positions[i * 3 + 2] = Math.random() * -150;
-    }
-
-    geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-
-    const material = new THREE.PointsMaterial({
-      color: "#000000",
-      size: 0.07,
-      transparent: true,
-      opacity: 0.9,
-    });
-
-    const stars = new THREE.Points(geometry, material);
-    scene.add(stars);
-
-    // Animation with forward movement
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      const positions = stars.geometry.attributes.position.array;
-      for (let i = 0; i < starCount; i++) {
-        positions[i * 3 + 2] += 0.07;
-        if (positions[i * 3 + 2] > 0) {
-          positions[i * 3 + 2] = -150;
-        }
+      for (let i = 0; i < data.length; i += 4) {
+        const noise = (Math.random() - 0.5) * 5; // Reduced noise intensity from 10 to 5
+        data[i] += noise; // R
+        data[i + 1] += noise; // G
+        data[i + 2] += noise; // B
       }
-      stars.geometry.attributes.position.needsUpdate = true;
 
-      // No auto rotation now; it's controlled by the user input
-      renderer.render(scene, camera);
+      ctx.putImageData(imageData, 0, 0);
     };
-    animate();
 
-
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener("resize", handleResize);
+    draw();
 
     return () => {
-    
-      if (container) {
-        container.removeChild(renderer.domElement);
-      }
-      geometry.dispose();
-      material.dispose();
+      window.removeEventListener("resize", setCanvasSize);
     };
-  }, []);
+  }, [isDark]);
 
-  return <div ref={containerRef} className="fixed inset-0 -z-10" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-10" />;
 }

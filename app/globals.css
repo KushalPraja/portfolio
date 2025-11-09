@@ -26,6 +26,37 @@ body {
   background-color: transparent;
 }
 
+/* Animated underline */
+@keyframes underline-draw {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.animate-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1.5px;
+  width: 100%;
+  background-color: currentColor;
+  opacity: 0.5;
+  animation: underline-draw 1.5s ease-out forwards;
+}
+
+.animate-underline:hover::after {
+  opacity: 0.9;
+}
+
 @layer base {
   :root {
     --background: 0 0% 96%; /* Updated to match #f5f0f0 */

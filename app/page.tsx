@@ -378,7 +378,7 @@ export default function Home() {
                   href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
+                  className={`animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
                 >
                   Computer Engineer
                 </a>
@@ -387,7 +387,9 @@ export default function Home() {
                   href="https://uwaterloo.ca/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
+                  className={`inline-flex items-center gap-1 animate-underline ${
+                    isDark ? "hover:text-white/80" : "hover:text-black/80"
+                  } transition-colors`}
                 >
                   University of Waterloo
                 </a>
@@ -406,16 +408,27 @@ export default function Home() {
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Computer Engineering
                     </a>{" "}
-                    student passionate about AI, full-stack development, and building products that solve real problems
+                    student passionate about <span className="font-medium">AI</span>, <span className="font-medium">full-stack development</span>, and building products that solve real problems
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>When I&apos;m not coding, you&apos;ll find me playing LoL, ricing my Linux distro, or snapping photos</span>
+                  <span>
+                    When I&apos;m not coding, you&apos;ll find me playing{" "}
+                    <a
+                      href="https://op.gg/lol/summoners/na/link-NA69"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                    >
+                      LoL
+                    </a>
+                    , ricing my Linux distro, or snapping photos
+                  </span>
                 </motion.li>
               </ul>
             </motion.div>
@@ -432,7 +445,7 @@ export default function Home() {
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Computer Engineering
                     </a>
@@ -441,13 +454,15 @@ export default function Home() {
                       href="https://uwaterloo.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`inline-flex items-center gap-1 animate-underline font-medium ${
+                        isDark ? "hover:text-white" : "hover:text-black"
+                      } transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-3 h-3 rounded-sm inline-block" />
-                      uWaterloo
+                      UWaterloo
                     </a>
-                    , focusing on AI/ML and systems design
+                    , focusing on <span className="font-medium">AI/ML</span> and <span className="font-medium">systems design</span>
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -458,11 +473,11 @@ export default function Home() {
                       href="https://github.com/KushalPraja/Thorem"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Thorem
                     </a>
-                    : AI-powered handwritten notes to LaTeX converter
+                    : <span className="font-medium">AI-powered</span> handwritten notes to LaTeX converter (<span className="font-medium">3M+ views</span>, <span className="font-medium">1.9k+ stars</span>)
                   </span>
                 </motion.li>
               </ul>
@@ -480,7 +495,9 @@ export default function Home() {
                       href="https://www.levantalabs.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`inline-flex items-center gap-1 animate-underline ${
+                        isDark ? "hover:text-white" : "hover:text-black"
+                      } transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 rounded-sm inline-block" />
@@ -497,7 +514,7 @@ export default function Home() {
                       href="https://www.watonomous.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       WATonomous
                     </a>{" "}
@@ -506,7 +523,7 @@ export default function Home() {
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>Won 1st place at Google Genesis AI Hackathon (700+ participants)</span>
+                  <span>Won <span className="font-medium">1st place</span> at <span className="font-medium">Google Genesis AI Hackathon</span> (700+ participants)</span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
@@ -516,11 +533,11 @@ export default function Home() {
                       href="https://persona-eight-gamma.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Persona
                     </a>{" "}
-                    at SpurHacks: AI assistant unifying product documentation
+                    at <span className="font-medium">SpurHacks</span>: AI assistant unifying product documentation
                   </span>
                 </motion.li>
               </ul>
@@ -539,13 +556,26 @@ export default function Home() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center justify-between">
-                    <span
-                      className={`text-xs ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
-                        inter.className
-                      } transition-colors`}
-                    >
-                      view all projects
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        className={`${
+                          isDark ? "stroke-white/50 group-hover:stroke-white/70" : "stroke-black/50 group-hover:stroke-black/70"
+                        } transition-colors`}
+                      >
+                        <path d="M2 6h8M6 2v8" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                      <span
+                        className={`text-xs ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
+                          inter.className
+                        } transition-colors`}
+                      >
+                        view my projects
+                      </span>
+                    </div>
                     <RiArrowRightDownLine
                       size={16}
                       className={`rotate-90 ${

@@ -266,7 +266,7 @@ export default function Projects() {
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-10">
             <h1 className={`text-2xl md:text-3xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${playfair.className}`}>
-              Projects
+              projects
             </h1>
             <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-xs ${inter.className} max-w-2xl`}>
               A collection of my work spanning AI/ML, full-stack development, and creative experiments. Each project represents a unique challenge and

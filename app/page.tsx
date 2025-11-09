@@ -412,7 +412,8 @@ export default function Home() {
                     >
                       Computer Engineering
                     </a>{" "}
-                    student passionate about <span className="font-medium">AI</span>, <span className="font-medium">full-stack development</span>, and building products that solve real problems
+                    student passionate about <span className="font-medium">AI</span>, <span className="font-medium">full-stack development</span>, and
+                    building products that solve real problems
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -477,7 +478,7 @@ export default function Home() {
                     >
                       Thorem
                     </a>
-                    : <span className="font-medium">AI-powered</span> handwritten notes to LaTeX converter (<span className="font-medium">3M+ views</span>, <span className="font-medium">1.9k+ stars</span>)
+                    : <span className="font-medium">AI-powered</span> handwritten notes to LaTeX converter
                   </span>
                 </motion.li>
               </ul>
@@ -523,7 +524,10 @@ export default function Home() {
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>Won <span className="font-medium">1st place</span> at <span className="font-medium">Google Genesis AI Hackathon</span> (700+ participants)</span>
+                  <span>
+                    Won <span className="font-medium">1st place</span> at <span className="font-medium">Google Genesis AI Hackathon</span> (700+
+                    participants)
+                  </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />

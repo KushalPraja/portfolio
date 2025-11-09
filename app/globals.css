@@ -42,7 +42,7 @@ body {
 }
 
 .animate-underline::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -1px;

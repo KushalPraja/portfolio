@@ -378,7 +378,7 @@ export default function Home() {
                   href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
+                  className={` inline-flex gap-1 animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
                 >
                   Computer Engineering
                 </a>

@@ -52,8 +52,7 @@ const projects: Project[] = [
   },
   {
     title: "Thorem",
-    description:
-      "Handwritten Math to LaTeX Converter. Transforms handwritten math equations into editable LaTeX with real-time compilation (3M+ views, 1.9k+ stars).",
+    description: "Handwritten Math to LaTeX Converter. Transforms handwritten math equations into editable LaTeX with real-time compilation.",
     tech: ["Next.js", "Node.js", "AI", "LaTeX", "Tectonic"],
     liveLink: "https://www.youtube.com/watch?v=r2F_8a4ttiY",
     githubLink: "https://github.com/KushalPraja/Thorem",
@@ -265,10 +264,10 @@ export default function Projects() {
 
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-10">
-            <h1 className={`text-2xl md:text-3xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${playfair.className}`}>
+            <h1 className={`text-3xl md:text-3xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${playfair.className}`}>
               projects
             </h1>
-            <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-xs ${inter.className} max-w-2xl`}>
+            <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-sm ${inter.className} max-w-2xl`}>
               A collection of my work spanning AI/ML, full-stack development, and creative experiments. Each project represents a unique challenge and
               learning experience.
             </p>
@@ -333,7 +332,7 @@ export default function Projects() {
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-3 mb-1.5">
-                      <h3 className={`text-sm font-medium ${isDark ? "text-white/90" : "text-black/90"} ${inter.className}`}>{project.title}</h3>
+                      <h3 className={`text-base font-medium ${isDark ? "text-white/90" : "text-black/90"} ${inter.className}`}>{project.title}</h3>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         {project.liveLink && (
                           <a
@@ -358,7 +357,7 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    <p className={`text-xs ${isDark ? "text-white/60" : "text-black/60"} ${inter.className} mb-2.5 leading-relaxed`}>
+                    <p className={`text-sm ${isDark ? "text-white/60" : "text-black/60"} ${inter.className} mb-2.5 leading-relaxed`}>
                       {project.description}
                     </p>
 
@@ -366,7 +365,7 @@ export default function Projects() {
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className={`px-2 py-0.5 rounded text-[10px] ${inter.className} ${
+                          className={`px-2 py-0.5 rounded text-[11px] ${inter.className} ${
                             isDark ? "bg-white/5 text-white/50" : "bg-black/5 text-black/50"
                           }`}
                         >

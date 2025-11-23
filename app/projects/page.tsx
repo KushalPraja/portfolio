@@ -1,14 +1,14 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiMail } from "react-icons/fi";
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: ["400"] });
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -270,14 +270,10 @@ export default function Projects() {
 
             {/* Header */}
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-10">
-              <h1
-                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-medium ${
-                  spaceGrotesk.className
-                }`}
-              >
-                projects
+              <h1 className={`text-3xl md:text-4xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${instrumentSerif.className}`}>
+                Projects
               </h1>
-              <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-sm ${inter.className} max-w-2xl`}>
+              <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className} max-w-2xl`}>
                 A collection of my work spanning AI/ML, full-stack development, and creative experiments. Each project represents a unique challenge
                 and learning experience.
               </p>
@@ -367,7 +363,7 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      <p className={`text-sm ${isDark ? "text-white/60" : "text-black/60"} ${inter.className} mb-2.5 leading-relaxed`}>
+                      <p className={`text-sm font-light ${isDark ? "text-white/80" : "text-black/70"} ${inter.className} mb-2.5 leading-relaxed`}>
                         {project.description}
                       </p>
 

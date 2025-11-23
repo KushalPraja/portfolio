@@ -2,15 +2,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
-import { Space_Grotesk } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import { useEffect, useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
 import { RiArrowRightDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
-const inter = Inter({ subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: ["400"] });
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -368,14 +368,10 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
             {/* Name - Positioned Higher */}
             <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h1
-                className={`text-3xl md:text-4xl mb-2 tracking-tight ${isDark ? "text-white" : "text-[#0a0a0a]"} font-medium ${
-                  spaceGrotesk.className
-                }`}
-              >
-                kushal prajapati
+              <h1 className={`text-3xl md:text-5xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${instrumentSerif.className}`}>
+                Kushal Prajapati
               </h1>
-              <p className={`${isDark ? "text-white/60" : "text-[#0a0a0a]/60"} text-sm ${inter.className}`}>
+              <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className}`}>
                 <a
                   href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                   target="_blank"
@@ -401,7 +397,7 @@ export default function Home() {
             {/* About Me Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
               <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
+              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
@@ -439,7 +435,7 @@ export default function Home() {
             {/* Currently Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
               <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>currently</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
+              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
@@ -489,7 +485,7 @@ export default function Home() {
             {/* Previously Section (Work Experience) */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
               <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>previously</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/70" : "text-[#0a0a0a]/70"} text-sm ${inter.className} ml-5`}>
+              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
@@ -578,7 +574,7 @@ export default function Home() {
                         <path d="M2 6h8M6 2v8" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                       <span
-                        className={`text-sm ${isDark ? "text-white/70 group-hover:text-white" : "text-black/70 group-hover:text-black"} ${
+                        className={`text-sm font-light ${isDark ? "text-white/85 group-hover:text-white" : "text-black/80 group-hover:text-black"} ${
                           inter.className
                         } transition-colors`}
                       >

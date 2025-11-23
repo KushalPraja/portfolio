@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import { useEffect, useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
-import { RiArrowRightDownLine, RiArrowRightFill } from "react-icons/ri";
+import { RiArrowRightDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 

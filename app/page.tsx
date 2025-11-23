@@ -398,21 +398,19 @@ export default function Home() {
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
               <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
               <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
+                {/* based in toronto */}
+
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>
-                    Second-year{" "}
-                    <a
-                      href="https://uwaterloo.ca/future-students/programs/computer-engineering"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
-                    >
-                      Computer Engineering
-                    </a>{" "}
-                    student passionate about building products that solve real problems
-                  </span>
+                  <span>based in Toronto, Canada</span>
                 </motion.li>
+
+                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                  <span>passionate about building things that solve real problems</span>
+                </motion.li>
+
+                {/*                 
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
@@ -427,7 +425,7 @@ export default function Home() {
                     </a>
                     , ricing my Linux distro, or snapping photos
                   </span>
-                </motion.li>
+                </motion.li> */}
               </ul>
             </motion.div>
 
@@ -462,6 +460,28 @@ export default function Home() {
                     </a>
                   </span>
                 </motion.li>
+
+                {/* incoming at KA imaging - developing xray apps using QT and C++ */}
+
+                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                  <span>
+                    Incoming SWE intern @{" "}
+                    <a
+                      href="https://kaimaging.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 animate-underline ${
+                        isDark ? "hover:text-white" : "hover:text-black"
+                      } transition-colors`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/company_icons/KA-Imaging.jpg" alt="" className="w-3 h-3 inline-block" />
+                      KA Imaging
+                    </a>{" "}
+                  </span>
+                </motion.li>
+
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
@@ -497,7 +517,7 @@ export default function Home() {
                       } transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 rounded-sm inline-block" />
+                      <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 inline-block" />
                       Levanta Labs
                     </a>{" "}
                   </span>

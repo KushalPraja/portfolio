@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { Instrument_Serif } from "next/font/google";
 import { useEffect, useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
-import { RiArrowRightDownLine } from "react-icons/ri";
+import { RiArrowRightDownLine, RiArrowRightFill } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
@@ -436,7 +436,7 @@ export default function Home() {
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    Studying{" "}
+                    studying{" "}
                     <a
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
@@ -466,7 +466,7 @@ export default function Home() {
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    Incoming SWE intern @{" "}
+                    incoming Software Engineer (W'26) @{" "}
                     <a
                       href="https://kaimaging.com/"
                       target="_blank"
@@ -485,7 +485,7 @@ export default function Home() {
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    Building{" "}
+                    building{" "}
                     <a
                       href="https://github.com/KushalPraja/Thorem"
                       target="_blank"
@@ -576,33 +576,23 @@ export default function Home() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2.5">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        className={`${
-                          isDark ? "stroke-white/50 group-hover:stroke-white/70" : "stroke-black/50 group-hover:stroke-black/70"
-                        } transition-colors`}
-                      >
-                        <path d="M2 6h8M6 2v8" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
                       <span
-                        className={`text-sm font-light ${isDark ? "text-white/85 group-hover:text-white" : "text-black/80 group-hover:text-black"} ${
+                        className={`text-sm font-normal ${isDark ? "text-white/85 group-hover:text-white" : "text-black/80 group-hover:text-black"} ${
                           inter.className
                         } transition-colors`}
                       >
-                        view my projects
+                        <i>view my projects</i>
                       </span>
+
+                      <RiArrowRightDownLine
+                        size={18}
+                        className={` ${
+                          isDark ? "text-white/40 group-hover:text-white/70" : "text-black/40 group-hover:text-black/70"
+                        } transition-all group-hover:translate-x-1`}
+                      />
                     </div>
-                    <RiArrowRightDownLine
-                      size={18}
-                      className={`rotate-90 ${
-                        isDark ? "text-white/40 group-hover:text-white/70" : "text-black/40 group-hover:text-black/70"
-                      } transition-all group-hover:translate-x-1`}
-                    />
                   </div>
                 </motion.div>
               </Link>

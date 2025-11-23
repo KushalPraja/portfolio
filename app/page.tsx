@@ -460,7 +460,6 @@ export default function Home() {
                       <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-3 h-3 rounded-sm inline-block" />
                       UWaterloo
                     </a>
-                    , focusing on <span>AI/ML</span> and <span>systems design</span>
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -536,7 +535,7 @@ export default function Home() {
                     >
                       Persona
                     </a>{" "}
-                    at <span>SpurHacks</span>: AI assistant unifying product documentation
+                    at SpurHacks
                   </span>
                 </motion.li>
               </ul>

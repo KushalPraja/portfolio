@@ -466,7 +466,7 @@ export default function Home() {
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    incoming Software Engineer (W'26) @{" "}
+                    incoming Software Engineer (W&apos;26) @{" "}
                     <a
                       href="https://kaimaging.com/"
                       target="_blank"

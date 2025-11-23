@@ -406,12 +406,11 @@ export default function Home() {
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Computer Engineering
                     </a>{" "}
-                    student passionate about <span className="font-medium">AI</span>, <span className="font-medium">full-stack development</span>, and
-                    building products that solve real problems
+                    student passionate about building products that solve real problems
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -444,7 +443,7 @@ export default function Home() {
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Computer Engineering
                     </a>
@@ -453,7 +452,7 @@ export default function Home() {
                       href="https://uwaterloo.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 animate-underline font-medium ${
+                      className={`inline-flex items-center gap-1 animate-underline ${
                         isDark ? "hover:text-white" : "hover:text-black"
                       } transition-colors`}
                     >
@@ -461,7 +460,7 @@ export default function Home() {
                       <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-3 h-3 rounded-sm inline-block" />
                       UWaterloo
                     </a>
-                    , focusing on <span className="font-medium">AI/ML</span> and <span className="font-medium">systems design</span>
+                    , focusing on <span>AI/ML</span> and <span>systems design</span>
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -472,11 +471,11 @@ export default function Home() {
                       href="https://github.com/KushalPraja/Thorem"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Thorem
                     </a>
-                    : <span className="font-medium">AI-powered</span> handwritten notes to LaTeX converter
+                    : <span>AI-powered</span> handwritten notes to LaTeX converter
                   </span>
                 </motion.li>
               </ul>
@@ -502,7 +501,6 @@ export default function Home() {
                       <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 rounded-sm inline-block" />
                       Levanta Labs
                     </a>{" "}
-                    - developing scalable B2B SaaS platforms
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -513,7 +511,7 @@ export default function Home() {
                       href="https://www.watonomous.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       WATonomous
                     </a>{" "}
@@ -523,8 +521,7 @@ export default function Home() {
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
                   <span>
-                    Won <span className="font-medium">1st place</span> at <span className="font-medium">Google Genesis AI Hackathon</span> (700+
-                    participants)
+                    Won <span>1st place</span> at <span>Google Genesis AI Hackathon</span> (700+ participants)
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -535,11 +532,11 @@ export default function Home() {
                       href="https://persona-eight-gamma.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`animate-underline font-medium ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       Persona
                     </a>{" "}
-                    at <span className="font-medium">SpurHacks</span>: AI assistant unifying product documentation
+                    at <span>SpurHacks</span>: AI assistant unifying product documentation
                   </span>
                 </motion.li>
               </ul>

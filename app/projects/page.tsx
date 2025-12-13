@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Inter, Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiMail } from "react-icons/fi";
+import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiMail, FiX } from "react-icons/fi";
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
 const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: ["400"] });
@@ -18,6 +19,8 @@ const Background = dynamic(() => import("@/components/Background"), {
 interface Project {
   title: string;
   description: string;
+  longDescription?: string;
+  features?: string[];
   tech: string[];
   liveLink?: string;
   githubLink: string;
@@ -25,11 +28,42 @@ interface Project {
   year: string;
 }
 
+function ProjectThumbnail({ project, isDark }: { project: Project; isDark: boolean }) {
+  const isVideo = project.thumbnail?.endsWith(".mp4");
+  const thumbSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".thumb.mp4") : project.thumbnail;
+  const posterSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".poster.jpg") : undefined;
+
+  return (
+    <div className={`w-full md:w-44 h-28 flex-shrink-0 rounded-md overflow-hidden ${isDark ? "bg-white/5" : "bg-black/5"} relative`}>
+      {project.thumbnail ? (
+        isVideo ? (
+          <video src={thumbSrc} poster={posterSrc} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+        )
+      ) : (
+        <div className="w-full h-full flex items-center justify-center">
+          <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const projects: Project[] = [
   {
     title: "Persona",
     description:
       "AI-Powered Customer Support Platform. End-to-end platform that lets businesses deploy customizable AI support agents with vectorized conversational memory.",
+    longDescription:
+      "Persona is a comprehensive AI-powered customer support platform that enables businesses to deploy customizable AI support agents. The platform features vectorized conversational memory for context-aware responses, a visual workflow builder using React Flow, and seamless integration with existing support systems.",
+    features: [
+      "Visual workflow builder for custom AI agent behavior",
+      "Vectorized conversational memory for context retention",
+      "Real-time analytics dashboard",
+      "Multi-channel support integration",
+    ],
     tech: ["Next.js", "React Flow", "Express.js", "MongoDB", "OpenAI"],
     liveLink: "https://persona-eight-gamma.vercel.app/",
     githubLink: "https://github.com/KushalPraja/Persona",
@@ -40,6 +74,14 @@ const projects: Project[] = [
     title: "GreenLens",
     description:
       "Sustainable Product Scanner (GenAI Genesis 2025 Winner). AI-powered tool to analyze product recyclability and suggest eco-friendly alternatives.",
+    longDescription:
+      "GreenLens won 1st place at the GenAI Genesis 2025 hackathon with 700+ participants. It uses Google's Gemini API to analyze products through image recognition and provides detailed sustainability scores, recycling instructions, and eco-friendly alternatives.",
+    features: [
+      "AI-powered product recognition and analysis",
+      "Sustainability scoring system",
+      "Eco-friendly product recommendations",
+      "Recycling instructions and guidelines",
+    ],
     tech: ["Next.js", "FastAPI", "Gemini API", "Docker", "Azure"],
     liveLink: "https://devpost.com/software/greenlens",
     githubLink: "https://github.com/KushalPraja/GreenLens",
@@ -50,6 +92,14 @@ const projects: Project[] = [
     title: "Kenesis",
     description:
       "AR Gesture-Controlled Robot (Hack the North 2025). AR-based robot control system with low-latency gesture tracking and ROS2 control stack.",
+    longDescription:
+      "Kenesis is an innovative AR-based robot control system built at Hack the North 2025. It uses Snap Lens Studio for gesture recognition and communicates with a Jetson Nano running ROS2 via MQTT for low-latency robot control.",
+    features: [
+      "Real-time AR gesture recognition",
+      "Sub-100ms latency control loop",
+      "ROS2 integration for robot control",
+      "Custom Snap Lens for hand tracking",
+    ],
     tech: ["Snap Lens Studio", "Flask", "MQTT", "ROS2", "Jetson Nano"],
     liveLink: "https://devpost.com/software/steven-lvnh4w",
     githubLink: "https://github.com/KushalPraja/Kenesis",
@@ -59,6 +109,14 @@ const projects: Project[] = [
   {
     title: "Thorem",
     description: "Handwritten Math to LaTeX Converter. Transforms handwritten math equations into editable LaTeX with real-time compilation.",
+    longDescription:
+      "Thorem uses AI to recognize handwritten mathematical equations and converts them into properly formatted LaTeX code. It features real-time compilation using Tectonic and provides an intuitive interface for editing and exporting equations.",
+    features: [
+      "AI-powered handwriting recognition",
+      "Real-time LaTeX compilation",
+      "Export to PDF and image formats",
+      "Equation history and favorites",
+    ],
     tech: ["Next.js", "Node.js", "AI", "LaTeX", "Tectonic"],
     liveLink: "https://www.youtube.com/watch?v=r2F_8a4ttiY",
     githubLink: "https://github.com/KushalPraja/Thorem",
@@ -68,6 +126,9 @@ const projects: Project[] = [
   {
     title: "Branches",
     description: "A linktree-like website for sharing multiple links in one place.",
+    longDescription:
+      "Branches is a clean, minimalist link-in-bio tool that allows users to share multiple links through a single, customizable page. Built with Next.js and styled with Tailwind CSS for a modern, responsive experience.",
+    features: ["Customizable themes and layouts", "Analytics and click tracking", "Social media integration", "Fast, responsive design"],
     tech: ["Next.js", "TailwindCSS", "TypeScript"],
     liveLink: "https://branches.kushalprajapati.me",
     githubLink: "https://github.com/KushalPraja/Branches",
@@ -77,6 +138,9 @@ const projects: Project[] = [
   {
     title: "Music Visualization",
     description: "Dynamic audio visualization transforming audio files into engaging animated visuals.",
+    longDescription:
+      "SoundWave creates stunning real-time visualizations from audio files or YouTube videos. Using p5.js for graphics and the Web Audio API for frequency analysis, it generates dynamic visuals that react to the music.",
+    features: ["Real-time audio frequency analysis", "Multiple visualization modes", "YouTube video integration", "Customizable color schemes"],
     tech: ["p5.js", "Express", "Node.js", "YouTube API"],
     githubLink: "https://github.com/KushalPraja/SoundWave",
     thumbnail: "/projects/soundwave.mp4",
@@ -88,6 +152,7 @@ export default function Projects() {
   const { isDark, toggleTheme } = useTheme();
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Command palette keyboard shortcut (Ctrl+Q)
   useEffect(() => {
@@ -99,6 +164,7 @@ export default function Projects() {
       if (e.key === "Escape") {
         setIsCommandOpen(false);
         setSearchQuery("");
+        setSelectedProject(null);
       }
     };
 
@@ -302,37 +368,21 @@ export default function Projects() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.05, duration: 0.6 }}
-                  className={`group relative ${
+                  onClick={() => setSelectedProject(project)}
+                  className={`group relative cursor-pointer ${
                     isDark ? "hover:bg-white/[0.02]" : "hover:bg-black/[0.02]"
                   } rounded-lg p-3 -mx-3 transition-all duration-300`}
                 >
                   <div className="flex flex-col md:flex-row gap-4">
                     {/* Thumbnail */}
+                    <ProjectThumbnail project={project} isDark={isDark} />
+                    {/* Year Badge */}
                     <div
-                      className={`w-full md:w-44 h-28 flex-shrink-0 rounded-md overflow-hidden ${
-                        isDark ? "bg-white/5" : "bg-black/5"
-                      } backdrop-blur-sm relative`}
+                      className={`absolute top-2 right-2 px-2 py-1 rounded text-[9px] ${inter.className} ${
+                        isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
+                      } backdrop-blur-sm`}
                     >
-                      {project.thumbnail ? (
-                        project.thumbnail.endsWith(".mp4") ? (
-                          <video src={project.thumbnail} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-                        ) : (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
-                        )
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
-                        </div>
-                      )}
-                      {/* Year Badge */}
-                      <div
-                        className={`absolute top-2 right-2 px-2 py-1 rounded text-[9px] ${inter.className} ${
-                          isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
-                        } backdrop-blur-sm`}
-                      >
-                        {project.year}
-                      </div>
+                      {project.year}
                     </div>
 
                     {/* Content */}
@@ -345,6 +395,7 @@ export default function Projects() {
                               href={project.liveLink}
                               target="_blank"
                               rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
                               className={`${isDark ? "text-white/40 hover:text-white" : "text-black/40 hover:text-black"} transition-colors`}
                               aria-label="View live project"
                             >
@@ -355,6 +406,7 @@ export default function Projects() {
                             href={project.githubLink}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className={`${isDark ? "text-white/40 hover:text-white" : "text-black/40 hover:text-black"} transition-colors`}
                             aria-label="View on GitHub"
                           >
@@ -393,6 +445,115 @@ export default function Projects() {
             </motion.div>
           </motion.div>
         </section>
+
+        {/* Project Detail Modal */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={`fixed inset-0 ${
+                isDark ? "bg-black/80" : "bg-black/50"
+              } backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6`}
+              onClick={() => setSelectedProject(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={(e) => e.stopPropagation()}
+                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl ${
+                  inter.className
+                }`}
+              >
+                {/* Compact Video/Image */}
+                <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-t-lg overflow-hidden`}>
+                  {selectedProject.thumbnail ? (
+                    selectedProject.thumbnail.endsWith(".mp4") ? (
+                      <video src={selectedProject.thumbnail} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+                    ) : (
+                      <Image src={selectedProject.thumbnail} alt={selectedProject.title} fill className="object-cover" />
+                    )
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"}`}>{selectedProject.title}</span>
+                    </div>
+                  )}
+                  {/* Close button overlay */}
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className={`absolute top-3 right-3 p-1.5 rounded-md backdrop-blur-sm ${
+                      isDark
+                        ? "bg-black/50 hover:bg-black/70 text-white/70 hover:text-white"
+                        : "bg-white/50 hover:bg-white/70 text-black/70 hover:text-black"
+                    } transition-colors`}
+                  >
+                    <FiX size={14} />
+                  </button>
+                  {/* Year badge */}
+                  <div
+                    className={`absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm ${
+                      isDark ? "bg-black/50 text-white/70" : "bg-white/50 text-black/70"
+                    }`}
+                  >
+                    {selectedProject.year}
+                  </div>
+                </div>
+
+                {/* Compact Content */}
+                <div className="p-4 space-y-3">
+                  {/* Title and Links row */}
+                  <div className="flex items-center justify-between gap-3">
+                    <h2 className={`text-base font-medium ${isDark ? "text-white/90" : "text-black/90"}`}>{selectedProject.title}</h2>
+                    <div className="flex items-center gap-2">
+                      {selectedProject.liveLink && (
+                        <a
+                          href={selectedProject.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${
+                            isDark ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"
+                          }`}
+                        >
+                          <FiExternalLink size={11} />
+                          Live
+                        </a>
+                      )}
+                      <a
+                        href={selectedProject.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${
+                          isDark ? "bg-white/10 text-white/80 hover:bg-white/20" : "bg-black/5 text-black/80 hover:bg-black/10"
+                        }`}
+                      >
+                        <FiGithub size={11} />
+                        Code
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className={`text-xs leading-relaxed ${isDark ? "text-white/60" : "text-black/60"}`}>{selectedProject.description}</p>
+
+                  {/* Tech Stack - inline */}
+                  <div className="flex flex-wrap gap-1">
+                    {selectedProject.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className={`px-2 py-0.5 rounded text-[10px] ${isDark ? "bg-white/5 text-white/50" : "bg-black/5 text-black/50"}`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

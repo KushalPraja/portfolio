@@ -25,7 +25,7 @@ export default function Background() {
       const data = imageData.data;
 
       for (let i = 0; i < data.length; i += 4) {
-        const noise = (Math.random() - 0.5) * 8; // Reduced noise intensity
+        const noise = (Math.random() - 0.5) * 3; // Further reduced noise intensity
         data[i] += noise; // R
         data[i + 1] += noise; // G
         data[i + 2] += noise; // B

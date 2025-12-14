@@ -2,7 +2,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
-import { Instrument_Serif } from "next/font/google";
 import { useEffect, useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
 import { RiArrowRightDownLine } from "react-icons/ri";
@@ -10,7 +9,6 @@ import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: ["400"] });
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -368,9 +366,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
             {/* Name - Positioned Higher */}
             <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h1 className={`text-3xl md:text-5xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${instrumentSerif.className}`}>
-                Kushal Prajapati
-              </h1>
+              <h1 className={`mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light ${inter.className}`}>kushal prajapati</h1>
               <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className}`}>
                 <a
                   href="https://uwaterloo.ca/future-students/programs/computer-engineering"
@@ -378,7 +374,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className={` inline-flex gap-1 animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
                 >
-                  Computer Engineering
+                  computer engineering
                 </a>
                 {" @ "}
                 <a
@@ -389,7 +385,7 @@ export default function Home() {
                     isDark ? "hover:text-white/80" : "hover:text-black/80"
                   } transition-colors`}
                 >
-                  University of Waterloo
+                  university of waterloo
                 </a>
               </p>
             </motion.div>
@@ -534,7 +530,6 @@ export default function Home() {
                     >
                       WATonomous
                     </a>{" "}
-                    - developed PID algorithms for autonomous systems
                   </span>
                 </motion.li>
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -567,14 +562,12 @@ export default function Home() {
                 <motion.div
                   className={`group relative backdrop-blur-md rounded-lg p-4 transition-all duration-300 border ${
                     isDark
-                      ? "bg-white/[0.03] border-white/15 hover:bg-white/[0.06] hover:border-white/25"
-                      : "bg-black/[0.03] border-black/15 hover:bg-black/[0.06] hover:border-black/25"
+                      ? "bg-white/[0.02] border-white/10 hover:bg-white/[0.03] hover:border-white/15"
+                      : "bg-black/[0.02] border-black/10 hover:bg-black/[0.03] hover:border-black/15"
                   }`}
                   style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E")`,
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E")`,
                   }}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2.5">

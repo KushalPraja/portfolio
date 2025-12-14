@@ -1,6 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiMail, FiX } from "react-icons/fi";
@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin"], weight: ["400"] });
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -54,8 +53,7 @@ function ProjectThumbnail({ project, isDark }: { project: Project; isDark: boole
 const projects: Project[] = [
   {
     title: "Persona",
-    description:
-      "AI-Powered Customer Support Platform. End-to-end platform that lets businesses deploy customizable AI support agents with vectorized conversational memory.",
+    description: "AI customer support that remembers every conversation.",
     longDescription:
       "Persona is a comprehensive AI-powered customer support platform that enables businesses to deploy customizable AI support agents. The platform features vectorized conversational memory for context-aware responses, a visual workflow builder using React Flow, and seamless integration with existing support systems.",
     features: [
@@ -72,8 +70,7 @@ const projects: Project[] = [
   },
   {
     title: "GreenLens",
-    description:
-      "Sustainable Product Scanner (GenAI Genesis 2025 Winner). AI-powered tool to analyze product recyclability and suggest eco-friendly alternatives.",
+    description: "Snap products, get instant sustainability scores.",
     longDescription:
       "GreenLens won 1st place at the GenAI Genesis 2025 hackathon with 700+ participants. It uses Google's Gemini API to analyze products through image recognition and provides detailed sustainability scores, recycling instructions, and eco-friendly alternatives.",
     features: [
@@ -90,8 +87,7 @@ const projects: Project[] = [
   },
   {
     title: "Kenesis",
-    description:
-      "AR Gesture-Controlled Robot (Hack the North 2025). AR-based robot control system with low-latency gesture tracking and ROS2 control stack.",
+    description: "Control robots with hand gestures through AR.",
     longDescription:
       "Kenesis is an innovative AR-based robot control system built at Hack the North 2025. It uses Snap Lens Studio for gesture recognition and communicates with a Jetson Nano running ROS2 via MQTT for low-latency robot control.",
     features: [
@@ -108,7 +104,7 @@ const projects: Project[] = [
   },
   {
     title: "Thorem",
-    description: "Handwritten Math to LaTeX Converter. Transforms handwritten math equations into editable LaTeX with real-time compilation.",
+    description: "Write math by hand, get LaTeX instantly.",
     longDescription:
       "Thorem uses AI to recognize handwritten mathematical equations and converts them into properly formatted LaTeX code. It features real-time compilation using Tectonic and provides an intuitive interface for editing and exporting equations.",
     features: [
@@ -125,7 +121,7 @@ const projects: Project[] = [
   },
   {
     title: "Branches",
-    description: "A linktree-like website for sharing multiple links in one place.",
+    description: "One link, infinite possibilities.",
     longDescription:
       "Branches is a clean, minimalist link-in-bio tool that allows users to share multiple links through a single, customizable page. Built with Next.js and styled with Tailwind CSS for a modern, responsive experience.",
     features: ["Customizable themes and layouts", "Analytics and click tracking", "Social media integration", "Fast, responsive design"],
@@ -137,7 +133,7 @@ const projects: Project[] = [
   },
   {
     title: "Music Visualization",
-    description: "Dynamic audio visualization transforming audio files into engaging animated visuals.",
+    description: "Turn any song into stunning visual art.",
     longDescription:
       "SoundWave creates stunning real-time visualizations from audio files or YouTube videos. Using p5.js for graphics and the Web Audio API for frequency analysis, it generates dynamic visuals that react to the music.",
     features: ["Real-time audio frequency analysis", "Multiple visualization modes", "YouTube video integration", "Customizable color schemes"],
@@ -335,13 +331,10 @@ export default function Projects() {
             </motion.div>
 
             {/* Header */}
-            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-10">
-              <h1 className={`text-3xl md:text-4xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${instrumentSerif.className}`}>
-                Projects
-              </h1>
+            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-5">
+              <h1 className={`text-2xl md:text-2xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${inter.className}`}>projects</h1>
               <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className} max-w-2xl`}>
-                A collection of my work spanning AI/ML, full-stack development, and creative experiments. Each project represents a unique challenge
-                and learning experience.
+                a selection of what i&apos;ve built recently
               </p>
 
               {/* Ctrl+Q Indicator */}

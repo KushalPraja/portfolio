@@ -85,6 +85,7 @@ const projects: Project[] = [
     thumbnail: "/projects/greenlens.mp4",
     year: "2025",
   },
+ 
   {
     title: "Thorem",
     description: "Write math by hand, get LaTeX instantly.",
@@ -356,7 +357,7 @@ export default function Projects() {
                     
                     {/* Year Badge */}
                     <div
-                      className={`absolute top-3 right-3 px-2 py-1 rounded text-[9px] ${inter.className} ${
+                      className={`absolute top-3 right-3 px-2 opacity-0 group-hover:opacity-100 transition-opacity py-1 rounded text-[9px] ${inter.className} ${
                         isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
                       } backdrop-blur-sm`}
                     >
@@ -400,7 +401,7 @@ export default function Projects() {
                       {project.title}
                     </h3>
 
-                    <p className={`text-xs font-medium ${isDark ? "text-white/50" : "text-black/50"} ${inter.className} leading-relaxed`}>
+                    <p className={`text-xs font-semibold ${isDark ? "text-white/60" : "text-black/50"} ${inter.className} leading-relaxed`}>
                       {project.description}
                     </p>
                   </div>

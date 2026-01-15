@@ -371,7 +371,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light whitespace-nowrap ${inter.className}`}>kushal praja</h1>
+              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-xl font-medium whitespace-nowrap ${inter.className}`}>kushal praja</h1>
 
               {/* Social Links: stack vertically on small screens, inline on sm+ */}
               <div className="flex text-sm flex-col gap-y-1 sm:flex-row sm:gap-x-2 items-end sm:items-center">

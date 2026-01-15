@@ -85,7 +85,7 @@ const projects: Project[] = [
     thumbnail: "/projects/greenlens.mp4",
     year: "2025",
   },
- 
+
   {
     title: "Thorem",
     description: "Write math by hand, get LaTeX instantly.",
@@ -206,17 +206,15 @@ export default function Projects() {
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: -20 }}
                 onClick={(e) => e.stopPropagation()}
-                className={`${
-                  isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                } rounded-lg shadow-2xl border w-full max-w-md overflow-hidden ${inter.className}`}
+                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
+                  } rounded-lg shadow-2xl border w-full max-w-md overflow-hidden ${inter.className}`}
               >
                 <div className={`p-4 border-b ${isDark ? "border-white/10" : "border-black/5"}`}>
                   <input
                     type="text"
                     placeholder="type a command or search..."
-                    className={`w-full bg-transparent text-xs outline-none ${
-                      isDark ? "text-white placeholder:text-white/40" : "text-black placeholder:text-black/40"
-                    }`}
+                    className={`w-full bg-transparent text-xs outline-none ${isDark ? "text-white placeholder:text-white/40" : "text-black placeholder:text-black/40"
+                      }`}
                     autoFocus
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -232,17 +230,15 @@ export default function Projects() {
                           <button
                             key={item.label}
                             onClick={item.action}
-                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md ${
-                              isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                            } transition-colors group`}
+                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md ${isDark ? "hover:bg-white/5" : "hover:bg-black/5"
+                              } transition-colors group`}
                           >
                             <div className="flex items-center gap-3">
                               <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
                               <div className="flex flex-col gap-0.5 items-start">
                                 <span
-                                  className={`text-xs ${
-                                    isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                  } font-medium`}
+                                  className={`text-xs ${isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
+                                    } font-medium`}
                                 >
                                   {item.label}
                                 </span>
@@ -264,17 +260,15 @@ export default function Projects() {
                               setIsCommandOpen(false);
                               setSearchQuery("");
                             }}
-                            className={`flex items-center justify-between px-3 py-2.5 rounded-md ${
-                              isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                            } transition-colors group`}
+                            className={`flex items-center justify-between px-3 py-2.5 rounded-md ${isDark ? "hover:bg-white/5" : "hover:bg-black/5"
+                              } transition-colors group`}
                           >
                             <div className="flex items-center gap-3">
                               <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
                               <div className="flex flex-col gap-0.5">
                                 <span
-                                  className={`text-xs ${
-                                    isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                  } font-medium`}
+                                  className={`text-xs ${isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
+                                    } font-medium`}
                                 >
                                   {item.label}
                                 </span>
@@ -305,9 +299,8 @@ export default function Projects() {
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="mb-8">
               <Link
                 href="/"
-                className={`inline-flex items-center gap-2 text-xs ${
-                  isDark ? "text-white/40 hover:text-white/80" : "text-black/40 hover:text-black/80"
-                } transition-colors ${inter.className}`}
+                className={`inline-flex items-center gap-2 text-xs ${isDark ? "text-white/40 hover:text-white/80" : "text-black/40 hover:text-black/80"
+                  } transition-colors ${inter.className}`}
               >
                 <FiArrowLeft size={14} />
                 <span>back</span>
@@ -337,13 +330,13 @@ export default function Projects() {
                   <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-xl overflow-hidden mb-3`}>
                     {project.thumbnail ? (
                       project.thumbnail.endsWith(".mp4") ? (
-                        <video 
-                          src={project.thumbnail} 
-                          autoPlay 
-                          loop 
-                          muted 
-                          playsInline 
-                          className="w-full h-full object-cover" 
+                        <video
+                          src={project.thumbnail}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover"
                         />
                       ) : (
                         // eslint-disable-next-line @next/next/no-img-element
@@ -354,12 +347,11 @@ export default function Projects() {
                         <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
                       </div>
                     )}
-                    
+
                     {/* Year Badge */}
                     <div
-                      className={`absolute top-3 right-3 px-2 opacity-0 group-hover:opacity-100 transition-opacity py-1 rounded text-[9px] ${inter.className} ${
-                        isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
-                      } backdrop-blur-sm`}
+                      className={`absolute top-3 right-3 px-2 opacity-0 group-hover:opacity-100 transition-opacity py-1 rounded text-[9px] ${inter.className} ${isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
+                        } backdrop-blur-sm`}
                     >
                       {project.year}
                     </div>
@@ -372,9 +364,8 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className={`p-2 rounded-md backdrop-blur-sm ${
-                            isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
-                          } transition-colors`}
+                          className={`p-2 rounded-md backdrop-blur-sm ${isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
+                            } transition-colors`}
                           aria-label="View live project"
                         >
                           <FiExternalLink size={14} />
@@ -385,9 +376,8 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className={`p-2 rounded-md backdrop-blur-sm ${
-                          isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
-                        } transition-colors`}
+                        className={`p-2 rounded-md backdrop-blur-sm ${isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
+                          } transition-colors`}
                         aria-label="View on GitHub"
                       >
                         <FiGithub size={14} />
@@ -425,9 +415,8 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className={`fixed inset-0 ${
-                isDark ? "bg-black/80" : "bg-black/50"
-              } backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6`}
+              className={`fixed inset-0 ${isDark ? "bg-black/80" : "bg-black/50"
+                } backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6`}
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -436,9 +425,8 @@ export default function Projects() {
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl ${
-                  inter.className
-                }`}
+                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl ${inter.className
+                  }`}
               >
                 {/* Compact Video/Image */}
                 <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-t-lg overflow-hidden`}>
@@ -456,19 +444,17 @@ export default function Projects() {
                   {/* Close button overlay */}
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className={`absolute top-3 right-3 p-1.5 rounded-md backdrop-blur-sm ${
-                      isDark
+                    className={`absolute top-3 right-3 p-1.5 rounded-md backdrop-blur-sm ${isDark
                         ? "bg-black/50 hover:bg-black/70 text-white/70 hover:text-white"
                         : "bg-white/50 hover:bg-white/70 text-black/70 hover:text-black"
-                    } transition-colors`}
+                      } transition-colors`}
                   >
                     <FiX size={14} />
                   </button>
                   {/* Year badge */}
                   <div
-                    className={`absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm ${
-                      isDark ? "bg-black/50 text-white/70" : "bg-white/50 text-black/70"
-                    }`}
+                    className={`absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm ${isDark ? "bg-black/50 text-white/70" : "bg-white/50 text-black/70"
+                      }`}
                   >
                     {selectedProject.year}
                   </div>
@@ -485,9 +471,8 @@ export default function Projects() {
                           href={selectedProject.liveLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${
-                            isDark ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"
-                          }`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"
+                            }`}
                         >
                           <FiExternalLink size={11} />
                           Live
@@ -497,9 +482,8 @@ export default function Projects() {
                         href={selectedProject.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${
-                          isDark ? "bg-white/10 text-white/80 hover:bg-white/20" : "bg-black/5 text-black/80 hover:bg-black/10"
-                        }`}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white/10 text-white/80 hover:bg-white/20" : "bg-black/5 text-black/80 hover:bg-black/10"
+                          }`}
                       >
                         <FiGithub size={11} />
                         Code

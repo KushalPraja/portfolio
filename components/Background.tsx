@@ -17,7 +17,7 @@ export default function Background() {
     // Draw simple background with grain texture
     const draw = () => {
       // Base color
-      ctx.fillStyle = isDark ? "#0a0a0a" : "#f5f0f0";
+      ctx.fillStyle = isDark ? "#1A1A1A" : "#E5E5E5";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Add subtle grain texture with reduced opacity

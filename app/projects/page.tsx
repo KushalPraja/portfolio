@@ -401,7 +401,7 @@ export default function Projects() {
                       {project.title}
                     </h3>
 
-                    <p className={`text-xs font-semibold ${isDark ? "text-white/60" : "text-black/50"} ${inter.className} leading-relaxed`}>
+                    <p className={`text-xs font-md ${isDark ? "text-white/80" : "text-black/80"} ${inter.className} leading-relaxed`}>
                       {project.description}
                     </p>
                   </div>

@@ -10,8 +10,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteInfo = {
-  title: "Kushal Prajapati - AI & Full-Stack Engineer | Portfolio",
-  description: "Computer Engineer specialized in AI and Full-Stack development. Expert in Python, JavaScript, and modern web technologies. ",
+  title: "Kushal Prajapati",
+  description: "Computer Engineer @ University of Waterloo.",
   url: "https://kushalprajapati.me",
   image: "/favicon.png",
   author: "Kushal Prajapati",

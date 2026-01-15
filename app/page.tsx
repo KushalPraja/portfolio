@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
-import { FiGithub, FiLinkedin, FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
+import { FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
 import { RiArrowRightDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
@@ -362,49 +362,56 @@ export default function Home() {
         </AnimatePresence>
 
         {/* Main Content - Perfectly Centered */}
-        <section className="min-h-screen flex items-center justify-center px-4 py-20">
+        <section className="min-h-screen flex items-center justify-center px-4 py-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
-            {/* Name - Positioned Higher */}
-            <motion.div className="mb-8" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h1 className={`mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light ${inter.className}`}>kushal prajapati</h1>
-              <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className}`}>
+            {/* Name with Social Links - Positioned Higher */}
+            <motion.div className="mb-8 flex items-center justify-between" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
+              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light ${inter.className}`}>kushal praja</h1>
+              
+              {/* Social Links */}
+              <div className="flex items-center gap-2 text-sm">
                 <a
-                  href="https://uwaterloo.ca/future-students/programs/computer-engineering"
+                  href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={` inline-flex gap-1 animate-underline ${isDark ? "hover:text-white/80" : "hover:text-black/80"} transition-colors`}
+                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
                 >
-                  computer engineering
+                  LinkedIn
                 </a>
-                {" @ "}
+                <span className={`${isDark ? "text-white mx-2 select-none" : "text-black mx-2 select-none"}`}>/</span>
                 <a
-                  href="https://uwaterloo.ca/"
+                  href="https://github.com/KushalPraja"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1 animate-underline ${
-                    isDark ? "hover:text-white/80" : "hover:text-black/80"
-                  } transition-colors`}
+                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
                 >
-                  university of waterloo
+                  GitHub
                 </a>
-              </p>
+                <span className={`${isDark ? "text-white mx-2 select-none" : "text-black mx-2 select-none"}`}>/</span>
+                <a
+                  href="https://x.com/KushalPraj"
+                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
+                >
+                  Twitter
+                </a>
+              </div>
             </motion.div>
 
             {/* About Me Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
                 {/* based in toronto */}
 
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>based in Toronto, Canada</span>
-                </motion.li>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
+                  <span>Based in Toronto, Canada</span>
+                </li>
 
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>passionate about building things that solve real problems</span>
-                </motion.li>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
+                  <span>Building things that solve real problems</span>
+                </li>
 
                 {/*                 
                 <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -427,12 +434,12 @@ export default function Home() {
 
             {/* Currently Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>currently</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>currently</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    studying{" "}
+                    Studying{" "}
                     <a
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
@@ -455,14 +462,14 @@ export default function Home() {
                       UWaterloo
                     </a>
                   </span>
-                </motion.li>
+                </li>
 
                 {/* incoming at KA imaging - developing xray apps using QT and C++ */}
 
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    software developer @{" "}
+                    Software developer at {" "}
                     <a
                       href="https://kaimaging.com/"
                       target="_blank"
@@ -476,12 +483,12 @@ export default function Home() {
                       KA Imaging
                     </a>{" "}
                   </span>
-                </motion.li>
+                </li>
 
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    building{" "}
+                    Building{" "}
                     <a
                       href="https://github.com/KushalPraja/Thorem"
                       target="_blank"
@@ -492,18 +499,18 @@ export default function Home() {
                     </a>
                     : <span>AI-powered</span> handwritten notes to LaTeX converter
                   </span>
-                </motion.li>
+                </li>
               </ul>
             </motion.div>
 
             {/* Previously Section (Work Experience) */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/80"} text-sm font-medium ${inter.className} mb-3`}>previously</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white/85" : "text-[#0a0a0a]/80"} text-sm font-light ${inter.className} ml-5`}>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>previously</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Software Engineer @{" "}
+                    Software Engineer at{" "}
                     <a
                       href="https://www.levantalabs.com/"
                       target="_blank"
@@ -517,11 +524,11 @@ export default function Home() {
                       Levanta Labs
                     </a>{" "}
                   </span>
-                </motion.li>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                </li>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Software Engineer @{" "}
+                    Software Engineer at{" "}
                     <a
                       href="https://www.watonomous.ca/"
                       target="_blank"
@@ -531,15 +538,15 @@ export default function Home() {
                       WATonomous
                     </a>{" "}
                   </span>
-                </motion.li>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                </li>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
                     Won <span>1st place</span> at <span>Google Genesis AI Hackathon</span> (700+ participants)
                   </span>
-                </motion.li>
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
+                </li>
+                <li className="flex items-start gap-2">
+                  <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
                     Built{" "}
                     <a
@@ -552,7 +559,7 @@ export default function Home() {
                     </a>{" "}
                     at SpurHacks
                   </span>
-                </motion.li>
+                </li>
               </ul>
             </motion.div>
 
@@ -572,7 +579,7 @@ export default function Home() {
                   <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2.5">
                       <span
-                        className={`text-sm font-normal ${isDark ? "text-white/85 group-hover:text-white" : "text-black/80 group-hover:text-black"} ${
+                        className={`text-sm font-normal ${isDark ? "text-white group-hover:text-white" : "text-black group-hover:text-black"} ${
                           inter.className
                         } transition-colors`}
                       >
@@ -582,75 +589,13 @@ export default function Home() {
                       <RiArrowRightDownLine
                         size={18}
                         className={` ${
-                          isDark ? "text-white/40 group-hover:text-white/70" : "text-black/40 group-hover:text-black/70"
+                          isDark ? "text-white group-hover:text-white" : "text-black group-hover:text-black"
                         } transition-all group-hover:translate-x-1`}
                       />
                     </div>
                   </div>
                 </motion.div>
               </Link>
-            </motion.div>
-
-            {/* Social Links & Ctrl+Q Indicator - Centered */}
-            <motion.div
-              className="flex flex-col items-start gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
-              <div className="flex items-center gap-4">
-                <motion.a
-                  href="https://github.com/KushalPraja"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${isDark ? "text-white/50 hover:text-white" : "text-black/50 hover:text-black"} transition-colors`}
-                  aria-label="GitHub"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FiGithub size={14} />
-                </motion.a>
-                <motion.a
-                  href="https://www.linkedin.com/in/kushalpraja/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${isDark ? "text-white/50 hover:text-white" : "text-black/50 hover:text-black"} transition-colors`}
-                  aria-label="LinkedIn"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FiLinkedin size={14} />
-                </motion.a>
-                <motion.a
-                  href="mailto:kushalpraja6@gmail.com"
-                  className={`${isDark ? "text-white/50 hover:text-white" : "text-black/50 hover:text-black"} transition-colors`}
-                  aria-label="Email"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FiMail size={14} />
-                </motion.a>
-              </div>
-
-              {/* Ctrl+Q Indicator */}
-              <motion.button
-                onClick={() => setIsCommandOpen(true)}
-                className={`text-[9px] ${isDark ? "text-white/40 hover:text-white/60" : "text-black/40 hover:text-black/60"} transition-colors ${
-                  inter.className
-                } flex items-center gap-1.5`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <kbd className={`px-1.5 py-0.5 ${isDark ? "bg-white/5" : "bg-black/5"} rounded text-[9px]`}>ctrl</kbd>
-                <span>+</span>
-                <kbd className={`px-1.5 py-0.5 ${isDark ? "bg-white/5" : "bg-black/5"} rounded text-[9px]`}>q</kbd>
-                <span className="ml-1">for menu</span>
-              </motion.button>
-
-              {/* Footer */}
-              <p className={`text-[9px] ${isDark ? "text-white/30" : "text-black/30"} ${inter.className}`}>
-                © {new Date().getFullYear()} Kushal Prajapati
-              </p>
             </motion.div>
           </motion.div>
         </section>

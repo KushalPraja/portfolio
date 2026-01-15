@@ -27,28 +27,28 @@ interface Project {
   year: string;
 }
 
-function ProjectThumbnail({ project, isDark }: { project: Project; isDark: boolean }) {
-  const isVideo = project.thumbnail?.endsWith(".mp4");
-  const thumbSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".thumb.mp4") : project.thumbnail;
-  const posterSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".poster.jpg") : undefined;
+// function ProjectThumbnail({ project, isDark }: { project: Project; isDark: boolean }) {
+//   const isVideo = project.thumbnail?.endsWith(".mp4");
+//   const thumbSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".thumb.mp4") : project.thumbnail;
+//   const posterSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".poster.jpg") : undefined;
 
-  return (
-    <div className={`w-full md:w-44 h-28 flex-shrink-0 rounded-md overflow-hidden ${isDark ? "bg-white/5" : "bg-black/5"} relative`}>
-      {project.thumbnail ? (
-        isVideo ? (
-          <video src={thumbSrc} poster={posterSrc} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
-        )
-      ) : (
-        <div className="w-full h-full flex items-center justify-center">
-          <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
-        </div>
-      )}
-    </div>
-  );
-}
+//   return (
+//     <div className={`w-full md:w-44 h-28 flex-shrink-0 rounded-md overflow-hidden ${isDark ? "bg-white/5" : "bg-black/5"} relative`}>
+//       {project.thumbnail ? (
+//         isVideo ? (
+//           <video src={thumbSrc} poster={posterSrc} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+//         ) : (
+//           // eslint-disable-next-line @next/next/no-img-element
+//           <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+//         )
+//       ) : (
+//         <div className="w-full h-full flex items-center justify-center">
+//           <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
 const projects: Project[] = [
   {
@@ -83,23 +83,6 @@ const projects: Project[] = [
     liveLink: "https://devpost.com/software/greenlens",
     githubLink: "https://github.com/KushalPraja/GreenLens",
     thumbnail: "/projects/greenlens.mp4",
-    year: "2025",
-  },
-  {
-    title: "Kenesis",
-    description: "Control robots with hand gestures through AR.",
-    longDescription:
-      "Kenesis is an innovative AR-based robot control system built at Hack the North 2025. It uses Snap Lens Studio for gesture recognition and communicates with a Jetson Nano running ROS2 via MQTT for low-latency robot control.",
-    features: [
-      "Real-time AR gesture recognition",
-      "Sub-100ms latency control loop",
-      "ROS2 integration for robot control",
-      "Custom Snap Lens for hand tracking",
-    ],
-    tech: ["Snap Lens Studio", "Flask", "MQTT", "ROS2", "Jetson Nano"],
-    liveLink: "https://devpost.com/software/steven-lvnh4w",
-    githubLink: "https://github.com/KushalPraja/Kenesis",
-    thumbnail: "/projects/kenesis.png",
     year: "2025",
   },
   {
@@ -336,25 +319,10 @@ export default function Projects() {
               <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className} max-w-2xl`}>
                 a selection of what i&apos;ve built recently
               </p>
-
-              {/* Ctrl+Q Indicator */}
-              <motion.button
-                onClick={() => setIsCommandOpen(true)}
-                className={`mt-3 text-[9px] ${isDark ? "text-white/40 hover:text-white/60" : "text-black/40 hover:text-black/60"} transition-colors ${
-                  inter.className
-                } flex items-center gap-1.5`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <kbd className={`px-1.5 py-0.5 ${isDark ? "bg-white/5" : "bg-black/5"} rounded text-[9px]`}>ctrl</kbd>
-                <span>+</span>
-                <kbd className={`px-1.5 py-0.5 ${isDark ? "bg-white/5" : "bg-black/5"} rounded text-[9px]`}>q</kbd>
-                <span className="ml-1">for menu</span>
-              </motion.button>
             </motion.div>
 
-            {/* Projects List */}
-            <div className="space-y-6">
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
@@ -362,69 +330,79 @@ export default function Projects() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.05, duration: 0.6 }}
                   onClick={() => setSelectedProject(project)}
-                  className={`group relative cursor-pointer ${
-                    isDark ? "hover:bg-white/[0.02]" : "hover:bg-black/[0.02]"
-                  } rounded-lg p-3 -mx-3 transition-all duration-300`}
+                  className="group cursor-pointer"
                 >
-                  <div className="flex flex-col md:flex-row gap-4">
-                    {/* Thumbnail */}
-                    <ProjectThumbnail project={project} isDark={isDark} />
+                  {/* Thumbnail with rounded corners */}
+                  <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-xl overflow-hidden mb-3`}>
+                    {project.thumbnail ? (
+                      project.thumbnail.endsWith(".mp4") ? (
+                        <video 
+                          src={project.thumbnail} 
+                          autoPlay 
+                          loop 
+                          muted 
+                          playsInline 
+                          className="w-full h-full object-cover" 
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+                      )
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
+                      </div>
+                    )}
+                    
                     {/* Year Badge */}
                     <div
-                      className={`absolute top-2 right-2 px-2 py-1 rounded text-[9px] ${inter.className} ${
+                      className={`absolute top-3 right-3 px-2 py-1 rounded text-[9px] ${inter.className} ${
                         isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
                       } backdrop-blur-sm`}
                     >
                       {project.year}
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-3 mb-1.5">
-                        <h3 className={`text-base font-medium ${isDark ? "text-white/90" : "text-black/90"} ${inter.className}`}>{project.title}</h3>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          {project.liveLink && (
-                            <a
-                              href={project.liveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className={`${isDark ? "text-white/40 hover:text-white" : "text-black/40 hover:text-black"} transition-colors`}
-                              aria-label="View live project"
-                            >
-                              <FiExternalLink size={13} />
-                            </a>
-                          )}
-                          <a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className={`${isDark ? "text-white/40 hover:text-white" : "text-black/40 hover:text-black"} transition-colors`}
-                            aria-label="View on GitHub"
-                          >
-                            <FiGithub size={13} />
-                          </a>
-                        </div>
-                      </div>
-
-                      <p className={`text-sm font-light ${isDark ? "text-white/80" : "text-black/70"} ${inter.className} mb-2.5 leading-relaxed`}>
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className={`px-2 py-0.5 rounded text-[11px] ${inter.className} ${
-                              isDark ? "bg-white/5 text-white/50" : "bg-black/5 text-black/50"
-                            }`}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                    {/* Links overlay - visible on hover */}
+                    <div className="absolute top-3 left-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {project.liveLink && (
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className={`p-2 rounded-md backdrop-blur-sm ${
+                            isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
+                          } transition-colors`}
+                          aria-label="View live project"
+                        >
+                          <FiExternalLink size={14} />
+                        </a>
+                      )}
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className={`p-2 rounded-md backdrop-blur-sm ${
+                          isDark ? "bg-black/60 text-white/80 hover:text-white" : "bg-white/60 text-black/80 hover:text-black"
+                        } transition-colors`}
+                        aria-label="View on GitHub"
+                      >
+                        <FiGithub size={14} />
+                      </a>
                     </div>
+                  </div>
+
+                  {/* Content below thumbnail */}
+                  <div className="space-y-1">
+                    <h3 className={`text-sm font-semibold ${isDark ? "text-white/90" : "text-black/90"} ${inter.className} group-hover:underline underline-offset-2 transition-all`}>
+                      {project.title}
+                    </h3>
+
+                    <p className={`text-xs font-medium ${isDark ? "text-white/50" : "text-black/50"} ${inter.className} leading-relaxed`}>
+                      {project.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}

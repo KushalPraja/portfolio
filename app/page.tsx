@@ -365,11 +365,16 @@ export default function Home() {
         <section className="min-h-screen flex items-center justify-center px-4 py-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
             {/* Name with Social Links - Positioned Higher */}
-            <motion.div className="mb-8 flex items-center justify-between" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
-              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light ${inter.className}`}>kushal praja</h1>
-              
-              {/* Social Links */}
-              <div className="flex items-center gap-2 text-sm">
+            <motion.div
+              className="mb-8 flex flex-row items-center justify-between sm:items-center"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-2xl font-light whitespace-nowrap ${inter.className}`}>kushal praja</h1>
+
+              {/* Social Links: stack vertically on small screens, inline on sm+ */}
+              <div className="flex text-sm flex-col gap-y-1 sm:flex-row sm:gap-x-2 items-end sm:items-center">
                 <a
                   href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
@@ -378,7 +383,7 @@ export default function Home() {
                 >
                   LinkedIn
                 </a>
-                <span className={`${isDark ? "text-white mx-2 select-none" : "text-black mx-2 select-none"}`}>/</span>
+                <span className={`${isDark ? "text-white mx-2 select-none hidden sm:inline-block" : "text-black mx-2 select-none hidden sm:inline-block"}`}>/</span>
                 <a
                   href="https://github.com/KushalPraja"
                   target="_blank"
@@ -387,7 +392,7 @@ export default function Home() {
                 >
                   GitHub
                 </a>
-                <span className={`${isDark ? "text-white mx-2 select-none" : "text-black mx-2 select-none"}`}>/</span>
+                <span className={`${isDark ? "text-white mx-2 select-none hidden sm:inline-block" : "text-black mx-2 select-none hidden sm:inline-block"}`}>/</span>
                 <a
                   href="https://x.com/KushalPraj"
                   className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}

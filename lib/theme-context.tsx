@@ -26,8 +26,32 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         // Immediately update the DOM
         document.documentElement.classList.toggle("dark", newIsDark);
         document.documentElement.classList.toggle("light", !newIsDark);
+      } else if (window.matchMedia) {
+        // Follow system preference if no stored theme
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+        setIsDark(prefersDark.matches);
+        document.documentElement.classList.toggle("dark", prefersDark.matches);
+        document.documentElement.classList.toggle("light", !prefersDark.matches);
+
+        // Listen for system theme changes and update if user has not set a preference
+        const handleChange = (e: MediaQueryListEvent) => {
+          try {
+            if (localStorage.getItem("theme") === null) {
+              setIsDark(e.matches);
+              document.documentElement.classList.toggle("dark", e.matches);
+              document.documentElement.classList.toggle("light", !e.matches);
+            }
+          } catch (err) {
+            console.error("Error handling prefers-color-scheme change:", err);
+          }
+        };
+
+        // modern browsers support addEventListener on MediaQueryList
+        prefersDark.addEventListener("change", handleChange);
+
+        // cleanup will remove listener below
       } else {
-        // No stored theme, default to dark
+        // Fallback: default to dark
         document.documentElement.classList.add("dark");
         document.documentElement.classList.remove("light");
       }

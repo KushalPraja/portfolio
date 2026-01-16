@@ -170,13 +170,6 @@ export default function Projects() {
       description: "go to home page",
       icon: FiCode,
     },
-    {
-      label: "contact",
-      href: "/contact",
-      key: "c",
-      description: "get in touch",
-      icon: FiMail,
-    },
   ];
 
   // Filter menu items based on search query

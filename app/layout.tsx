@@ -11,9 +11,9 @@ const geistMono = Geist_Mono({
 
 const siteInfo = {
   title: "Kushal Prajapati",
-  description: "Computer Engineer @ University of Waterloo.",
+  description: "Computer Engineer at the University of Waterloo.",
   url: "https://kushalprajapati.me",
-  image: "/favicon.png",
+  image: "/public/favicon.png",
   author: "Kushal Prajapati",
   keywords: [
     "Kushal Prajapati",

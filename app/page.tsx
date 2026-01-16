@@ -94,13 +94,6 @@ export default function Home() {
       description: "view my work",
       icon: FiCode,
     },
-    {
-      label: "contact",
-      href: "/contact",
-      key: "c",
-      description: "get in touch",
-      icon: FiMail,
-    },
   ];
 
   // Filter menu items based on search query

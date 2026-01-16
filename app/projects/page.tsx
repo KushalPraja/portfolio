@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiMail, FiX } from "react-icons/fi";
+import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiX } from "react-icons/fi";
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
 import Image from "next/image";

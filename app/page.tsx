@@ -1,14 +1,15 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
-import { Inter } from "next/font/google";
+// Inter is provided globally in app/layout.tsx
 import { useEffect, useState } from "react";
+import CommandPalette from "@/components/CommandPalette";
 import { FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
 import { RiArrowRightDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
-const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
+// global Inter applied in layout
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -17,7 +18,6 @@ const Background = dynamic(() => import("@/components/Background"), {
 
 export default function Home() {
   const [isCommandOpen, setIsCommandOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState<{ role: string; content: string }[]>([]);
@@ -33,7 +33,6 @@ export default function Home() {
       }
       if (e.key === "Escape") {
         setIsCommandOpen(false);
-        setSearchQuery("");
         setIsChatOpen(false);
       }
     };
@@ -47,7 +46,7 @@ export default function Home() {
 
     setIsChatOpen(true);
     setIsCommandOpen(false);
-    setSearchQuery("");
+    // search state is managed inside CommandPalette
 
     const userMessage = { role: "user", content: question };
     setChatMessages((prev) => [...prev, userMessage]);
@@ -96,164 +95,19 @@ export default function Home() {
     },
   ];
 
-  // Filter menu items based on search query
-  const filteredItems = menuItems.filter(
-    (item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // CommandPalette will handle filtering internally
 
   return (
     <>
       <Background />
       <div className="relative min-h-screen overflow-y-auto">
-        {/* Command Palette */}
-        <AnimatePresence>
-          {isCommandOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={`fixed inset-0 ${isDark ? "bg-black/40" : "bg-black/20"} backdrop-blur-sm z-[100] flex items-start justify-center pt-32`}
-              onClick={() => {
-                setIsCommandOpen(false);
-                setSearchQuery("");
-              }}
-            >
-              <motion.div
-                initial={{ scale: 0.95, y: -20 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.95, y: -20 }}
-                onClick={(e) => e.stopPropagation()}
-                className={`${
-                  isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                } rounded-lg shadow-2xl border w-full max-w-md overflow-hidden ${inter.className}`}
-              >
-                <div className={`p-4 border-b ${isDark ? "border-white/10" : "border-black/5"}`}>
-                  <input
-                    type="text"
-                    placeholder={searchQuery.startsWith("ask ") ? "ask me anything..." : "type a command or search..."}
-                    className={`w-full bg-transparent text-xs outline-none ${
-                      isDark ? "text-white placeholder:text-white/40" : "text-black placeholder:text-black/40"
-                    }`}
-                    autoFocus
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && searchQuery.startsWith("ask ")) {
-                        const question = searchQuery.replace("ask ", "").trim();
-                        handleAskCommand(question);
-                      }
-                    }}
-                  />
-                </div>
-                <div className="p-2 max-h-[400px] overflow-y-auto">
-                  {searchQuery.startsWith("ask ") ? (
-                    <div className={`px-3 py-4 text-xs ${isDark ? "text-white/60" : "text-black/60"}`}>
-                      press <kbd className={`px-1.5 py-0.5 ${isDark ? "bg-white/5" : "bg-black/5"} rounded text-[9px]`}>enter</kbd> to ask your
-                      question
-                    </div>
-                  ) : filteredItems.length > 0 ? (
-                    filteredItems.map((item) => {
-                      const Icon = item.icon;
-                      if (item.action) {
-                        // Action button (like theme toggle)
-                        return (
-                          <button
-                            key={item.label}
-                            onClick={item.action}
-                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md ${
-                              isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                            } transition-colors group`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
-                              <div className="flex flex-col gap-0.5 items-start">
-                                <span
-                                  className={`text-xs ${
-                                    isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                  } font-medium`}
-                                >
-                                  {item.label}
-                                </span>
-                                <span className={`text-[11px] ${isDark ? "text-white/40" : "text-black/40"}`}>{item.description}</span>
-                              </div>
-                            </div>
-                            <kbd className={`text-[11px] ${isDark ? "text-white/40 bg-white/5" : "text-black/40 bg-black/5"} px-2 py-1 rounded`}>
-                              {item.key}
-                            </kbd>
-                          </button>
-                        );
-                      } else if (item.isAskCommand) {
-                        // Ask command - sets up the input
-                        return (
-                          <button
-                            key={item.label}
-                            onClick={() => setSearchQuery("ask ")}
-                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md ${
-                              isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                            } transition-colors group`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
-                              <div className="flex flex-col gap-0.5 items-start">
-                                <span
-                                  className={`text-xs ${
-                                    isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                  } font-medium`}
-                                >
-                                  {item.label}
-                                </span>
-                                <span className={`text-[11px] ${isDark ? "text-white/40" : "text-black/40"}`}>{item.description}</span>
-                              </div>
-                            </div>
-                            <kbd className={`text-[11px] ${isDark ? "text-white/40 bg-white/5" : "text-black/40 bg-black/5"} px-2 py-1 rounded`}>
-                              {item.key}
-                            </kbd>
-                          </button>
-                        );
-                      } else {
-                        // Navigation link
-                        return (
-                          <Link
-                            key={item.href}
-                            href={item.href!}
-                            onClick={() => {
-                              setIsCommandOpen(false);
-                              setSearchQuery("");
-                            }}
-                            className={`flex items-center justify-between px-3 py-2.5 rounded-md ${
-                              isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                            } transition-colors group`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
-                              <div className="flex flex-col gap-0.5">
-                                <span
-                                  className={`text-xs ${
-                                    isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                  } font-medium`}
-                                >
-                                  {item.label}
-                                </span>
-                                <span className={`text-[11px] ${isDark ? "text-white/40" : "text-black/40"}`}>{item.description}</span>
-                              </div>
-                            </div>
-                            <kbd className={`text-[11px] ${isDark ? "text-white/40 bg-white/5" : "text-black/40 bg-black/5"} px-2 py-1 rounded`}>
-                              {item.key}
-                            </kbd>
-                          </Link>
-                        );
-                      }
-                    })
-                  ) : (
-                    <div className={`px-3 py-8 text-center text-xs ${isDark ? "text-white/40" : "text-black/40"}`}>
-                      no results found for &quot;{searchQuery}&quot;
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Command Palette (shared component) */}
+        <CommandPalette
+          isOpen={isCommandOpen}
+          onClose={() => setIsCommandOpen(false)}
+          menuItems={menuItems}
+          onAsk={handleAskCommand}
+        />
 
         {/* AI Chat Modal */}
         <AnimatePresence>
@@ -272,7 +126,7 @@ export default function Home() {
                 onClick={(e) => e.stopPropagation()}
                 className={`${
                   isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                } rounded-lg shadow-2xl border w-full max-w-2xl max-h-[600px] flex flex-col ${inter.className}`}
+                } rounded-lg shadow-2xl border w-full max-w-2xl max-h-[600px] flex flex-col`}
               >
                 <div className={`p-4 ${isDark ? "border-white/10" : "border-black/5"} border-b flex items-center justify-between`}>
                   <h3 className={`text-sm font-medium ${isDark ? "text-white" : "text-black"}`}>Ask me anything</h3>
@@ -364,7 +218,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-base md:text-xl lg:text-2xl font-medium whitespace-nowrap ${inter.className}`}>kushal praja</h1>
+              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-base md:text-xl lg:text-2xl font-medium whitespace-nowrap`}>kushal praja</h1>
 
               {/* Social Links: stack vertically on small screens, inline on sm+ */}
               <div className="flex flex-col gap-y-1 sm:flex-row sm:gap-x-2 text-xs md:text-sm lg:text-base items-end sm:items-center">
@@ -372,7 +226,7 @@ export default function Home() {
                   href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
+                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
                 >
                   LinkedIn
                 </a>
@@ -381,14 +235,14 @@ export default function Home() {
                   href="https://github.com/KushalPraja"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
+                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
                 >
                   GitHub
                 </a>
                 <span className={`${isDark ? "text-white mx-2 select-none hidden sm:inline-block" : "text-black mx-2 select-none hidden sm:inline-block"}`}>/</span>
                 <a
                   href="https://x.com/KushalPraj"
-                  className={`${isDark ? "text-white underline" : "text-black underline"} ${inter.className}`}
+                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
                 >
                   Twitter
                 </a>
@@ -399,8 +253,8 @@ export default function Home() {
 
             {/* Currently Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium ${inter.className} mb-3`}>currently</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium mb-3`}>currently</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ml-5`}>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
@@ -422,7 +276,7 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-4 h-4 inline-block align-middle" />
-                      <span className={`animate-underline ${inter.className}`}>UWaterloo</span>
+                      <span className={`animate-underline`}>UWaterloo</span>
                     </a>
                   </span>
                 </li>
@@ -440,7 +294,7 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/company_icons/KA-Imaging.jpg" alt="" className="w-4 h-4 inline-block align-middle" />
-                      <span className={`animate-underline ${inter.className}`}>KA Imaging</span>
+                      <span className={`animate-underline`}>KA Imaging</span>
                     </a>{" "}
                   </span>
                 </li>
@@ -454,8 +308,8 @@ export default function Home() {
 
             {/* Previously Section (Work Experience) */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium ${inter.className} mb-3`}>previously</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium mb-3`}>previously</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ml-5`}>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
@@ -468,7 +322,7 @@ export default function Home() {
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-4 h-4 inline-block align-middle" />
-                      <span className={`animate-underline ${inter.className}`}>Levanta Labs</span>
+                      <span className={`animate-underline`}>Levanta Labs</span>
                     </a>{" "}
                   </span>
                 </li>
@@ -535,9 +389,7 @@ export default function Home() {
                   <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2.5">
                       <span
-                        className={`text-sm font-normal ${isDark ? "text-white group-hover:text-white" : "text-black group-hover:text-black"} ${
-                          inter.className
-                        } transition-colors`}
+                        className={`text-sm font-normal ${isDark ? "text-white group-hover:text-white" : "text-black group-hover:text-black"} transition-colors`}
                       >
                         <i>view my projects</i>
                       </span>

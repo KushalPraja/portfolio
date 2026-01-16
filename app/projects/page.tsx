@@ -1,14 +1,15 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Inter } from "next/font/google";
+// Inter is provided globally in app/layout.tsx
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiX } from "react-icons/fi";
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import CommandPalette from "@/components/CommandPalette";
 
-const inter = Inter({ subsets: ["latin"], weight: ["300", "400"] });
+// global Inter provided in layout
 
 // Dynamically import Background component to avoid SSR issues
 const Background = dynamic(() => import("@/components/Background"), {
@@ -26,29 +27,6 @@ interface Project {
   thumbnail?: string;
   year: string;
 }
-
-// function ProjectThumbnail({ project, isDark }: { project: Project; isDark: boolean }) {
-//   const isVideo = project.thumbnail?.endsWith(".mp4");
-//   const thumbSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".thumb.mp4") : project.thumbnail;
-//   const posterSrc = isVideo ? project.thumbnail?.replace(/\.mp4$/, ".poster.jpg") : undefined;
-
-//   return (
-//     <div className={`w-full md:w-44 h-28 flex-shrink-0 rounded-md overflow-hidden ${isDark ? "bg-white/5" : "bg-black/5"} relative`}>
-//       {project.thumbnail ? (
-//         isVideo ? (
-//           <video src={thumbSrc} poster={posterSrc} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-//         ) : (
-//           // eslint-disable-next-line @next/next/no-img-element
-//           <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
-//         )
-//       ) : (
-//         <div className="w-full h-full flex items-center justify-center">
-//           <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
 
 const projects: Project[] = [
   {
@@ -131,7 +109,6 @@ const projects: Project[] = [
 export default function Projects() {
   const { isDark, toggleTheme } = useTheme();
   const [isCommandOpen, setIsCommandOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Command palette keyboard shortcut (Ctrl+Q)
@@ -143,7 +120,6 @@ export default function Projects() {
       }
       if (e.key === "Escape") {
         setIsCommandOpen(false);
-        setSearchQuery("");
         setSelectedProject(null);
       }
     };
@@ -172,119 +148,12 @@ export default function Projects() {
     },
   ];
 
-  // Filter menu items based on search query
-  const filteredItems = menuItems.filter(
-    (item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()) || item.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <>
       <Background />
       <div className="relative min-h-screen overflow-y-auto">
-        {/* Command Palette */}
-        <AnimatePresence>
-          {isCommandOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={`fixed inset-0 ${isDark ? "bg-black/40" : "bg-black/20"} backdrop-blur-sm z-[100] flex items-start justify-center pt-32`}
-              onClick={() => {
-                setIsCommandOpen(false);
-                setSearchQuery("");
-              }}
-            >
-              <motion.div
-                initial={{ scale: 0.95, y: -20 }}
-                animate={{ scale: 1, y: 0 }}
-                exit={{ scale: 0.95, y: -20 }}
-                onClick={(e) => e.stopPropagation()}
-                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                  } rounded-lg shadow-2xl border w-full max-w-md overflow-hidden ${inter.className}`}
-              >
-                <div className={`p-4 border-b ${isDark ? "border-white/10" : "border-black/5"}`}>
-                  <input
-                    type="text"
-                    placeholder="type a command or search..."
-                    className={`w-full bg-transparent text-xs outline-none ${isDark ? "text-white placeholder:text-white/40" : "text-black placeholder:text-black/40"
-                      }`}
-                    autoFocus
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-                <div className="p-2 max-h-[400px] overflow-y-auto">
-                  {filteredItems.length > 0 ? (
-                    filteredItems.map((item) => {
-                      const Icon = item.icon;
-                      if (item.action) {
-                        // Action button (like theme toggle)
-                        return (
-                          <button
-                            key={item.label}
-                            onClick={item.action}
-                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-md ${isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                              } transition-colors group`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
-                              <div className="flex flex-col gap-0.5 items-start">
-                                <span
-                                  className={`text-xs ${isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                    } font-medium`}
-                                >
-                                  {item.label}
-                                </span>
-                                <span className={`text-[11px] ${isDark ? "text-white/40" : "text-black/40"}`}>{item.description}</span>
-                              </div>
-                            </div>
-                            <kbd className={`text-[11px] ${isDark ? "text-white/40 bg-white/5" : "text-black/40 bg-black/5"} px-2 py-1 rounded`}>
-                              {item.key}
-                            </kbd>
-                          </button>
-                        );
-                      } else {
-                        // Navigation link
-                        return (
-                          <Link
-                            key={item.href}
-                            href={item.href!}
-                            onClick={() => {
-                              setIsCommandOpen(false);
-                              setSearchQuery("");
-                            }}
-                            className={`flex items-center justify-between px-3 py-2.5 rounded-md ${isDark ? "hover:bg-white/5" : "hover:bg-black/5"
-                              } transition-colors group`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <Icon size={14} className={isDark ? "text-white/40" : "text-black/40"} />
-                              <div className="flex flex-col gap-0.5">
-                                <span
-                                  className={`text-xs ${isDark ? "text-white/90 group-hover:text-white" : "text-black/90 group-hover:text-black"
-                                    } font-medium`}
-                                >
-                                  {item.label}
-                                </span>
-                                <span className={`text-[11px] ${isDark ? "text-white/40" : "text-black/40"}`}>{item.description}</span>
-                              </div>
-                            </div>
-                            <kbd className={`text-[11px] ${isDark ? "text-white/40 bg-white/5" : "text-black/40 bg-black/5"} px-2 py-1 rounded`}>
-                              {item.key}
-                            </kbd>
-                          </Link>
-                        );
-                      }
-                    })
-                  ) : (
-                    <div className={`px-3 py-8 text-center text-xs ${isDark ? "text-white/40" : "text-black/40"}`}>
-                      no results found for &quot;{searchQuery}&quot;
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Command Palette (shared component) */}
+        <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} menuItems={menuItems} />
 
         <section className="min-h-screen px-4 py-12 md:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-5xl mx-auto">
@@ -293,7 +162,7 @@ export default function Projects() {
               <Link
                 href="/"
                 className={`inline-flex items-center gap-2 text-xs ${isDark ? "text-white/40 hover:text-white/80" : "text-black/40 hover:text-black/80"
-                  } transition-colors ${inter.className}`}
+                  } transition-colors`}
               >
                 <FiArrowLeft size={14} />
                 <span>back</span>
@@ -302,8 +171,8 @@ export default function Projects() {
 
             {/* Header */}
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-5">
-              <h1 className={`text-2xl md:text-2xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal ${inter.className}`}>projects</h1>
-              <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light ${inter.className} max-w-2xl`}>
+              <h1 className={`text-2xl md:text-2xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal`}>projects</h1>
+              <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light max-w-2xl`}>
                 a selection of what i&apos;ve built recently
               </p>
             </motion.div>
@@ -337,13 +206,13 @@ export default function Projects() {
                       )
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"} ${inter.className}`}>{project.title}</span>
+                        <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"}`}>{project.title}</span>
                       </div>
                     )}
 
                     {/* Year Badge */}
                     <div
-                      className={`absolute top-3 right-3 px-2 opacity-0 group-hover:opacity-100 transition-opacity py-1 rounded text-[9px] ${inter.className} ${isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
+                      className={`absolute top-3 right-3 px-2 opacity-0 group-hover:opacity-100 transition-opacity py-1 rounded text-[9px] ${isDark ? "bg-black/60 text-white/60" : "bg-white/60 text-black/60"
                         } backdrop-blur-sm`}
                     >
                       {project.year}
@@ -380,11 +249,11 @@ export default function Projects() {
 
                   {/* Content below thumbnail */}
                   <div className="space-y-1">
-                    <h3 className={`text-sm font-semibold ${isDark ? "text-white/90" : "text-black/90"} ${inter.className} group-hover:underline underline-offset-2 transition-all`}>
+                    <h3 className={`text-sm font-semibold ${isDark ? "text-white/90" : "text-black/90"} group-hover:underline underline-offset-2 transition-all`}>
                       {project.title}
                     </h3>
 
-                    <p className={`text-xs font-md ${isDark ? "text-white/80" : "text-black/80"} ${inter.className} leading-relaxed`}>
+                    <p className={`text-xs font-md ${isDark ? "text-white/80" : "text-black/80"} leading-relaxed`}>
                       {project.description}
                     </p>
                   </div>
@@ -394,7 +263,7 @@ export default function Projects() {
 
             {/* Footer */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-12 pt-6 border-t border-white/10">
-              <p className={`text-[9px] ${isDark ? "text-white/30" : "text-black/30"} ${inter.className} text-center`}>
+              <p className={`text-[9px] ${isDark ? "text-white/30" : "text-black/30"} text-center`}>
                 © {new Date().getFullYear()} Kushal Prajapati
               </p>
             </motion.div>
@@ -418,8 +287,7 @@ export default function Projects() {
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl ${inter.className
-                  }`}
+                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl`}
               >
                 {/* Compact Video/Image */}
                 <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-t-lg overflow-hidden`}>

@@ -371,10 +371,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-xl font-medium whitespace-nowrap ${inter.className}`}>kushal praja</h1>
+              <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-base md:text-xl lg:text-2xl font-medium whitespace-nowrap ${inter.className}`}>kushal praja</h1>
 
               {/* Social Links: stack vertically on small screens, inline on sm+ */}
-              <div className="flex text-sm flex-col gap-y-1 sm:flex-row sm:gap-x-2 items-end sm:items-center">
+              <div className="flex flex-col gap-y-1 sm:flex-row sm:gap-x-2 text-xs md:text-sm lg:text-base items-end sm:items-center">
                 <a
                   href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
@@ -402,49 +402,16 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* About Me Section */}
-            <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>about me</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
-                {/* based in toronto */}
-
-                <li className="flex items-start gap-2">
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
-                  <span>Based in Toronto, Canada</span>
-                </li>
-
-                <li className="flex items-start gap-2">
-                  <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
-                  <span>Building things that solve real problems</span>
-                </li>
-
-                {/*                 
-                <motion.li className="flex items-start gap-2 group cursor-pointer" whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <RiArrowRightDownLine size={14} className={isDark ? "text-white/30 mt-0.5 flex-shrink-0" : "text-black/30 mt-0.5 flex-shrink-0"} />
-                  <span>
-                    When I&apos;m not coding, you&apos;ll find me playing{" "}
-                    <a
-                      href="https://op.gg/lol/summoners/na/link-NA69"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
-                    >
-                      LoL
-                    </a>
-                    , ricing my Linux distro, or snapping photos
-                  </span>
-                </motion.li> */}
-              </ul>
-            </motion.div>
+            
 
             {/* Currently Section */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>currently</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium ${inter.className} mb-3`}>currently</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ${inter.className} ml-5`}>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Studying{" "}
+                    studying{" "}
                     <a
                       href="https://uwaterloo.ca/future-students/programs/computer-engineering"
                       target="_blank"
@@ -458,82 +425,64 @@ export default function Home() {
                       href="https://uwaterloo.ca/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 animate-underline ${
-                        isDark ? "hover:text-white" : "hover:text-black"
-                      } transition-colors`}
+                      className={`inline-flex items-center gap-1 ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-3 h-3 rounded-sm inline-block" />
-                      UWaterloo
+                      <img src="/company_icons/University_of_Waterloo_logo-1-768x768.png" alt="" className="w-4 h-4 inline-block align-middle" />
+                      <span className={`animate-underline ${inter.className}`}>UWaterloo</span>
                     </a>
                   </span>
                 </li>
 
-                {/* incoming at KA imaging - developing xray apps using QT and C++ */}
-
+                
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Software developer at {" "}
+                    software developer at {" "}
                     <a
                       href="https://kaimaging.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 animate-underline ${
-                        isDark ? "hover:text-white" : "hover:text-black"
-                      } transition-colors`}
+                      className={`inline-flex items-center gap-1 ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/company_icons/KA-Imaging.jpg" alt="" className="w-3 h-3 inline-block" />
-                      KA Imaging
+                      <img src="/company_icons/KA-Imaging.jpg" alt="" className="w-4 h-4 inline-block align-middle" />
+                      <span className={`animate-underline ${inter.className}`}>KA Imaging</span>
                     </a>{" "}
                   </span>
                 </li>
 
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
-                  <span>
-                    Building{" "}
-                    <a
-                      href="https://github.com/KushalPraja/Thorem"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
-                    >
-                      Thorem
-                    </a>
-                    : <span>AI-powered</span> handwritten notes to LaTeX converter
-                  </span>
+                  <span>building a 3d rendering engine in pygame</span>
                 </li>
               </ul>
             </motion.div>
 
             {/* Previously Section (Work Experience) */}
             <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
-              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-medium ${inter.className} mb-3`}>previously</h2>
-              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm font-light ${inter.className} ml-5`}>
+              <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium ${inter.className} mb-3`}>previously</h2>
+              <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ${inter.className} ml-5`}>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={16} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Software Engineer at{" "}
+                    software engineer at{" "}
                     <a
                       href="https://www.levantalabs.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1 animate-underline ${
-                        isDark ? "hover:text-white" : "hover:text-black"
-                      } transition-colors`}
+                      className={`inline-flex items-center gap-1 ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-3 h-3 inline-block" />
-                      Levanta Labs
+                      <img src="/company_icons/levantalabs_logo.jpg" alt="" className="w-4 h-4 inline-block align-middle" />
+                      <span className={`animate-underline ${inter.className}`}>Levanta Labs</span>
                     </a>{" "}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Software Engineer at{" "}
+                    software engineer at{" "}
                     <a
                       href="https://www.watonomous.ca/"
                       target="_blank"
@@ -547,22 +496,31 @@ export default function Home() {
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Won <span>1st place</span> at <span>Google Genesis AI Hackathon</span> (700+ participants)
+                    won <span>1st place</span> at <span>genai genesis 2025</span> building {" "}
+                    <a
+                      href="
+                        https://github.com/KushalPraja/greenlens"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
+                    >
+                      GreenLens
+                    </a>
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <RiArrowRightDownLine size={14} className={isDark ? "text-white mt-0.5 flex-shrink-0" : "text-black mt-0.5 flex-shrink-0"} />
                   <span>
-                    Built{" "}
+                    built{" "}
                     <a
                       href="https://persona-eight-gamma.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`animate-underline ${isDark ? "hover:text-white" : "hover:text-black"} transition-colors`}
                     >
-                      Persona
+                      persona
                     </a>{" "}
-                    at SpurHacks
+                    at spurhacks
                   </span>
                 </li>
               </ul>

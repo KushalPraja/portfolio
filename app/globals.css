@@ -26,36 +26,76 @@ body {
   background-color: transparent;
 }
 
-/* Animated underline */
+/* Draw underline */
 @keyframes underline-draw {
   from {
-    width: 0;
+    transform: scaleX(0);
   }
   to {
-    width: 100%;
+    transform: scaleX(1);
+  }
+}
+
+/* Loading animation */
+@keyframes underline-loading {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  51% {
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
   }
 }
 
 .animate-underline {
   position: relative;
+  display: inline-block;
   text-decoration: none;
 }
 
+/* BASE underline (draws once) */
 .animate-underline::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -1px;
-  height: 1.5px;
+  bottom: -0px;
+  height: 0.1px;
   width: 100%;
   background-color: currentColor;
-  opacity: 0.5;
-  animation: underline-draw 1.5s ease-out forwards;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.4;
+  animation: underline-draw 0.5s ease-out forwards;
 }
 
-.animate-underline:hover::after {
-  opacity: 0.9;
+/* LOADING underline (hidden by default) */
+.animate-underline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0px;
+  height: 0.3px;
+  width: 100%;
+  background-color: currentColor;
+  opacity: 0;
 }
+
+/* Hover → activate loader */
+.animate-underline:hover::before {
+  opacity: 1;
+  animation: underline-loading 2s ease-in-out infinite;
+}
+
+
+
 
 @layer base {
   :root {

@@ -1,20 +1,10 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-// Inter is provided globally in app/layout.tsx
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiX } from "react-icons/fi";
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import CommandPalette from "@/components/CommandPalette";
-
-// global Inter provided in layout
-
-// Dynamically import Background component to avoid SSR issues
-const Background = dynamic(() => import("@/components/Background"), {
-  ssr: false,
-});
 
 interface Project {
   title: string;
@@ -149,16 +139,15 @@ export default function Projects() {
   ];
 
   return (
-    <>
-      <Background />
+    <div>
       <div className="relative min-h-screen overflow-y-auto">
         {/* Command Palette (shared component) */}
         <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} menuItems={menuItems} />
 
         <section className="min-h-screen px-4 py-12 md:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             {/* Back Button */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="mb-8">
+            <div className="mb-8">
               <Link
                 href="/"
                 className={`inline-flex items-center gap-2 text-xs ${isDark ? "text-white/40 hover:text-white/80" : "text-black/40 hover:text-black/80"
@@ -167,27 +156,20 @@ export default function Projects() {
                 <FiArrowLeft size={14} />
                 <span>back</span>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Header */}
-            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="mb-5">
+            <div className="mb-5">
               <h1 className={`text-2xl md:text-2xl mb-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} font-normal`}>projects</h1>
               <p className={`${isDark ? "text-white/80" : "text-[#0a0a0a]/70"} text-sm font-light max-w-2xl`}>
                 a selection of what i&apos;ve built recently
               </p>
-            </motion.div>
+            </div>
 
             {/* Projects Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.05, duration: 0.6 }}
-                  onClick={() => setSelectedProject(project)}
-                  className="group cursor-pointer"
-                >
+              {projects.map((project) => (
+                <div key={project.title} onClick={() => setSelectedProject(project)} className="group cursor-pointer">
                   {/* Thumbnail with rounded corners */}
                   <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-xl overflow-hidden mb-3`}>
                     {project.thumbnail ? (
@@ -257,121 +239,99 @@ export default function Projects() {
                       {project.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Footer */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-12 pt-6 border-t border-white/10">
+            <div className="mt-12 pt-6 border-t border-white/10">
               <p className={`text-[9px] ${isDark ? "text-white/30" : "text-black/30"} text-center`}>
                 © {new Date().getFullYear()} Kushal Prajapati
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* Project Detail Modal */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className={`fixed inset-0 ${isDark ? "bg-black/80" : "bg-black/50"
-                } backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6`}
-              onClick={() => setSelectedProject(null)}
+        {selectedProject ? (
+          <div
+            className={`fixed inset-0 ${isDark ? "bg-black/80" : "bg-black/50"} backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6`}
+            onClick={() => setSelectedProject(null)}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl`}
             >
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                onClick={(e) => e.stopPropagation()}
-                className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl`}
-              >
-                {/* Compact Video/Image */}
-                <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-t-lg overflow-hidden`}>
-                  {selectedProject.thumbnail ? (
-                    selectedProject.thumbnail.endsWith(".mp4") ? (
-                      <video src={selectedProject.thumbnail} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-                    ) : (
-                      <Image src={selectedProject.thumbnail} alt={selectedProject.title} fill className="object-cover" />
-                    )
+              {/* Compact Video/Image */}
+              <div className={`w-full aspect-[16/9] ${isDark ? "bg-white/5" : "bg-black/5"} relative rounded-t-lg overflow-hidden`}>
+                {selectedProject.thumbnail ? (
+                  selectedProject.thumbnail.endsWith(".mp4") ? (
+                    <video src={selectedProject.thumbnail} autoPlay loop muted playsInline className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"}`}>{selectedProject.title}</span>
-                    </div>
-                  )}
-                  {/* Close button overlay */}
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className={`absolute top-3 right-3 p-1.5 rounded-md backdrop-blur-sm ${isDark
-                        ? "bg-black/50 hover:bg-black/70 text-white/70 hover:text-white"
-                        : "bg-white/50 hover:bg-white/70 text-black/70 hover:text-black"
-                      } transition-colors`}
-                  >
-                    <FiX size={14} />
-                  </button>
-                  {/* Year badge */}
-                  <div
-                    className={`absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm ${isDark ? "bg-black/50 text-white/70" : "bg-white/50 text-black/70"
-                      }`}
-                  >
-                    {selectedProject.year}
+                    <Image src={selectedProject.thumbnail} alt={selectedProject.title} fill className="object-cover" />
+                  )
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className={`text-xs ${isDark ? "text-white/20" : "text-black/20"}`}>{selectedProject.title}</span>
                   </div>
-                </div>
+                )}
 
-                {/* Compact Content */}
-                <div className="p-4 space-y-3">
-                  {/* Title and Links row */}
-                  <div className="flex items-center justify-between gap-3">
-                    <h2 className={`text-base font-medium ${isDark ? "text-white/90" : "text-black/90"}`}>{selectedProject.title}</h2>
-                    <div className="flex items-center gap-2">
-                      {selectedProject.liveLink && (
-                        <a
-                          href={selectedProject.liveLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"
-                            }`}
-                        >
-                          <FiExternalLink size={11} />
-                          Live
-                        </a>
-                      )}
+                {/* Close button overlay */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className={`absolute top-3 right-3 p-1.5 rounded-md backdrop-blur-sm ${isDark ? "bg-black/50 hover:bg-black/70 text-white/70 hover:text-white" : "bg-white/50 hover:bg-white/70 text-black/70 hover:text-black"} transition-colors`}
+                >
+                  <FiX size={14} />
+                </button>
+
+                {/* Year badge */}
+                <div className={`absolute top-3 left-3 px-2 py-0.5 rounded text-[10px] backdrop-blur-sm ${isDark ? "bg-black/50 text-white/70" : "bg-white/50 text-black/70"}`}>
+                  {selectedProject.year}
+                </div>
+              </div>
+
+              {/* Compact Content */}
+              <div className="p-4 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <h2 className={`text-base font-medium ${isDark ? "text-white/90" : "text-black/90"}`}>{selectedProject.title}</h2>
+                  <div className="flex items-center gap-2">
+                    {selectedProject.liveLink && (
                       <a
-                        href={selectedProject.githubLink}
+                        href={selectedProject.liveLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white/10 text-white/80 hover:bg-white/20" : "bg-black/5 text-black/80 hover:bg-black/10"
-                          }`}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"}`}
                       >
-                        <FiGithub size={11} />
-                        Code
+                        <FiExternalLink size={11} />
+                        Live
                       </a>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className={`text-xs leading-relaxed ${isDark ? "text-white/60" : "text-black/60"}`}>{selectedProject.description}</p>
-
-                  {/* Tech Stack - inline */}
-                  <div className="flex flex-wrap gap-1">
-                    {selectedProject.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-2 py-0.5 rounded text-[10px] ${isDark ? "bg-white/5 text-white/50" : "bg-black/5 text-black/50"}`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    )}
+                    <a
+                      href={selectedProject.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-[11px] font-medium transition-colors ${isDark ? "bg-white/10 text-white/80 hover:bg-white/20" : "bg-black/5 text-black/80 hover:bg-black/10"}`}
+                    >
+                      <FiGithub size={11} />
+                      Code
+                    </a>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+                <p className={`text-xs leading-relaxed ${isDark ? "text-white/60" : "text-black/60"}`}>{selectedProject.description}</p>
+
+                <div className="flex flex-wrap gap-1">
+                  {selectedProject.tech.map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded text-[10px] ${isDark ? "bg-white/5 text-white/50" : "bg-black/5 text-black/50"}`}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
-    </>
+    </div>
   );
 }

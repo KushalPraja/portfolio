@@ -27,7 +27,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         document.documentElement.classList.toggle("dark", newIsDark);
         document.documentElement.classList.toggle("light", !newIsDark);
       } else if (window.matchMedia) {
-        // Follow system preference if no stored theme
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
         setIsDark(prefersDark.matches);
         document.documentElement.classList.toggle("dark", prefersDark.matches);

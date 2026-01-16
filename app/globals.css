@@ -12,19 +12,15 @@ html {
 }
 
 html.dark {
-  background-color: #0a0a0a;
+  background-color: #1a1a1a;
 }
 
 html.light {
-  background-color: #f5f0f0;
+  background-color: #efefef;
 }
 
-body {
-  font-family: var(--font-geist-mono);
-  background-color: transparent;
-}
 
-/* Draw underline */
+/* Draw underline
 @keyframes underline-draw {
   from {
     transform: scaleX(0);
@@ -32,7 +28,7 @@ body {
   to {
     transform: scaleX(1);
   }
-}
+} */
 
 /* Loading animation */
 @keyframes underline-loading {
@@ -68,10 +64,9 @@ body {
   height: 0.1px;
   width: 100%;
   background-color: currentColor;
-  transform: scaleX(0);
+  transform: scaleX(1);
   transform-origin: left;
   opacity: 0.4;
-  animation: underline-draw 0.5s ease-out forwards;
 }
 
 /* LOADING underline (hidden by default) */
@@ -124,7 +119,7 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 11%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;

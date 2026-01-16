@@ -51,29 +51,6 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <meta name="description" content={siteInfo.description} />
-        <style>
-          {`
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            ::-webkit-scrollbar {
-              display: none;
-            }
-
-            /* Hide scrollbar for IE, Edge and Firefox */
-            html {
-              -ms-overflow-style: none;  /* IE and Edge */
-              scrollbar-width: none;  /* Firefox */
-            }
-            
-            /* Theme classes for immediate feedback */
-            html.dark {
-              background-color: #0a0a0a;
-            }
-            
-            html.light {
-              background-color: #ffffff;
-            }
-          `}
-        </style>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -1,7 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import dynamic from "next/dynamic";
-// Inter is provided globally in app/layout.tsx
+
 import { useEffect, useState } from "react";
 import CommandPalette from "@/components/CommandPalette";
 import { FiMail, FiMoon, FiSun, FiCode } from "react-icons/fi";
@@ -9,12 +7,6 @@ import { RiArrowRightDownLine } from "react-icons/ri";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 
-// global Inter applied in layout
-
-// Dynamically import Background component to avoid SSR issues
-const Background = dynamic(() => import("@/components/Background"), {
-  ssr: false,
-});
 
 export default function Home() {
   const [isCommandOpen, setIsCommandOpen] = useState(false);
@@ -95,11 +87,9 @@ export default function Home() {
     },
   ];
 
-  // CommandPalette will handle filtering internally
 
   return (
     <>
-      <Background />
       <div className="relative min-h-screen overflow-y-auto">
         {/* Command Palette (shared component) */}
         <CommandPalette
@@ -110,24 +100,12 @@ export default function Home() {
         />
 
         {/* AI Chat Modal */}
-        <AnimatePresence>
-          {isChatOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
-              onClick={() => setIsChatOpen(false)}
+        {isChatOpen && (
+          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onClick={() => setIsChatOpen(false)}>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`${isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"} rounded-lg shadow-2xl border w-full max-w-2xl max-h-[600px] flex flex-col`}
             >
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-                className={`${
-                  isDark ? "bg-[#0a0a0a] border-white/10" : "bg-white border-black/10"
-                } rounded-lg shadow-2xl border w-full max-w-2xl max-h-[600px] flex flex-col`}
-              >
                 <div className={`p-4 ${isDark ? "border-white/10" : "border-black/5"} border-b flex items-center justify-between`}>
                   <h3 className={`text-sm font-medium ${isDark ? "text-white" : "text-black"}`}>Ask me anything</h3>
                   <button
@@ -203,20 +181,17 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           )}
-        </AnimatePresence>
 
         {/* Main Content - Perfectly Centered */}
         <section className="min-h-screen flex items-center justify-center px-4 py-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-2xl w-full">
+          <div className="max-w-2xl w-full">
             {/* Name with Social Links - Positioned Higher */}
-            <motion.div
+            <div
               className="mb-8 flex flex-row items-center justify-between sm:items-center"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              
             >
               <h1 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-base md:text-xl lg:text-2xl font-medium whitespace-nowrap`}>kushal praja</h1>
 
@@ -226,7 +201,8 @@ export default function Home() {
                   href="https://www.linkedin.com/in/kushalpraja/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
+
+                  className= {`animate-underline`}
                 >
                   LinkedIn
                 </a>
@@ -235,24 +211,24 @@ export default function Home() {
                   href="https://github.com/KushalPraja"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
+                  className={`animate-underline`}
                 >
                   GitHub
                 </a>
                 <span className={`${isDark ? "text-white mx-2 select-none hidden sm:inline-block" : "text-black mx-2 select-none hidden sm:inline-block"}`}>/</span>
                 <a
                   href="https://x.com/KushalPraj"
-                  className={`${isDark ? "text-white underline" : "text-black underline"}`}
+                  className={`animate-underline`}
                 >
                   Twitter
                 </a>
               </div>
-            </motion.div>
+            </div>
 
             
 
             {/* Currently Section */}
-            <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
+            <div className="mb-8">
               <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium mb-3`}>currently</h2>
               <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ml-5`}>
                 <li className="flex items-start gap-2">
@@ -304,10 +280,10 @@ export default function Home() {
                   <span>building a 3d rendering engine in pygame</span>
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* Previously Section (Work Experience) */}
-            <motion.div className="mb-8" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.6 }}>
+            <div className="mb-8">
               <h2 className={`${isDark ? "text-white" : "text-[#0a0a0a]"} text-sm md:text-base lg:text-lg font-medium mb-3`}>previously</h2>
               <ul className={`space-y-2 ${isDark ? "text-white" : "text-[#0a0a0a]"} text-xs md:text-sm lg:text-base font-light ml-5`}>
                 <li className="flex items-start gap-2">
@@ -371,12 +347,12 @@ export default function Home() {
                   </span>
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* View All Projects Button */}
-            <motion.div className="mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}>
+            <div className="mb-8">
               <Link href="/projects">
-                <motion.div
+                <div
                   className={`group relative backdrop-blur-md rounded-lg p-4 transition-all duration-300 border ${
                     isDark
                       ? "bg-white/[0.02] border-white/10 hover:bg-white/[0.03] hover:border-white/15"
@@ -402,10 +378,10 @@ export default function Home() {
                       />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </section>
       </div>
     </>

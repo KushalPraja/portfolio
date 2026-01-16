@@ -14,7 +14,6 @@ const siteInfo = {
   title: "Kushal Prajapati",
   description: "Computer Engineer at the University of Waterloo.",
   url: "https://kushalprajapati.me",
-  image: "/public/favicon.png",
   author: "Kushal Prajapati",
   keywords: [
     "Kushal Prajapati",
@@ -31,8 +30,6 @@ const siteInfo = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteInfo.url),
   ...siteInfo,
-
-  icons: [{ url: siteInfo.image, type: "image/png", sizes: "192x192" }],
 
   authors: [{ name: siteInfo.author, url: siteInfo.url }],
   verification: {

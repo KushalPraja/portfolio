@@ -237,6 +237,7 @@ export default function Projects() {
 
                     <p className={`text-xs font-md ${isDark ? "text-white/80" : "text-black/80"} leading-relaxed`}>
                       {project.description}
+                      
                     </p>
                   </div>
                 </div>

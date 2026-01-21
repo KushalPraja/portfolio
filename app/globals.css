@@ -61,7 +61,7 @@ html.light {
   position: absolute;
   left: 0;
   bottom: -0px;
-  height: 0.1px;
+  height: 0.3px;
   width: 100%;
   background-color: currentColor;
   transform: scaleX(1);
@@ -74,8 +74,8 @@ html.light {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0px;
-  height: 0.3px;
+  bottom: -0.5px;
+  height: 0.5px;
   width: 100%;
   background-color: currentColor;
   opacity: 0;
@@ -151,6 +151,6 @@ html.light {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium;
   }
 }

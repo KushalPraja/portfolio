@@ -33,7 +33,7 @@ export default function Writing() {
             {/* Header */}
             <header className="flex items-center justify-between mb-16">
                 <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>
-                    <Link href="/">Kushal Praja</Link>
+                    <Link href="/">kushal praja</Link>
                 </h1>
                 <div className="flex items-center gap-6">
                     <nav className={`flex items-center gap-6 text-sm`}>

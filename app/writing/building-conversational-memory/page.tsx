@@ -16,9 +16,9 @@ export default function ConversationalMemory() {
             {/* Header */}
             <header className="flex items-center justify-between mb-12">
                 <nav className={`flex items-center gap-2 text-sm`}>
-                    <Link href="/" className={`${textPrimary} underline underline-offset-2`}>Kushal Praja</Link>
+                    <Link href="/" className={`${textPrimary} underline underline-offset-2`}>kushal praja</Link>
                     <span className={textMuted}>/</span>
-                    <Link href="/writing" className={`${textPrimary} underline underline-offset-2`}>Writing</Link>
+                    <Link href="/writing" className={`${textPrimary} underline underline-offset-2`}>writing</Link>
                 </nav>
                 <button
                     onClick={toggleTheme}
@@ -95,7 +95,7 @@ export default function ConversationalMemory() {
 
                     <p className={`text-sm md:text-base leading-relaxed ${textSecondary} mb-6`}>
                         The naive approach is to embed each message individually. But support conversations have structure: questions reference previous answers, issues span multiple messages, solutions build incrementally. Breaking these into atomic messages loses critical context.
-                    </p>    
+                    </p>
                     <p className={`text-sm md:text-base leading-relaxed ${textSecondary} mb-6`}>
                         Instead, I chunk by conversation turns with semantic boundaries:
                     </p>

@@ -72,7 +72,7 @@ export default function Home() {
     <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
       {/* Header */}
       <header className="flex items-center justify-between mb-16">
-        <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>Kushal Praja</h1>
+        <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>kushal praja</h1>
         <div className="flex items-center gap-6">
           <nav className={`flex items-center gap-6 text-sm`}>
             <Link href="/writing" className={`${textPrimary} animate-underline`}>Writing</Link>

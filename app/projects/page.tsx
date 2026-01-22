@@ -4,7 +4,6 @@ import { FiArrowLeft, FiExternalLink, FiGithub, FiMoon, FiSun, FiCode, FiX } fro
 import { useTheme } from "@/lib/theme-context";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import CommandPalette from "@/components/CommandPalette";
 
 interface Project {
   title: string;
@@ -98,18 +97,12 @@ const projects: Project[] = [
 
 export default function Projects() {
   const { isDark, toggleTheme } = useTheme();
-  const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Command palette keyboard shortcut (Ctrl+Q)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "q") {
-        e.preventDefault();
-        setIsCommandOpen((prev) => !prev);
-      }
       if (e.key === "Escape") {
-        setIsCommandOpen(false);
         setSelectedProject(null);
       }
     };
@@ -125,7 +118,6 @@ export default function Projects() {
       description: isDark ? "switch to light mode" : "switch to dark mode",
       action: () => {
         toggleTheme();
-        setIsCommandOpen(false);
       },
       icon: isDark ? FiSun : FiMoon,
     },
@@ -141,8 +133,6 @@ export default function Projects() {
   return (
     <div>
       <div className="relative min-h-screen overflow-y-auto">
-        {/* Command Palette (shared component) */}
-        <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} menuItems={menuItems} />
 
         <section className="min-h-screen px-4 py-12 md:px-8">
           <div className="max-w-5xl mx-auto">
@@ -237,7 +227,7 @@ export default function Projects() {
 
                     <p className={`text-xs font-md ${isDark ? "text-white/80" : "text-black/80"} leading-relaxed`}>
                       {project.description}
-                      
+
                     </p>
                   </div>
                 </div>

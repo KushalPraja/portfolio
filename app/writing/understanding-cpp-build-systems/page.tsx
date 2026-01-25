@@ -14,8 +14,7 @@ export default function BuildSystemsPost() {
 
     return (
         <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-3xl mx-auto">
-            {/* Header */}
-            <header className="mb-12">
+            <div className="mb-12">
                 <Link href="/writing" className={`text-sm ${textMuted} hover:${textSecondary} underline underline-offset-2`}>
                     ← Back to writing
                 </Link>
@@ -27,7 +26,7 @@ export default function BuildSystemsPost() {
                     <span className="mx-2">•</span>
                     <span>12 min read</span>
                 </div>
-            </header>
+            </div>
 
             {/* Content */}
             <article className={`prose prose-invert max-w-none ${textSecondary} leading-relaxed space-y-6`}>

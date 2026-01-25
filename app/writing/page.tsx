@@ -3,6 +3,7 @@
 import { useTheme } from "@/lib/theme-context";
 import Link from "next/link";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 import { getPosts } from "@/lib/posts";
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ interface BlogPost {
 }
 
 export default function Writing() {
-    const { isDark, toggleTheme } = useTheme();
+    const { isDark } = useTheme();
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 10;
 
@@ -28,33 +29,7 @@ export default function Writing() {
 
     return (
         <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
-            {/* Header */}
-            <header className="flex items-center justify-between mb-16">
-                <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>
-                    <Link href="/">kushal praja</Link>
-                </h1>
-                <div className="flex items-center gap-6">
-                    <nav className={`flex items-center gap-6 text-sm`}>
-                        <span aria-current="page" className={`${textPrimary} animate-underline underline underline-offset-2`}>Writing</span>
-                    </nav>
-                    <button
-                        onClick={toggleTheme}
-                        className={`w-8 h-8 flex items-center justify-center rounded-full border ${border} ${textSecondary} ${isDark ? 'hover:bg-white/6 hover:text-white' : 'hover:bg-black/6 hover:text-black'}`}
-                        aria-label="Toggle theme"
-                    >
-                        {isDark ? (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <circle cx="12" cy="12" r="5" />
-                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                            </svg>
-                        ) : (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-                            </svg>
-                        )}
-                    </button>
-                </div>
-            </header>
+            <Header currentPage="writing" />
 
             {/* Posts */}
             <section className="space-y-8">
@@ -83,8 +58,8 @@ export default function Writing() {
                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                         disabled={currentPage === 1}
                         className={`px-3 py-1 text-sm rounded ${currentPage === 1
-                                ? `${textMuted} cursor-not-allowed opacity-50`
-                                : `${textSecondary} hover:${textPrimary}`
+                            ? `${textMuted} cursor-not-allowed opacity-50`
+                            : `${textSecondary} hover:${textPrimary}`
                             }`}
                     >
                         ← Previous
@@ -96,8 +71,8 @@ export default function Writing() {
                         onClick={() => setCurrentPage(p => Math.min(pages, p + 1))}
                         disabled={currentPage === pages}
                         className={`px-3 py-1 text-sm rounded ${currentPage === pages
-                                ? `${textMuted} cursor-not-allowed opacity-50`
-                                : `${textSecondary} hover:${textPrimary}`
+                            ? `${textMuted} cursor-not-allowed opacity-50`
+                            : `${textSecondary} hover:${textPrimary}`
                             }`}
                     >
                         Next →

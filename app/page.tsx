@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
+import Footer from "@/components/footer";
+import { getFeaturedPost } from "@/lib/posts";
 
 interface Project {
   title: string;
@@ -62,6 +64,7 @@ const projects: Project[] = [
 
 export default function Home() {
   const { isDark, toggleTheme } = useTheme();
+  const featuredPost = getFeaturedPost();
 
   const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
   const textSecondary = isDark ? "text-white/60" : "text-[#0a0a0a]/60";
@@ -72,7 +75,7 @@ export default function Home() {
     <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
       {/* Header */}
       <header className="flex items-center justify-between mb-16">
-        <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>kushal praja</h1>
+        <h1 className={`text-xl md:text-2xl lg:text-3xl font-medium ${textPrimary}`}>Kushal Praja</h1>
         <div className="flex items-center gap-6">
           <nav className={`flex items-center gap-6 text-sm`}>
             <Link href="/writing" className={`${textPrimary} animate-underline`}>Writing</Link>
@@ -196,21 +199,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className={`pt-8 border-t ${border}`}>
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className={`flex flex-wrap gap-x-6 gap-y-2 text-xs ${textMuted}`}>
-            <a href="mailto:k2prajap@uwaterloo.ca" className="underline underline-offset-2">Email</a>
-            <a href="https://github.com/KushalPraja" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">GitHub</a>
-            <a href="https://www.linkedin.com/in/kushalpraja/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">LinkedIn</a>
-            <a href="https://x.com/KushalPraj" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Twitter</a>
-          </div>
+      {/* Featured Writing */}
+      <section className="mb-16">
+        <h2 className={`text-xs uppercase tracking-wide mb-6 ${textMuted}`}>Latest Posts</h2>
+        {featuredPost && (
+          <Link href={`/writing/${featuredPost.slug}`}>
+            <article className={`pb-6 group cursor-pointer`}>
+              <div className="flex items-baseline justify-between gap-4 mb-2">
+                <h3 className={`text-sm font-medium ${textPrimary} group-hover:underline underline-offset-2`}>
+                  {featuredPost.title}
+                </h3>
+                <div className={`flex items-center gap-3 text-xs ${textMuted} shrink-0`}>
+                  <span>{featuredPost.readTime}</span>
+                  <span>{featuredPost.date}</span>
+                </div>
+              </div>
+              <p className={`text-xs ${textSecondary} leading-relaxed`}>
+                {featuredPost.description}
+              </p>
+            </article>
+          </Link>
+        )}
+        <Link href="/writing" className={`text-xs ${textMuted} hover:${textPrimary} underline underline-offset-2`}>
+          View all writing →
+        </Link>
+      </section>
 
-          <div className={`text-xs ${textMuted}`}>
-            <span>© {new Date().getFullYear()} Kushal Prajapati</span>
-          </div>
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

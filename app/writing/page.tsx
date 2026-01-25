@@ -2,6 +2,10 @@
 
 import { useTheme } from "@/lib/theme-context";
 import Link from "next/link";
+import Footer from "@/components/footer";
+import { getPosts } from "@/lib/posts";
+import { useState } from "react";
+
 interface BlogPost {
     slug: string;
     title: string;
@@ -10,18 +14,12 @@ interface BlogPost {
     readTime: string;
 }
 
-const blogPosts: BlogPost[] = [
-    {
-        slug: "building-conversational-memory",
-        title: "Building Conversational Memory for AI Agents",
-        description: "How I built Persona's vectorized memory system that lets AI support agents remember context across conversations. Exploring embeddings, chunking strategies, and the tradeoffs between accuracy and latency.",
-        date: "January 2025",
-        readTime: "8 min",
-    },
-];
-
 export default function Writing() {
     const { isDark, toggleTheme } = useTheme();
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 10;
+
+    const { posts: blogPosts, pages } = getPosts(currentPage, postsPerPage);
 
     const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
     const textSecondary = isDark ? "text-white/60" : "text-[#0a0a0a]/60";
@@ -78,21 +76,37 @@ export default function Writing() {
                 ))}
             </section>
 
-            {/* Footer */}
-            <footer className={`mt-16 pt-8 border-t ${border}`}>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className={`flex flex-wrap gap-x-6 gap-y-2 text-xs ${textMuted}`}>
-                        <a href="mailto:k2prajap@uwaterloo.ca" className="underline underline-offset-2">Email</a>
-                        <a href="https://github.com/KushalPraja" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">GitHub</a>
-                        <a href="https://www.linkedin.com/in/kushalpraja/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">LinkedIn</a>
-                        <a href="https://x.com/KushalPraj" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Twitter</a>
-                    </div>
-
-                    <div className={`text-xs ${textMuted}`}>
-                        <span>© {new Date().getFullYear()} Kushal Prajapati</span>
-                    </div>
+            {/* Pagination */}
+            {pages > 1 && (
+                <div className={`mt-12 flex items-center justify-center gap-4 pt-8 border-t ${border}`}>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        className={`px-3 py-1 text-sm rounded ${currentPage === 1
+                                ? `${textMuted} cursor-not-allowed opacity-50`
+                                : `${textSecondary} hover:${textPrimary}`
+                            }`}
+                    >
+                        ← Previous
+                    </button>
+                    <span className={`text-sm ${textMuted}`}>
+                        Page {currentPage} of {pages}
+                    </span>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(pages, p + 1))}
+                        disabled={currentPage === pages}
+                        className={`px-3 py-1 text-sm rounded ${currentPage === pages
+                                ? `${textMuted} cursor-not-allowed opacity-50`
+                                : `${textSecondary} hover:${textPrimary}`
+                            }`}
+                    >
+                        Next →
+                    </button>
                 </div>
-            </footer>
+            )}
+
+            {/* Footer */}
+            <Footer />
         </main>
     );
 }

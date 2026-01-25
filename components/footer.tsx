@@ -1,7 +1,9 @@
 "use client";
 
 import { useTheme } from "@/lib/theme-context";
-import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
     const { isDark } = useTheme();
@@ -11,14 +13,14 @@ export default function Footer() {
 
     return (
         <footer className={`mt-16 pt-8 border-t ${border}`}>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="flex flex-row items-center justify-between gap-6">
                 <div className={`flex gap-4 ${textMuted}`}>
                     <a
                         href="mailto:k2prajap@uwaterloo.ca"
                         className="group"
                         aria-label="Email"
                     >
-                        <Mail size={18} className="group-hover:scale-110 transition-transform duration-200" />
+                        <FontAwesomeIcon icon={faEnvelope} size="1x" className="group-hover:scale-110 transition-transform duration-200" />
                     </a>
                     <a
                         href="https://github.com/KushalPraja"
@@ -27,7 +29,7 @@ export default function Footer() {
                         className="group"
                         aria-label="GitHub"
                     >
-                        <Github size={18} className="group-hover:scale-110 transition-transform duration-200" />
+                        <FontAwesomeIcon icon={faGithub} size="1x" className="group-hover:scale-110 transition-transform duration-200" />
                     </a>
                     <a
                         href="https://www.linkedin.com/in/kushalpraja/"
@@ -36,7 +38,7 @@ export default function Footer() {
                         className="group"
                         aria-label="LinkedIn"
                     >
-                        <Linkedin size={18} className="group-hover:scale-110 transition-transform duration-200" />
+                        <FontAwesomeIcon icon={faLinkedin} size="1x" className="group-hover:scale-110 transition-transform duration-200" />
                     </a>
                     <a
                         href="https://x.com/KushalPraj"
@@ -45,7 +47,7 @@ export default function Footer() {
                         className="group"
                         aria-label="Twitter"
                     >
-                        <Twitter size={18} className="group-hover:scale-110 transition-transform duration-200" />
+                        <FontAwesomeIcon icon={faXTwitter} size="1x" className="group-hover:scale-110 transition-transform duration-200" />
                     </a>
                 </div>
 

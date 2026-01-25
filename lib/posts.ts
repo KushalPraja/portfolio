@@ -9,7 +9,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
     {
         slug: "understanding-cpp-build-systems",
-        title: "i finally understood c++ build systems (after being confused for way too long)",
+        title: "I finally understood C++ build systems (after being confused for way too long)",
         description: "taking apart the layers of build systems and how they work together to build c++ projects",
         date: "January 2026",
         readTime: "6 min",

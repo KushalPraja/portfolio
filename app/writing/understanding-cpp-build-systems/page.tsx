@@ -31,11 +31,11 @@ export default function BuildSystemsPost() {
             {/* Content */}
             <article className={`prose prose-invert max-w-none ${textSecondary} leading-relaxed space-y-6`}>
                 <p>
-                    For a long time, C++ build systems felt like magic in the worst way.
+                    For a long time, I avoided C++ build systems, or at least tried to keep my interaction with them to a minimum.
                 </p>
 
                 <p>
-                    Things worked sometimes, and when they didn't, the errors felt completely disconnected from what I had actually written. I knew how to write C++, but the moment build tools were involved—Visual Studio, CMake, Ninja, MSBuild—I felt like I was missing something fundamental.
+                    Things worked sometimes, and when they didn't, the errors felt completely disconnected from what I had actually written. I knew how to write C++, but the moment build tools were involved (CMake, Ninja, MSBuild),  I felt lost in the technical jargon.
                 </p>
 
                 <p>

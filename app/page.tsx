@@ -46,7 +46,7 @@ const projects: Project[] = [
   },
   {
     title: "Branches",
-    description: "Minimalist link-in-bio tool.",
+    description: "A simple and easy to use link-in-bio website builder.",
     link: "https://ashy-ground-0a637de0f.6.azurestaticapps.net/#demo",
     github: "https://github.com/KushalPraja/Branches",
     video: "/projects/branches.thumb.mp4",
@@ -55,7 +55,7 @@ const projects: Project[] = [
   },
   {
     title: "SoundWave",
-    description: "Real-time audio visualization.",
+    description: "Audio visualizer based on the cover art of Unknown Pleasures album.",
     github: "https://github.com/KushalPraja/SoundWave",
     video: "/projects/soundwave.thumb.mp4",
     poster: "/projects/soundwave.poster.jpg",
@@ -79,7 +79,8 @@ export default function Home() {
       {/* Intro */}
       <section className="mb-16">
         <p className={`text-sm md:text-base leading-relaxed ${textPrimary} max-w-xl`}>
-          Computer Engineering student at the University of Waterloo and software engineering intern at{" "}
+          Hey there! I'm Kushal, a Computer Engineering student @ University of Waterloo.
+          I am currently interning as a software engineer at{" "}
           <a
             href="https://kaimaging.com/"
             target="_blank"
@@ -88,7 +89,7 @@ export default function Home() {
           >
             KA Imaging
           </a>
-          , working on image processing pipelines and C++ software development. Currently exploring graphics programming using OpenGL. Check out my projects on{" "}
+          , working on building image processing pipelines for medical imaging systems. Also exploring graphics programming using OpenGL in my free time. Feel free to check out my projects on{" "}
           <a
             href="https://github.com/KushalPraja"
             target="_blank"

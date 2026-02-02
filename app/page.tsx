@@ -79,7 +79,8 @@ export default function Home() {
       {/* Intro */}
       <section className="mb-16">
         <p className={`text-sm md:text-base leading-relaxed ${textPrimary} max-w-xl`}>
-          Hey there! I'm Kushal, a Computer Engineering student @ University of Waterloo.
+          Hello! I'm <span className="font-semibold">Kushal</span>, a Computer Engineering student @ UWaterloo.
+          <br></br>
           I am currently interning as a software engineer at{" "}
           <a
             href="https://kaimaging.com/"
@@ -89,14 +90,25 @@ export default function Home() {
           >
             KA Imaging
           </a>
-          , working on building image processing pipelines for medical imaging systems. Also exploring graphics programming using OpenGL in my free time. Feel free to check out my projects on{" "}
+          , working on building image processing pipelines for X-Ray scanning systems.
+          <br></br>
+          In my free time, I've been exploring {""}
           <a
-            href="https://github.com/KushalPraja"
+            href="https://github.com/KushalPraja/pyrender3d"
             target="_blank"
             rel="noopener noreferrer"
             className="animate-underline"
           >
-            GitHub
+            3D rendering
+          </a>
+          {""} and playing a good amount of {""}
+          <a
+            href="https://op.gg/lol/summoners/na/link-NA69"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="animate-underline"
+          >
+            League of Legends
           </a>
           .
         </p>

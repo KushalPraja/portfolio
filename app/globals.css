@@ -7,8 +7,10 @@
 }
 
 html {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 html.dark {
@@ -36,13 +38,16 @@ html.light {
     transform: scaleX(0);
     transform-origin: left;
   }
+
   50% {
     transform: scaleX(1);
     transform-origin: left;
   }
+
   51% {
     transform-origin: right;
   }
+
   100% {
     transform: scaleX(0);
     transform-origin: right;
@@ -60,8 +65,8 @@ html.light {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0px;
-  height: 0.3px;
+  bottom: -0.3px;
+  height: 1px;
   width: 100%;
   background-color: currentColor;
   transform: scaleX(1);
@@ -74,8 +79,8 @@ html.light {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.5px;
-  height: 0.5px;
+  bottom: -0.3px;
+  height: 1px;
   width: 100%;
   background-color: currentColor;
   opacity: 0;
@@ -92,7 +97,8 @@ html.light {
 
 @layer base {
   :root {
-    --background: 0 0% 96%; /* Updated to match #f5f0f0 */
+    --background: 0 0% 96%;
+    /* Updated to match #f5f0f0 */
     --foreground: 0 0% 11%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -118,6 +124,7 @@ html.light {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 10%;
     --foreground: 0 0% 98%;
@@ -150,6 +157,7 @@ html.light {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-medium;
   }

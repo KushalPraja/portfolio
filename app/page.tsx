@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import { getFeaturedPost } from "@/lib/posts";
 
 interface Project {
   title: string;
@@ -65,12 +64,10 @@ const projects: Project[] = [
 
 export default function Home() {
   const { isDark } = useTheme();
-  const featuredPost = getFeaturedPost();
 
   const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
   const textSecondary = isDark ? "text-white/60" : "text-[#0a0a0a]/60";
   const textMuted = isDark ? "text-white/40" : "text-[#0a0a0a]/40";
-  const border = isDark ? "border-white/10" : "border-[#0a0a0a]/10";
 
   return (
     <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
@@ -112,8 +109,6 @@ export default function Home() {
           </a>
           .
         </p>
-
-
       </section>
 
       {/* Experience */}
@@ -187,32 +182,6 @@ export default function Home() {
             </a>
           ))}
         </div>
-      </section>
-
-      {/* Featured Writing */}
-      <section className="mb-16">
-        <h2 className={`text-xs uppercase tracking-wide mb-6 ${textMuted}`}>Latest Posts</h2>
-        {featuredPost && (
-          <Link href={`/writing/${featuredPost.slug}`}>
-            <article className={`pb-6 group cursor-pointer`}>
-              <div className="flex items-baseline justify-between gap-4 mb-2">
-                <h3 className={`text-sm font-medium ${textPrimary} group-hover:underline underline-offset-2`}>
-                  {featuredPost.title}
-                </h3>
-                <div className={`flex items-center gap-3 text-xs ${textMuted} shrink-0`}>
-                  <span>{featuredPost.readTime}</span>
-                  <span>{featuredPost.date}</span>
-                </div>
-              </div>
-              <p className={`text-xs ${textSecondary} leading-relaxed`}>
-                {featuredPost.description}
-              </p>
-            </article>
-          </Link>
-        )}
-        <Link href="/writing" className={`text-xs ${textMuted} hover:${textPrimary} underline underline-offset-2`}>
-          View all writing →
-        </Link>
       </section>
 
       {/* Footer */}

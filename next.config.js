@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['kushalprajapati.me'],
-  },
-  
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },

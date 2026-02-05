@@ -24,7 +24,7 @@ export default function PostContent({ title, date, readTime, content, tags }: Po
     const codeBg = isDark ? "bg-white/5" : "bg-black/5";
 
     return (
-        <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-3xl mx-auto">
+        <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
             <Header currentPage="post" />
 
             {/* Post Header */}

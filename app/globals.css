@@ -13,11 +13,13 @@ html {
   /* Firefox */
 }
 
-html.dark {
+html.dark,
+html.dark body {
   background-color: #1a1a1a;
 }
 
-html.light {
+html.light,
+html.light body {
   background-color: #efefef;
 }
 
@@ -155,10 +157,18 @@ html.light {
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: transparent;
+  }
+
+  html,
+  body {
+    height: 100%;
+    min-height: 100%;
   }
 
   body {
-    @apply bg-background text-foreground font-medium;
+    @apply text-foreground;
+    min-height: 100vh;
+    font-weight: 400;
   }
 }

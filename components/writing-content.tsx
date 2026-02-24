@@ -3,12 +3,12 @@
 // this component renders the writing page with a list of blog posts and pagination
 import { useTheme } from "@/lib/theme-context";
 import Link from "next/link";
-import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { useState } from "react";
 
 interface PostMeta {
-    slug: string; // the unique identifier for the post
+    slug: string;
     title: string;
     description: string;
     date: string;
@@ -27,30 +27,39 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
     const [pages] = useState(totalPages);
 
     const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
-    const textSecondary = isDark ? "text-white/60" : "text-[#0a0a0a]/60";
-    const textMuted = isDark ? "text-white/40" : "text-[#0a0a0a]/40";
-    const border = isDark ? "border-white/10" : "border-[#0a0a0a]/10";
+    const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/55";
+    const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/35";
 
     return (
-        <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
-            <Header currentPage="writing" />
+        <>
+        <Header />
+        <main className="min-h-screen px-6 pt-20 pb-12 max-w-xl mx-auto">
+            {/* Header */}
+            <div className="mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                    <Link href="/" className={`text-sm ${textMuted} hover:${textPrimary} transition-colors`} aria-label="Back">
+                        ‹
+                    </Link>
+                    <h1 className={`text-lg font-bold tracking-tight ${textPrimary}`}>Notes</h1>
+                </div>
+                <p className={`text-sm leading-relaxed ${textSecondary}`}>
+                    Welcome to my scratchpad. Expect many unfinished drafts and half-baked thoughts. It&#39;s kind of the point though I&#39;d say!
+                </p>
+            </div>
 
             {/* Posts */}
-            <section className="space-y-8">
+            <section className="space-y-2">
                 {blogPosts.map((post) => (
-                    // link to the individual post page
                     <Link key={post.slug} href={`/writing/${post.slug}`}>
-                        <article className={`pb-8 border-b ${border} last:border-0 group cursor-pointer`}>
-                            <div className="flex items-baseline justify-between gap-4 mb-2">
-                                <h2 className={`text-base font-medium ${textPrimary} group-hover:underline underline-offset-2`}>{post.title}</h2>
-                                <div className={`flex items-center gap-3 text-xs ${textMuted} shrink-0`}>
-                                    <span>{post.readTime}</span>
-                                    <span>{post.date}</span>
-                                </div>
+                        <article className="group cursor-pointer py-0.5">
+                            <div className="flex items-baseline justify-between gap-4">
+                                <h2 className={`text-[15px] font-normal leading-snug ${textPrimary} underline underline-offset-2 decoration-current/30`}>
+                                    {post.title}
+                                </h2>
+                                <p className={`text-sm ${textMuted} shrink-0 tabular-nums`}>
+                                    {post.date}
+                                </p>
                             </div>
-                            <p className={`text-sm ${textSecondary} leading-relaxed`}>
-                                {post.description}
-                            </p>
                         </article>
                     </Link>
                 ))}
@@ -58,35 +67,31 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
 
             {/* Pagination */}
             {pages > 1 && (
-                <div className={`mt-12 flex items-center justify-center gap-4 pt-8 border-t ${border}`}>
+                <div className={`mt-10 flex items-center justify-center gap-4 pt-6 border-t ${isDark ? "border-white/10" : "border-[#0a0a0a]/10"}`}>
                     <button
                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                         disabled={currentPage === 1}
-                        className={`px-3 py-1 text-sm rounded ${currentPage === 1
-                            ? `${textMuted} cursor-not-allowed opacity-50`
-                            : `${textSecondary} hover:${textPrimary}`
-                            }`}
+                        className={`text-sm ${currentPage === 1 ? `${textMuted} cursor-not-allowed opacity-50` : `${textSecondary}`}`}
                     >
-                        ← Previous
+                        ←
                     </button>
                     <span className={`text-sm ${textMuted}`}>
-                        Page {currentPage} of {pages}
+                        {currentPage} / {pages}
                     </span>
                     <button
                         onClick={() => setCurrentPage(p => Math.min(pages, p + 1))}
                         disabled={currentPage === pages}
-                        className={`px-3 py-1 text-sm rounded ${currentPage === pages
-                            ? `${textMuted} cursor-not-allowed opacity-50`
-                            : `${textSecondary} hover:${textPrimary}`
-                            }`}
+                        className={`text-sm ${currentPage === pages ? `${textMuted} cursor-not-allowed opacity-50` : `${textSecondary}`}`}
                     >
-                        Next →
+                        →
                     </button>
                 </div>
             )}
 
-            {/* Footer */}
-            <Footer />
+            <div className="mt-12">
+                <Footer />
+            </div>
         </main>
+        </>
     );
 }

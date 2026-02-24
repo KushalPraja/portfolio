@@ -9,72 +9,44 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Always start with dark mode as default
   const [isDark, setIsDark] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  const applyTheme = (nextIsDark: boolean) => {
+    const root = document.documentElement;
+    const bg = nextIsDark ? "#1a1a1a" : "#efefef";
 
-  // Load theme from localStorage after mounting
+    root.classList.remove("dark", "light");
+    root.classList.add(nextIsDark ? "dark" : "light");
+    root.style.colorScheme = nextIsDark ? "dark" : "light";
+    root.style.backgroundColor = bg;
+
+    if (document.body) {
+      document.body.style.backgroundColor = bg;
+    }
+  };
+
   useEffect(() => {
-    setMounted(true);
-
     try {
       const storedTheme = localStorage.getItem("theme");
-      if (storedTheme !== null) {
-        const newIsDark = storedTheme === "dark";
-        setIsDark(newIsDark);
+      const nextIsDark =
+        storedTheme === "dark" ||
+        (storedTheme === null && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-        // Immediately update the DOM
-        document.documentElement.classList.toggle("dark", newIsDark);
-        document.documentElement.classList.toggle("light", !newIsDark);
-      } else if (window.matchMedia) {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-        setIsDark(prefersDark.matches);
-        document.documentElement.classList.toggle("dark", prefersDark.matches);
-        document.documentElement.classList.toggle("light", !prefersDark.matches);
-
-        // Listen for system theme changes and update if user has not set a preference
-        const handleChange = (e: MediaQueryListEvent) => {
-          try {
-            if (localStorage.getItem("theme") === null) {
-              setIsDark(e.matches);
-              document.documentElement.classList.toggle("dark", e.matches);
-              document.documentElement.classList.toggle("light", !e.matches);
-            }
-          } catch (err) {
-            console.error("Error handling prefers-color-scheme change:", err);
-          }
-        };
-
-        // modern browsers support addEventListener on MediaQueryList
-        prefersDark.addEventListener("change", handleChange);
-
-        // cleanup will remove listener below
-      } else {
-        // Fallback: default to dark
-        document.documentElement.classList.add("dark");
-        document.documentElement.classList.remove("light");
-      }
-    } catch (error) {
-      console.error("Failed to read theme:", error);
-      // On error, ensure dark mode
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
+      setIsDark(nextIsDark);
+      applyTheme(nextIsDark);
+    } catch {
+      setIsDark(true);
+      applyTheme(true);
     }
   }, []);
 
-  // Update DOM and localStorage when theme changes
   useEffect(() => {
-    if (!mounted) return;
-
-    document.documentElement.classList.toggle("dark", isDark);
-    document.documentElement.classList.toggle("light", !isDark);
-
+    applyTheme(isDark);
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch (error) {
-      console.error("Failed to save theme:", error);
+    } catch {
+      // no-op
     }
-  }, [isDark, mounted]);
+  }, [isDark]);
 
   const toggleTheme = () => {
     setIsDark((prev) => !prev);

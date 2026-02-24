@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { useTheme } from "@/lib/theme-context";
-import Footer from "@/components/footer";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import ReactMarkdown from "react-markdown";
 
 interface PostContentProps {
@@ -15,53 +15,43 @@ interface PostContentProps {
     tags?: string[];
 }
 
-export default function PostContent({ title, date, readTime, content, tags }: PostContentProps) {
+export default function PostContent({ title, date, content }: PostContentProps) {
     const { isDark } = useTheme();
 
     const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
-    const textSecondary = isDark ? "text-white/60" : "text-[#0a0a0a]/60";
-    const textMuted = isDark ? "text-white/40" : "text-[#0a0a0a]/40";
+    const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/55";
+    const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/35";
     const codeBg = isDark ? "bg-white/5" : "bg-black/5";
 
     return (
-        <main className="min-h-screen px-6 py-12 md:px-12 lg:px-24 max-w-5xl mx-auto">
-            <Header currentPage="post" />
+        <>
+        <Header />
+        <main className="min-h-screen px-6 pt-20 pb-12 max-w-xl mx-auto">
 
-            {/* Post Header */}
-            <div className="mb-12">
-                <Link href="/writing" className={`text-sm ${textMuted} underline underline-offset-2`}>
-                    ← Back to writing
-                </Link>
-                <h1 className={`text-2xl md:text-3xl font-medium ${textPrimary} mt-6 mb-3`}>{title}</h1>
-                <div className={`flex items-center gap-4 text-sm ${textMuted}`}>
-                    <span>{date}</span>
-                    <span>•</span>
-                    <span>{readTime} read</span>
+            {/* Back arrow + Title */}
+            <div className="mb-10">
+                <div className="flex items-center gap-2 mb-1">
+                    <Link href="/writing" className={`text-sm ${textMuted} hover:${textPrimary} transition-colors`} aria-label="Back">
+                        ‹
+                    </Link>
+                    <h1 className={`text-lg font-bold tracking-tight ${textPrimary}`}>{title}</h1>
                 </div>
-                {tags && tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-4">
-                        {tags.map((tag) => (
-                            <span key={tag} className={`px-2 py-1 text-xs rounded ${codeBg} ${textSecondary}`}>
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-                )}
+                <p className={`text-sm ${textMuted}`}>{date}</p>
             </div>
 
             {/* Post Content */}
-            <article className={`${textSecondary} leading-relaxed space-y-6`}>
+            <article className={`${textSecondary} leading-relaxed space-y-5 text-[15px]`}>
                 <ReactMarkdown
                     components={{
-                        h1: ({ children }) => <h1 className={`text-2xl font-medium ${textPrimary} mt-10 mb-4`}>{children}</h1>,
-                        h2: ({ children }) => <h2 className={`text-xl font-medium ${textPrimary} mt-10 mb-4`}>{children}</h2>,
-                        h3: ({ children }) => <h3 className={`text-lg font-medium ${textPrimary} mt-8 mb-3`}>{children}</h3>,
+                        h1: ({ children }) => <h1 className={`text-xl font-medium ${textPrimary} mt-8 mb-3`}>{children}</h1>,
+                        h2: ({ children }) => <h2 className={`text-lg font-medium ${textPrimary} mt-8 mb-3`}>{children}</h2>,
+                        h3: ({ children }) => <h3 className={`text-base font-medium ${textPrimary} mt-6 mb-2`}>{children}</h3>,
                         p: ({ children }) => <p className="mb-4">{children}</p>,
-                        ul: ({ children }) => <ul className="list-disc ml-6 mb-4 space-y-2">{children}</ul>,
-                        ol: ({ children }) => <ol className="list-decimal ml-6 mb-4 space-y-2">{children}</ol>,
+                        ul: ({ children }) => <ul className="list-disc ml-5 mb-4 space-y-1.5">{children}</ul>,
+                        ol: ({ children }) => <ol className="list-decimal ml-5 mb-4 space-y-1.5">{children}</ol>,
                         li: ({ children }) => <li>{children}</li>,
                         a: ({ href, children }) => (
-                            <a href={href} target="_blank" rel="noopener noreferrer" className={`${textPrimary} underline underline-offset-2`}>
+                            <a href={href} target="_blank" rel="noopener noreferrer" className={`${textPrimary} animate-underline`}>
                                 {children}
                             </a>
                         ),
@@ -75,11 +65,11 @@ export default function PostContent({ title, date, readTime, content, tags }: Po
                         },
                         pre: ({ children }) => <pre className="mb-4">{children}</pre>,
                         blockquote: ({ children }) => (
-                            <blockquote className={`border-l-2 ${isDark ? "border-white/20" : "border-black/20"} pl-4 italic ${textMuted}`}>
+                            <blockquote className={`border-l-2 ${isDark ? "border-white/15" : "border-black/15"} pl-4 italic ${textMuted}`}>
                                 {children}
                             </blockquote>
                         ),
-                        hr: () => <hr className={`my-8 ${isDark ? "border-white/10" : "border-black/10"}`} />,
+                        hr: () => <hr className={`my-6 ${isDark ? "border-white/10" : "border-black/10"}`} />,
                         strong: ({ children }) => <strong className={`font-semibold ${textPrimary}`}>{children}</strong>,
                         img: ({ src, alt }) => {
                             if (!src) return null;
@@ -88,28 +78,16 @@ export default function PostContent({ title, date, readTime, content, tags }: Po
                             if (isVideo) {
                                 return (
                                     <span className="block my-6">
-                                        <video
-                                            src={src}
-                                            controls
-                                            className="w-full rounded-lg"
-                                            preload="metadata"
-                                        >
+                                        <video src={src} controls className="w-full rounded-lg" preload="metadata">
                                             {alt && alt}
                                         </video>
-                                        {alt && <span className={`block text-sm ${textMuted} mt-2 text-center italic`}>{alt}</span>}
                                     </span>
                                 );
                             }
                             
-                            // Regular image
                             return (
                                 <span className="block my-6">
-                                    <img
-                                        src={src}
-                                        alt={alt || ""}
-                                        className="w-full rounded-lg shadow-sm"
-                                    />
-                                    {alt && <span className={`block text-sm ${textMuted} mt-2 text-center italic`}>{alt}</span>}
+                                    <img src={src} alt={alt || ""} className="w-full rounded-lg" />
                                 </span>
                             );
                         },
@@ -119,7 +97,10 @@ export default function PostContent({ title, date, readTime, content, tags }: Po
                 </ReactMarkdown>
             </article>
 
-            <Footer />
+            <div className="mt-12">
+                <Footer />
+            </div>
         </main>
+        </>
     );
 }

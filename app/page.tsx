@@ -41,7 +41,7 @@ export default function Home() {
 
             {/* Name */}
             <h1 className={`text-xl font-medium tracking-tight ${textPrimary}`}>
-              Kushal Prajapati
+              kushal praja
             </h1>
           </div>
 
@@ -57,25 +57,24 @@ export default function Home() {
               KA Imaging
             </a>
             , building image processing pipelines for X-Ray scanning systems.
-            I&apos;m based in Waterloo, studying Computer Engineering.
+            I&apos;m based in Waterloo, studying Computer Engineering @ UWaterloo.
           </p>
 
           {/* Projects */}
           <div>
             <p className={`text-[15px] leading-relaxed mb-3 ${textPrimary}`}>A few projects I&apos;ve worked on:</p>
-            <ul className="space-y-1.5">
+            <div className="space-y-1.5">
               {projects.map((p) => (
-                <li key={p.title} className="flex items-baseline gap-2">
-                  <span className={`${textMuted}`}>•</span>
+                <div key={p.title} className="flex items-baseline gap-2">
                   <span className={`text-[15px] ${textPrimary}`}>
                     <a href={p.link} target="_blank" rel="noopener noreferrer" className="animate-underline">
                       {p.title}
                     </a>
                     <span className={`${textSecondary}`}> - {p.description}</span>
                   </span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Footer */}

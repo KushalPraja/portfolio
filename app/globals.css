@@ -172,3 +172,19 @@ html.light body {
     font-weight: 400;
   }
 }
+
+/* slide-down animation used for header icon on theme toggle */
+@keyframes slide-down {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.25s ease-out;
+}

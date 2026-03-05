@@ -30,7 +30,7 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
     const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
     const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/55";
     const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/35";
-    const articleHover = isDark ? "hover:bg-white/5" : "hover:bg-gray-100";
+    const articleHover = isDark ? "hover:bg-white/5" : "hover:bg-black/5";
 
     return (
         <>

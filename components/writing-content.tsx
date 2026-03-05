@@ -30,6 +30,7 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
     const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
     const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/55";
     const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/35";
+    const articleHover = isDark ? "hover:bg-white/5" : "hover:bg-gray-100";
 
     return (
         <>
@@ -48,7 +49,7 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
                         <h1 className={`text-lg font-bold tracking-tight ${textPrimary}`}>Writing</h1>
                     </div>
                     <p className={`text-sm leading-relaxed ${textSecondary}`}>
-                        A messy collection of thoughts, ideas, and interesting things I've come across.
+                        A place where I document my projects, experiments, and the skills I’m building.
                     </p>
                 </div>
 
@@ -56,9 +57,9 @@ export default function WritingContent({ initialPosts, totalPages }: WritingCont
                 <section className="space-y-2">
                     {blogPosts.map((post) => (
                         <Link key={post.slug} href={`/writing/${post.slug}`}>
-                        <article className="group cursor-pointer py-0.5">
-                                <div className="flex items-baseline justify-between gap-4">
-                                    <h2 className={`text-[15px] font-normal leading-snug ${textPrimary} underline underline-offset-2 decoration-current/30`}>
+                        <article className={`group cursor-pointer py-1 mt-2 rounded-sm transition-colors ${articleHover}`}>
+                                <div className="flex items-baseline justify-between gap-4 px-3">
+                                    <h2 className={`text-[15px] font-normal leading-snug ${textPrimary} transition-colors` }>
                                         {post.title}
                                     </h2>
                                     <p className={`text-sm ${textMuted} shrink-0 tabular-nums`}>

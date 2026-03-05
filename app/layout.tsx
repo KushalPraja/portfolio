@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { Roboto} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/lib/theme-context";
 
-
-const roboto = Roboto({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-roboto",
-  weight: ["400", "500", "700"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 const siteInfo = {
@@ -71,7 +69,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${GeistSans.className} ${roboto.variable} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         {/*
           All three Google fonts are loaded; to test, open your inspector
           and adjust the `font-family` property on the `html` or `body` element:

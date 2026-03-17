@@ -7,18 +7,19 @@ import FloatingKnot from "@/components/particles";
 
 const projects = [
   {
-    title: "Persona",
-    description: "AI customer support with conversational memory",
-    link: "https://persona-eight-gamma.vercel.app/",
+    title: "Rendr",
+    description: "Build CAD models with natural language.",
+    link: "https://devpost.com/software/rendr"
+
   },
   {
     title: "GreenLens",
-    description: "Product sustainability scanner. 1st at GenAI Genesis",
+    description: "Product sustainability scanner. 1st at GenAI Genesis.",
     link: "https://devpost.com/software/greenlens",
   },
   {
     title: "Thorem",
-    description: "Handwritten math to LaTeX converter",
+    description: "Handwritten math to LaTeX converter.",
     link: "https://www.youtube.com/watch?v=r2F_8a4ttiY",
   },
 ];

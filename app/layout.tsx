@@ -71,16 +71,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        {/*
-          All three Google fonts are loaded; to test, open your inspector
-          and adjust the `font-family` property on the `html` or `body` element:
-
-            font-family: var(--font-sora), system-ui, sans-serif;
-            font-family: var(--font-poppins), system-ui, sans-serif;
-            font-family: var(--font-jost), system-ui, sans-serif;
-
-          Once you settle on one, remove the unused imports/variables above.
-        */}
         <ThemeProvider>
           <Background />
           {children}

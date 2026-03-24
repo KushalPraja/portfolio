@@ -4,6 +4,7 @@ import { useTheme } from "@/lib/theme-context";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import FloatingKnot from "@/components/particles";
+import TextScramble from "@/components/text-scramble";
 
 const projects = [
   {
@@ -41,9 +42,10 @@ export default function Home() {
             <FloatingKnot className="mb-3" />
 
             {/* Name */}
-            <h1 className={`text-xl font-medium tracking-tight ${textPrimary}`}>
-              kushal praja
-            </h1>
+            <TextScramble
+              text="kushal praja"
+              className={`text-xl font-medium tracking-tight ${textPrimary}`}
+            />
           </div>
 
           {/* Bio */}

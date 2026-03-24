@@ -12,16 +12,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(true);
   const applyTheme = (nextIsDark: boolean) => {
     const root = document.documentElement;
-    const bg = nextIsDark ? "#1a1a1a" : "#efefef";
 
     root.classList.remove("dark", "light");
     root.classList.add(nextIsDark ? "dark" : "light");
     root.style.colorScheme = nextIsDark ? "dark" : "light";
-    root.style.backgroundColor = bg;
-
-    if (document.body) {
-      document.body.style.backgroundColor = bg;
-    }
   };
 
   useEffect(() => {

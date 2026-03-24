@@ -15,12 +15,12 @@ html {
 
 html.dark,
 html.dark body {
-  background-color: #1a1a1a;
+  background-color: transparent;
 }
 
 html.light,
 html.light body {
-  background-color: #efefef;
+  background-color: transparent;
 }
 
 

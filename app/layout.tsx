@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/lib/theme-context";
+import Background from "@/components/background";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -80,7 +81,10 @@ export default function RootLayout({
 
           Once you settle on one, remove the unused imports/variables above.
         */}
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Background />
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

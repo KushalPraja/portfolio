@@ -6,7 +6,7 @@ import { useTheme } from "@/lib/theme-context";
 export default function Footer() {
     const { isDark } = useTheme();
 
-    const textSecondary = isDark ? "text-white/50" : "text-[#0a0a0a]/50";
+    const textSecondary = isDark ? "text-white/50" : "text-[#0a0a0a]/65";
     const linkHover = isDark ? "hover:text-white" : "hover:text-[#0a0a0a]";
 
     return (

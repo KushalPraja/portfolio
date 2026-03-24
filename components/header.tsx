@@ -1,16 +1,56 @@
 "use client";
 
 import { useTheme } from "@/lib/theme-context";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Header() {
     const { isDark, toggleTheme } = useTheme();
     const [anim, setAnim] = useState(false);
+    const btnRef = useRef<HTMLButtonElement>(null);
 
     const handleClick = () => {
+        const btn = btnRef.current;
+        if (!btn) {
+            toggleTheme();
+            return;
+        }
+
+        const rect = btn.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        // Radius needed to cover the entire screen from the button position
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+
+        // Use View Transitions API if available
+        if (document.startViewTransition) {
+            const transition = document.startViewTransition(() => {
+                toggleTheme();
+            });
+
+            transition.ready.then(() => {
+                document.documentElement.animate(
+                    {
+                        clipPath: [
+                            `circle(0px at ${x}px ${y}px)`,
+                            `circle(${endRadius}px at ${x}px ${y}px)`,
+                        ],
+                    },
+                    {
+                        duration: 800,
+                        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+                        pseudoElement: "::view-transition-new(root)",
+                    }
+                );
+            });
+        } else {
+            toggleTheme();
+        }
+
         setAnim(true);
-        toggleTheme();
-        // remove animation class after it finishes
         setTimeout(() => setAnim(false), 250);
     };
 
@@ -19,6 +59,7 @@ export default function Header() {
     return (
         <header className="fixed top-6 right-6 z-50">
             <button
+                ref={btnRef}
                 onClick={handleClick}
                 className={`w-8 h-8 flex items-center justify-center rounded-full border ${border} ${isDark ? "text-white hover:bg-white/6 hover:text-white" : "text-black hover:bg-black/6 hover:text-black"} transition-colors`}
                 aria-label="Toggle theme"

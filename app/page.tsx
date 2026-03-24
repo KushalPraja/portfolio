@@ -29,8 +29,8 @@ export default function Home() {
   const { isDark } = useTheme();
 
   const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
-  const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/55";
-  const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/35";
+  const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/70";
+  const textMuted = isDark ? "text-white/35" : "text-[#0a0a0a]/50";
 
   return (
     <>

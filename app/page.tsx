@@ -55,13 +55,31 @@ export default function Home() {
           </p>
 
           <p className={`text-[15px] leading-relaxed ${textPrimary}`}>
-            Currently, I&apos;m interning at{" "}
-            <a href="https://kaimaging.com/" target="_blank" rel="noopener noreferrer" className="animate-underline">
-              KA Imaging
-            </a>
-            , building image processing pipelines for X-Ray scanning systems.
             I&apos;m based in Waterloo, studying Computer Engineering @ UWaterloo.
           </p>
+
+          {/* Experience */}
+          <div>
+            <p className={`text-[15px] leading-relaxed mb-3 ${textPrimary}`}>Previously interned at:</p>
+            <div className="space-y-1.5">
+              <div className="flex items-baseline gap-2">
+                <span className={`text-[15px] ${textPrimary}`}>
+                  <a href="https://kaimaging.com/" target="_blank" rel="noopener noreferrer" className="animate-underline">
+                    KA Imaging
+                  </a>
+                  <span className={`${textSecondary}`}> - Image processing pipelines for X-Ray scanning systems.</span>
+                </span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className={`text-[15px] ${textPrimary}`}>
+                  <a href="https://levantalabs.com/" target="_blank" rel="noopener noreferrer" className="animate-underline">
+                    Levanta Labs
+                  </a>
+                  <span className={`${textSecondary}`}> - Custom AI and SaaS solutions for clients.</span>
+                </span>
+              </div>
+            </div>
+          </div>
 
           {/* Projects */}
           <div>

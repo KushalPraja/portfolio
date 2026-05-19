@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:/Users/kushp/code/portfolio/public/projects/\" && mv \"Rendr_ We built an agentic 3D design system that actually manufactures.mp4\" rendr.mp4 2>/dev/null; mv \"Introducing Persona  - Helpful Product Agents.mp4\" persona-demo.mp4 2>/dev/null; mv \"Thorem App Demo.mp4\" thorem-demo.mp4 2>/dev/null; mv \"RayLib ParticleSim.mp4\" particle_sim.mp4 2>/dev/null; mv \"raylib_game_of_life.mp4\" game_of_life.mp4 2>/dev/null; ls)"
+    ]
+  }
+}

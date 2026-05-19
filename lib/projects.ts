@@ -29,11 +29,11 @@ export const projects: Project[] = [
     type: "video",
   },
   {
-    title: "Kenesis",
-    description: "Control physical robots through natural hand gestures using AR glasses.",
-    link: "https://github.com/KushalPraja/kenesis",
-    preview: "/projects/kenesis.png",
-    type: "image",
+    title: "Game of Life",
+    description: "Conway's Game Of Life cellular automata in Raylib.",
+    link: "https://github.com/KushalPraja/raylib_game_of_life",
+    preview: "/projects/game_of_life.mp4",
+    type: "video",
   },
   {
     title: "Thorem",
@@ -64,11 +64,11 @@ export const projects: Project[] = [
     type: "video",
   },
   {
-    title: "Game of Life",
-    description: "Conway's Game Of Life cellular automata in Raylib.",
-    link: "https://github.com/KushalPraja/raylib_game_of_life",
-    preview: "/projects/game_of_life.mp4",
-    type: "video",
+    title: "Kenesis",
+    description: "Control physical robots through natural hand gestures using AR glasses.",
+    link: "https://github.com/KushalPraja/kenesis",
+    preview: "/projects/kenesis.png",
+    type: "image",
   },
   {
     title: "Soundwave",

@@ -8,63 +8,63 @@ import Footer from "@/components/footer";
 import FloatingKnot from "@/components/particles";
 import TextScramble from "@/components/text-scramble";
 
-const INITIAL = 6;
+const INITIAL = 4;
 
 export default function Home() {
   const { isDark } = useTheme();
   const [count, setCount] = useState(INITIAL);
 
-  const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
-  const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/70";
-  const textMuted = isDark ? "text-white/30" : "text-[#0a0a0a]/30";
-  const border = isDark ? "border-white/[0.08]" : "border-[#0a0a0a]/[0.08]";
-  const hoverBorder = isDark ? "hover:border-white/[0.16]" : "hover:border-[#0a0a0a]/[0.16]";
-  const previewBg = isDark ? "bg-white/[0.03]" : "bg-[#0a0a0a]/[0.03]";
+  const textPrimary = isDark ? "text-white/90" : "text-[#1a1a1a]";
+  const textSecondary = isDark ? "text-white/40" : "text-[#1a1a1a]/50";
+  const divider = isDark ? "border-white/[0.06]" : "border-[#1a1a1a]/[0.06]";
 
   const visible = projects.slice(0, count);
 
   return (
     <>
       <Header />
-      <main className="min-h-screen flex items-center justify-center px-6 py-24">
-        <div className="max-w-2xl w-full space-y-5">
-          <div className="space-y-2">
-            <FloatingKnot className="mb-2" />
+      <main className="min-h-screen flex items-center justify-center px-6 py-32">
+        <div className="max-w-2xl w-full space-y-10">
+          {/* Intro */}
+          <div className="space-y-6">
+            <FloatingKnot className="mb-4" />
             <TextScramble
               text="kushal praja"
-              className={`text-2xl font-medium tracking-tight ${textPrimary}`}
+              className={`text-2xl font-semibold tracking-tight ${textPrimary}`}
             />
+
+            <p className={`text-[15px] leading-[1.8] font-light ${textSecondary}`}>
+              I&apos;m interested in building software that interacts with the physical world, with a focus on 3D graphics, AI/ML, and distributed systems.
+            </p>
+
+            <p className={`text-[15px] leading-[1.8] font-light ${textSecondary}`}>
+              Based in Waterloo, studying Computer Engineering @ UWaterloo.
+              Previously interned at{" "}
+              <a href="https://kaimaging.com/" target="_blank" rel="noopener noreferrer" className={`${textPrimary} animate-underline`}>
+                KA Imaging
+              </a>
+              {" "}and{" "}
+              <a href="https://levantalabs.com/" target="_blank" rel="noopener noreferrer" className={`${textPrimary} animate-underline`}>
+                Levanta Labs
+              </a>.
+            </p>
           </div>
 
-          <p className={`text-base leading-relaxed ${textPrimary}`}>
-            I&apos;m interested in building software that interacts with the physical world, with a focus on 3D graphics, AI/ML, and distributed systems.
-          </p>
-
-          <p className={`text-base leading-relaxed ${textPrimary}`}>
-            I&apos;m based in Waterloo, studying Computer Engineering @ UWaterloo.
-            Previously interned at{" "}
-            <a href="https://kaimaging.com/" target="_blank" rel="noopener noreferrer" className={`${textSecondary} hover:${textPrimary} transition-colors duration-200`}>
-              KA Imaging
-            </a>
-            {" "}and{" "}
-            <a href="https://levantalabs.com/" target="_blank" rel="noopener noreferrer" className={`${textSecondary} hover:${textPrimary} transition-colors duration-200`}>
-              Levanta Labs
-            </a>.
-          </p>
+          {/* Divider */}
+          <div className={`border-t ${divider}`} />
 
           {/* Projects */}
-          <div>
-            <p className={`text-base leading-relaxed mb-3 ${textPrimary}`}>A few projects I&apos;ve worked on:</p>
-            <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-5">
               {visible.map((p) => (
                 <a
                   key={p.title}
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group block border ${border} ${hoverBorder} transition-all duration-200 overflow-hidden`}
+                  className="group block"
                 >
-                  <div className={`aspect-[16/9] ${previewBg} overflow-hidden`}>
+                  <div className="aspect-[16/9] overflow-hidden mb-3">
                     {p.type === "video" ? (
                       <video
                         src={p.preview}
@@ -72,25 +72,18 @@ export default function Home() {
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                       />
                     ) : (
                       <img
                         src={p.preview}
                         alt={p.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                       />
                     )}
                   </div>
-                  <div className="px-3 py-2.5">
-                    <div className="flex items-center justify-between">
-                      <h3 className={`text-sm font-medium ${textPrimary}`}>{p.title}</h3>
-                      <svg className={`w-3 h-3 ${textMuted} group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                      </svg>
-                    </div>
-                    <p className={`text-[13px] mt-1 leading-relaxed ${textSecondary}`}>{p.description}</p>
-                  </div>
+                  <h3 className={`text-[13px] font-medium tracking-wide uppercase ${textPrimary}`}>{p.title}</h3>
+                  <p className={`text-[12px] mt-1 leading-relaxed font-light ${textSecondary}`}>{p.description}</p>
                 </a>
               ))}
             </div>
@@ -98,20 +91,23 @@ export default function Home() {
             {count < projects.length && (
               <button
                 onClick={() => setCount(projects.length)}
-                className={`mt-4 text-sm ${textSecondary} transition-colors cursor-pointer animate-underline`}
+                className={`text-[12px] tracking-wide uppercase font-light ${textSecondary} hover:${textPrimary} transition-colors cursor-pointer`}
               >
-                Show {projects.length - count} more projects
+                + {projects.length - count} more
               </button>
             )}
             {count > INITIAL && (
               <button
                 onClick={() => setCount(INITIAL)}
-                className={`mt-4 text-sm ${textSecondary} transition-colors cursor-pointer animate-underline`}
+                className={`text-[12px] tracking-wide uppercase font-light ${textSecondary} hover:${textPrimary} transition-colors cursor-pointer`}
               >
                 Show less
               </button>
             )}
           </div>
+
+          {/* Divider */}
+          <div className={`border-t ${divider}`} />
 
           <Footer />
         </div>

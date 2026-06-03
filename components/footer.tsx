@@ -6,14 +6,14 @@ import { useTheme } from "@/lib/theme-context";
 export default function Footer() {
     const { isDark } = useTheme();
 
-    const textSecondary = isDark ? "text-white/30" : "text-[#1a1a1a]/40";
-    const linkHover = isDark ? "hover:text-white/70" : "hover:text-[#1a1a1a]/80";
+    const textSecondary = isDark ? "text-white/30" : "text-[#0a0a0a]/65";
+    const linkHover = isDark ? "hover:text-sky-400" : "hover:text-blue-500";
 
     return (
-        <footer className={`flex gap-6 text-[12px] tracking-wide uppercase font-light ${textSecondary}`}>
-            <Link href="/writing" className={`${linkHover} transition-colors duration-300`}>Writing</Link>
-            <a href="https://x.com/KushalPraj" target="_blank" rel="noopener noreferrer" className={`${linkHover} transition-colors duration-300`}>Twitter</a>
-            <a href="https://github.com/KushalPraja" target="_blank" rel="noopener noreferrer" className={`${linkHover} transition-colors duration-300`}>GitHub</a>
+        <footer className={`flex gap-4 text-[15px] pt-4 ${textSecondary}`}>
+            <Link href="/writing" className={`animate-underline ${linkHover} transition-colors`}>Writing</Link>
+            <a href="https://x.com/KushalPraj" target="_blank" rel="noopener noreferrer" className={`animate-underline ${linkHover} transition-colors`}>Twitter</a>
+            <a href="https://github.com/KushalPraja" target="_blank" rel="noopener noreferrer" className={`animate-underline ${linkHover} transition-colors`}>GitHub</a>
         </footer>
     );
 }

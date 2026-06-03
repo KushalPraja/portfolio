@@ -10,12 +10,12 @@ export default function Background() {
       <div
         className="fixed inset-0 -z-10"
         style={{
-          backgroundColor: isDark ? "#1c1c1c" : "#f2f0ed",
+          backgroundColor: isDark ? "#141414" : "#f5f5f3",
         }}
       />
       {/* Grain overlay */}
       <div className="fixed inset-0 -z-[5] pointer-events-none">
-        <svg className="w-full h-full opacity-[0.03]">
+        <svg className="w-full h-full opacity-[0.025]">
           <filter id="grain">
             <feTurbulence
               type="fractalNoise"

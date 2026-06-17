@@ -17,10 +17,10 @@ export default function Home() {
   const textPrimary = isDark ? "text-white" : "text-[#0a0a0a]";
   const textSecondary = isDark ? "text-white/55" : "text-[#0a0a0a]/70";
   const textMuted = isDark ? "text-white/30" : "text-[#0a0a0a]/65";
-  const accent = isDark ? "text-sky-400" : "text-blue-500";
-  const accentHover = isDark ? "hover:text-sky-400" : "hover:text-blue-500";
+  const accent = isDark ? "text-white/80" : "text-[#0a0a0a]/90";
+  const accentHover = isDark ? "hover:text-white" : "hover:text-[#0a0a0a]";
   const border = isDark ? "border-white/[0.08]" : "border-[#0a0a0a]/[0.08]";
-  const hoverBorder = isDark ? "hover:border-sky-500/30" : "hover:border-blue-400/30";
+  const hoverBorder = isDark ? "hover:border-white/20" : "hover:border-[#0a0a0a]/20";
   const previewBg = isDark ? "bg-white/[0.03]" : "bg-[#0a0a0a]/[0.03]";
 
   const visible = projects.slice(0, count);
@@ -40,7 +40,7 @@ export default function Home() {
 
           <p className={`text-base leading-relaxed ${textSecondary}`}>
             I&apos;m interested in building software that interacts with the physical world, with a focus on{" "}
-            <span className={accent}>3D graphics</span>, <span className={accent}>AI/ML</span>, and{" "}
+            <span className={accent}>robotics</span>, <span className={accent}>AI/ML</span>, and{" "}
             <span className={accent}>distributed systems</span>.
           </p>
 
@@ -71,10 +71,12 @@ export default function Home() {
                     {p.type === "video" ? (
                       <video
                         src={p.preview}
+                        poster={p.poster}
                         autoPlay
                         muted
                         loop
                         playsInline
+                        preload="none"
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -88,7 +90,7 @@ export default function Home() {
                   <div className="px-3 py-2.5">
                     <div className="flex items-center justify-between">
                       <h3 className={`text-sm font-medium ${textPrimary}`}>{p.title}</h3>
-                      <svg className={`w-3 h-3 ${textMuted} group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                      <svg className={`w-3 h-3 ${textMuted} group-hover:${textPrimary} group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                       </svg>
                     </div>
@@ -101,17 +103,17 @@ export default function Home() {
             {count < projects.length && (
               <button
                 onClick={() => setCount(projects.length)}
-                className={`mt-4 text-sm ${textMuted} ${accentHover} transition-colors cursor-pointer animate-underline`}
+                className={`mt-5 w-full py-2 text-sm border ${border} ${hoverBorder} ${textSecondary} hover:${textPrimary} transition-all duration-200 cursor-pointer tracking-wide`}
               >
-                Show {projects.length - count} more projects
+                show more
               </button>
             )}
             {count > INITIAL && (
               <button
                 onClick={() => setCount(INITIAL)}
-                className={`mt-4 text-sm ${textMuted} ${accentHover} transition-colors cursor-pointer animate-underline`}
+                className={`mt-5 w-full py-2 text-sm border ${border} ${hoverBorder} ${textSecondary} hover:${textPrimary} transition-all duration-200 cursor-pointer tracking-wide`}
               >
-                Show less
+                show less
               </button>
             )}
           </div>

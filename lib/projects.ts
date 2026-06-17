@@ -2,7 +2,8 @@ export interface Project {
   title: string;
   description: string;
   link: string;
-  preview: string; // path in /public/projects/
+  preview: string;
+  poster?: string;
   type: "video" | "image";
 }
 
@@ -18,14 +19,16 @@ export const projects: Project[] = [
     title: "Persona",
     description: "Tool for building AI-powered Q&A product support agents with one-click deployment.",
     link: "https://github.com/KushalPraja/persona",
-    preview: "/projects/persona.mp4",
+    preview: "/projects/persona.thumb.mp4",
+    poster: "/projects/persona.poster.jpg",
     type: "video",
   },
   {
     title: "GreenLens",
     description: "Using AI to help users make environmentally conscious decisions. GenAI Genesis 2025 winner.",
     link: "https://github.com/KushalPraja/greenlens",
-    preview: "/projects/greenlens.mp4",
+    preview: "/projects/greenlens.thumb.mp4",
+    poster: "/projects/greenlens.poster.jpg",
     type: "video",
   },
   {
@@ -39,7 +42,8 @@ export const projects: Project[] = [
     title: "Thorem",
     description: "A tool that uses AI to convert handwritten text and equations to LaTeX.",
     link: "https://github.com/KushalPraja/thorem",
-    preview: "/projects/thorem.mp4",
+    preview: "/projects/thorem.thumb.mp4",
+    poster: "/projects/thorem.poster.jpg",
     type: "video",
   },
   {
@@ -74,7 +78,8 @@ export const projects: Project[] = [
     title: "Soundwave",
     description: "Visualizer and music player made with p5.js.",
     link: "https://github.com/KushalPraja/soundwave",
-    preview: "/projects/soundwave.mp4",
+    preview: "/projects/soundwave.thumb.mp4",
+    poster: "/projects/soundwave.poster.jpg",
     type: "video",
   },
 ];

@@ -33,20 +33,19 @@ export default function Home() {
           <div className="space-y-2">
             <FloatingKnot className="mb-2" />
             <TextScramble
-              text="kushal praja"
+              text="hi, i'm kushal "
               className={`text-3xl font-bold tracking-tight ${textPrimary}`}
             />
           </div>
 
           <p className={`text-base leading-relaxed ${textSecondary}`}>
-            I&apos;m interested in building software that interacts with the physical world, with a focus on{" "}
+            a computer engineering student interested in building software that interacts with the physical world, with a focus on{" "}
             <span className={accent}>robotics</span>, <span className={accent}>AI/ML</span>, and{" "}
             <span className={accent}>distributed systems</span>.
           </p>
 
           <p className={`text-base leading-relaxed ${textSecondary}`}>
-            I&apos;m based in Waterloo, studying Computer Engineering @ UWaterloo.
-            Previously interned at{" "}
+            previously interned at{" "}
             <a href="https://kaimaging.com/" target="_blank" rel="noopener noreferrer" className={`${textPrimary} ${accentHover} transition-colors duration-200 animate-underline`}>
               KA Imaging
             </a>
@@ -58,6 +57,11 @@ export default function Home() {
 
           {/* Projects */}
           <div className="pt-4">
+
+            <div className="flex items-center justify-between mb-3">
+              <h2 className={`text-lg font-semibold ${textPrimary}`}>recent projects</h2>
+            </div>
+
             <div className="grid grid-cols-2 gap-3">
               {visible.map((p) => (
                 <a
